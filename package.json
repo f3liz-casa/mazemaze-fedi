@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "description": "The mazemaze family — one Melange runtime, many typed API-client surfaces, generated from one OCaml generator.",
-  "license": "MPL-2.0",
+  "license": "MIT",
   "workspaces": [
     "generator",
     "api-misskey",

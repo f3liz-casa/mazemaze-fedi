@@ -38,7 +38,7 @@
     "melange",
     "rescript"
   ],
-  "license": "MPL-2.0",
+  "license": "MIT",
   "devDependencies": {
     "@f3liz/mazemaze-generator": "*",
     "acorn": "^8.17.0",

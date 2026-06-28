@@ -14,5 +14,5 @@
     "@f3liz/mazemaze-api-misskey": "^0.11.0"
   },
   "files": ["*.mjs", "*.d.ts", "README.md"],
-  "license": "MPL-2.0"
+  "license": "MIT"
 }
