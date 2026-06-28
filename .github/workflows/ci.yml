@@ -32,6 +32,13 @@ jobs:
           node-version: "22"
       - run: npm ci
 
+      # ReScript 12 ships per-platform binaries as optionalDependencies pinned to
+      # its exact version; npm omits the non-host ones from a lockfile generated on
+      # another OS, so the Linux runner's binary is missing. Install the matching
+      # one (--no-save keeps the lockfile clean for the no-diff gate below).
+      - name: Provide ReScript's Linux binary
+        run: npm install --no-save "@rescript/linux-x64@$(node -e "process.stdout.write(require(require.resolve('rescript/package.json',{paths:['generator','.']})).version)")"
+
       - name: Set up OCaml
         uses: ocaml/setup-ocaml@v3
         with:
