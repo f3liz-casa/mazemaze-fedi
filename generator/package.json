@@ -1,6 +1,6 @@
 {
   "name": "@f3liz/mazemaze-generator",
-  "version": "0.1.0",
+  "version": "0.11.0",
   "description": "Generate a typed API client from an OpenAPI spec or a GraphQL schema as one Melange runtime with three natural surfaces — Melange, ReScript, and TypeScript (via JSDoc).",
   "main": "index.js",
   "scripts": {

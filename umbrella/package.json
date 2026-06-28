@@ -1,21 +1,40 @@
 {
   "name": "@f3liz/mazemaze",
-  "version": "0.1.0",
+  "version": "0.11.0",
   "publishConfig": {
     "access": "public"
   },
   "description": "Umbrella for the @f3liz/mazemaze-* family — re-exports the Misskey client (@f3liz/mazemaze-api-misskey) under one stable entry.",
   "type": "module",
   "exports": {
-    ".": { "types": "./index.d.ts", "default": "./index.mjs" },
-    "./endpoints": { "types": "./endpoints.d.ts", "default": "./endpoints.mjs" },
-    "./components": { "types": "./components.d.ts", "default": "./components.mjs" },
-    "./melange-endpoints": { "types": "./melange-endpoints.d.ts", "default": "./melange-endpoints.mjs" },
-    "./melange-components": { "types": "./melange-components.d.ts", "default": "./melange-components.mjs" }
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.mjs"
+    },
+    "./endpoints": {
+      "types": "./endpoints.d.ts",
+      "default": "./endpoints.mjs"
+    },
+    "./components": {
+      "types": "./components.d.ts",
+      "default": "./components.mjs"
+    },
+    "./melange-endpoints": {
+      "types": "./melange-endpoints.d.ts",
+      "default": "./melange-endpoints.mjs"
+    },
+    "./melange-components": {
+      "types": "./melange-components.d.ts",
+      "default": "./melange-components.mjs"
+    }
   },
   "dependencies": {
     "@f3liz/mazemaze-api-misskey": "^0.11.0"
   },
-  "files": ["*.mjs", "*.d.ts", "README.md"],
+  "files": [
+    "*.mjs",
+    "*.d.ts",
+    "README.md"
+  ],
   "license": "MIT"
 }

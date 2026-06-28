@@ -1,6 +1,6 @@
 {
   "name": "@f3liz/mazemaze-api-mastodon",
-  "version": "0.1.0",
+  "version": "0.11.0",
   "publishConfig": {
     "access": "public"
   },
@@ -32,7 +32,14 @@
     "README.md",
     "LICENSE"
   ],
-  "keywords": ["mastodon", "activitypub", "fediverse", "openapi", "melange", "rescript"],
+  "keywords": [
+    "mastodon",
+    "activitypub",
+    "fediverse",
+    "openapi",
+    "melange",
+    "rescript"
+  ],
   "license": "MIT",
   "devDependencies": {
     "@f3liz/mazemaze-generator": "*",
