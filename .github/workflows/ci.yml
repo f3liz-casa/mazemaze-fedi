@@ -1,0 +1,56 @@
+# The family gate. A generator change must regenerate, build, and test every
+# client — atomically, in one toolchain. The chain:
+#
+#   generator harness (build + determinism + consumer/JSDoc/ReScript checks)
+#     -> regenerate every client from the generator
+#     -> assert regen left no diff (committed client output is in sync)
+#     -> build every package
+#
+# The no-diff step is the point of the monorepo: if a generator change would
+# change a client's generated code, CI stays red until `npm run regen` is run
+# and the result committed.
+#
+# Toolchain versions track the local known-good set (OCaml 5.4, melange 6.x,
+# melange-json 2.x, yojson 3.x, ReScript 12, graphql 16). If a first real run
+# drifts on resolution, pin the `opam install` line here — the generator harness
+# is the source of truth for "still green".
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm ci
+
+      - name: Set up OCaml
+        uses: ocaml/setup-ocaml@v3
+        with:
+          ocaml-compiler: "5.4"
+      - run: opam install -y dune melange melange-json yojson
+
+      - name: Generator harness
+        run: opam exec -- npm run test -w @f3liz/mazemaze-generator
+
+      - name: Regenerate every client from the generator
+        run: opam exec -- npm run regen
+
+      - name: Generated client code is in sync (regen left no diff)
+        run: |
+          if ! git diff --quiet; then
+            echo "::error::regen changed committed output — run 'npm run regen' and commit the result:"
+            git --no-pager diff --stat
+            exit 1
+          fi
+
+      - name: Build every package
+        run: opam exec -- npm run build
