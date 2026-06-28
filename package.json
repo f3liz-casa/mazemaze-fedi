@@ -1,0 +1,19 @@
+{
+  "name": "mazemaze",
+  "version": "0.0.0",
+  "private": true,
+  "description": "The mazemaze family — one Melange runtime, many typed API-client surfaces, generated from one OCaml generator.",
+  "license": "MPL-2.0",
+  "workspaces": [
+    "generator",
+    "api-misskey",
+    "api-mastodon",
+    "api-bluesky",
+    "umbrella"
+  ],
+  "scripts": {
+    "regen": "npm run generate --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present"
+  }
+}

@@ -1,0 +1,23 @@
+; B2: generate the .ml + JSDoc metadata from the spec, then melange-compile it,
+; all under `dune build`. The generator is the native OCaml driver in ../gen.
+; The generator also emits ComponentSchemas.res / Endpoints.res, but those go to
+; the ReScript project (res/src) via build.sh — NOT here, since a .res next to
+; componentSchemas.ml would collide as the same module under melange.emit.
+(rule
+ (targets
+  componentSchemas.ml componentSchemas.jsdoc.json
+  endpoints.ml endpoints.jsdoc.json misskey.ml)
+ (deps
+  (file ../specs/misskey.json)
+  %{exe:../gen/driver.exe})
+ (action
+  (progn
+   (run %{exe:../gen/driver.exe} . ../specs/misskey.json)
+   ; drop the .res here; build.sh regenerates them into res/src for rescript
+   (run rm -f ComponentSchemas.res Endpoints.res))))
+
+(melange.emit
+ (target dist)
+ (libraries melange-json)
+ (preprocess (pps melange.ppx melange-json.ppx))
+ (module_systems es6))

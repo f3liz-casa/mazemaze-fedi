@@ -1,0 +1,18 @@
+# React to a post. The result is a GraphQL union (the dominant hackerspub
+# mutation shape); the input is an input object, which becomes a typed request
+# record. We select the branches a client cares about; an unselected __typename
+# is carried opaquely at runtime.
+mutation AddReaction($input: AddReactionToPostInput!) {
+  addReactionToPost(input: $input) {
+    __typename
+    ... on AddReactionToPostPayload {
+      clientMutationId
+    }
+    ... on InvalidInputError {
+      inputPath
+    }
+    ... on NotAuthenticatedError {
+      notAuthenticated
+    }
+  }
+}

@@ -1,0 +1,32 @@
+# Runs the regression harness (test/run.sh): generator build -> melange compile
+# -> JSDoc annotate -> determinism + consumer diagnostics + kaguya probe + decode.
+#
+# Note: opam package versions track what the repo was developed against
+# (melange 6.x, melange-json 2.x, yojson 3.x). If a first real run drifts,
+# pin them here — the harness itself is the source of truth for "still green".
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm ci
+
+      - name: Set up OCaml
+        uses: ocaml/setup-ocaml@v3
+        with:
+          ocaml-compiler: "5.2"
+      - run: opam install -y dune melange melange-json yojson
+
+      - name: Regression harness
+        run: opam exec -- bash test/run.sh

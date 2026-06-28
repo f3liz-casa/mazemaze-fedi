@@ -1,0 +1,11 @@
+# Look up an actor by fediverse handle. A plain nullable object result.
+query ActorByHandle($handle: String!) {
+  actorByHandle(handle: $handle) {
+    id
+    handle
+    name
+    avatarUrl
+    bio
+    local
+  }
+}

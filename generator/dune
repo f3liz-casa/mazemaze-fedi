@@ -1,0 +1,28 @@
+; B2/B1: splice JSDoc into each melange ESM module, producing the final
+; annotated files. `node annotate.mjs` only READS the emitted .js (acorn parse +
+; splice), it never runs it — so only acorn is needed, not the melange runtime.
+; Promoted back to the source tree so consumer.ts / kaguya-probe / tests import
+; them directly. Schemas and endpoints are separate modules (B1).
+(rule
+ (mode promote)
+ (target componentSchemas.annotated.mjs)
+ (deps
+  (file annotate.mjs)
+  (file ml/componentSchemas.jsdoc.json)
+  (file ml/dist/ml/componentSchemas.js)
+  (source_tree node_modules/acorn))
+ (action
+  (with-stdout-to componentSchemas.annotated.mjs
+   (run node annotate.mjs ml/dist/ml/componentSchemas.js ml/componentSchemas.jsdoc.json))))
+
+(rule
+ (mode promote)
+ (target endpoints.annotated.mjs)
+ (deps
+  (file annotate.mjs)
+  (file ml/endpoints.jsdoc.json)
+  (file ml/dist/ml/endpoints.js)
+  (source_tree node_modules/acorn))
+ (action
+  (with-stdout-to endpoints.annotated.mjs
+   (run node annotate.mjs ml/dist/ml/endpoints.js ml/endpoints.jsdoc.json))))

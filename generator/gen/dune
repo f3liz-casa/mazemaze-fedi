@@ -1,0 +1,8 @@
+; The generator is plain native OCaml (a CLI). It only *emits text* (.ml +
+; metadata .json); a separate melange project compiles the .ml, and a
+; node/acorn step splices the JSDoc. Native vs melange-to-node for the
+; generator is an IO/packaging choice that touches only the spec-reading edge
+; (yojson here vs melange-json) — the IR, Repr and emitters are identical.
+(executable
+ (name driver)
+ (libraries yojson))

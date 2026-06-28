@@ -1,0 +1,18 @@
+_build/
+node_modules/
+# generated artifacts
+ml/componentSchemas.ml
+ml/componentSchemas.jsdoc.json
+ml/endpoints.ml
+ml/endpoints.jsdoc.json
+ml/misskey.ml
+componentSchemas.annotated.mjs
+endpoints.annotated.mjs
+ComponentSchemas.res
+Endpoints.res
+# generated ReScript binding layer (rescript.json is tracked; the rest is built)
+res/src/*.res
+res/src/*.res.mjs
+res/src/melange-dist/
+res/lib/
+*.err

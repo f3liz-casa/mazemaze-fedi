@@ -1,0 +1,9 @@
+; Melange-native bindings (types + ppx decoders), emitted to JS for the
+; ReScript legacy layer (../src) to bind against. The ReScript side keeps
+; types only; decode/encode is delegated to these of_json/to_json functions.
+(melange.emit
+ (target dist)
+ (libraries melange-json)
+ (preprocess
+  (pps melange.ppx melange-json.ppx))
+ (module_systems es6))

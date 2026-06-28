@@ -1,0 +1,9 @@
+{
+  "name": "@f3liz/mazemaze-api-bluesky",
+  "namespace": false,
+  "suffix": ".res.mjs",
+  "sources": [
+    { "dir": "src/melange-api", "subdirs": false }
+  ],
+  "package-specs": { "module": "esmodule", "in-source": true }
+}

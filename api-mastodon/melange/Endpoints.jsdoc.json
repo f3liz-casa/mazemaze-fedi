@@ -1,0 +1,1123 @@
+{
+  "module": "Endpoints",
+  "fetchType": "(method: string, url: string, body: unknown) => Promise<unknown>",
+  "imports": [ "Account", "Announcement", "Application", "AsyncRefreshResponse", "CollectionWithAccounts", "Context", "Conversation", "CountResponse", "CreateFilterV2KeywordsAttributes", "CreateMarkerHome", "CreatePushSubscriptionData", "CreatePushSubscriptionSubscription", "CredentialAccount", "CredentialApplication", "CustomEmoji", "DiscoverOauthServerConfigurationResponse", "DomainBlock", "ExtendedDescription", "FamiliarFollowers", "FeaturedTag", "Filter", "FilterContextEnum", "FilterKeyword", "FilterStatus", "GetInstanceActivityResponse", "GroupedNotificationsResults", "IdentityProof", "Instance", "List", "ListRepliesPolicyEnum", "MediaAttachment", "MergedResponse", "MutedAccount", "Notification", "NotificationPolicy", "NotificationRequest", "NotificationTypeEnum", "OEmbedResponse", "PatchAccountsUpdateCredentialsSource", "Poll", "PollStatusPoll", "PrivacyPolicy", "Profile", "PutPushSubscriptionData", "Relationship", "Report", "ReportCategoryEnum", "Rule", "ScheduledStatus", "Search", "Status", "StatusEdit", "StatusSource", "StatusVisibilityEnum", "Suggestion", "Tag", "TermsOfService", "Token", "Translation", "TrendsLink", "V1Filter", "V1Instance", "WebPushSubscription" ],
+  "types": [
+    { "name": "GetByAccountIdCollectionsReq", "kind": "record", "fields": [
+        { "name": "account_id", "type": "string", "optional": false, "doc": "account_id parameter", "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results. Defaults to 40 Collections. Max 80 accounts.", "format": null },
+        { "name": "offset", "type": "number", "optional": true, "doc": "Skip the first n results. Defaults to 0.", "format": null }
+      ] },
+    { "name": "GetByAccountIdInCollectionsReq", "kind": "record", "fields": [
+        { "name": "account_id", "type": "string", "optional": false, "doc": "account_id parameter", "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results. Defaults to 40 Collections. Max 80 accounts.", "format": null },
+        { "name": "offset", "type": "number", "optional": true, "doc": "Skip the first n results. Defaults to 0.", "format": null }
+      ] },
+    { "name": "CreateAccountReq", "kind": "record", "fields": [
+        { "name": "agreement", "type": "boolean", "optional": false, "doc": "Whether the user agrees to the local rules, terms, and policies. These should be presented to the user in order to allow them to consent before setting this parameter to TRUE.", "format": null },
+        { "name": "email", "type": "string", "optional": false, "doc": "The email address to be used for login", "format": null },
+        { "name": "locale", "type": "string", "optional": false, "doc": "The language of the confirmation email that will be sent.", "format": null },
+        { "name": "password", "type": "string", "optional": false, "doc": "The password to be used for login", "format": null },
+        { "name": "username", "type": "string", "optional": false, "doc": "The desired username for the account", "format": null },
+        { "name": "date_of_birth", "type": "string", "optional": true, "doc": "String ([Date]), required if the server has a minimum age requirement.", "format": "date" },
+        { "name": "reason", "type": "string", "optional": true, "doc": "If registrations require manual approval, this text will be reviewed by moderators.", "format": null }
+      ] },
+    { "name": "GetAccountsReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string[]", "optional": true, "doc": "The IDs of the accounts.", "format": null }
+      ] },
+    { "name": "GetAccountReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "PostAccountBlockReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "PostAccountEndorseReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "GetAccountEndorsementsReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.", "format": null },
+        { "name": "max_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null },
+        { "name": "since_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null }
+      ] },
+    { "name": "GetAccountFeaturedTagsReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "PostAccountFollowReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null },
+        { "name": "languages", "type": "string[]", "optional": true, "doc": "Array of String (ISO 639-1 language two-letter code). Filter received statuses for these languages. If not provided, you will receive this account's posts in all languages.", "format": null },
+        { "name": "notify", "type": "boolean", "optional": true, "doc": "Receive notifications when this account posts a status? Defaults to false.", "format": null },
+        { "name": "reblogs", "type": "boolean", "optional": true, "doc": "Receive this account's reblogs in home timeline? Defaults to true.", "format": null }
+      ] },
+    { "name": "GetAccountFollowersReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.", "format": null },
+        { "name": "max_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null },
+        { "name": "min_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null },
+        { "name": "since_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null }
+      ] },
+    { "name": "GetAccountFollowingReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.", "format": null },
+        { "name": "max_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null },
+        { "name": "min_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null },
+        { "name": "since_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null }
+      ] },
+    { "name": "GetAccountIdentityProofsReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "GetAccountListsReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "PostAccountMuteReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null },
+        { "name": "duration", "type": "number", "optional": true, "doc": "How long the mute should last, in seconds. Defaults to 0 (indefinite).", "format": null },
+        { "name": "notifications", "type": "boolean", "optional": true, "doc": "Mute notifications in addition to statuses? Defaults to true.", "format": null }
+      ] },
+    { "name": "PostAccountNoteReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null },
+        { "name": "comment", "type": "string", "optional": true, "doc": "The comment to be set on that user. Provide an empty string or leave out this parameter to clear the currently set note.", "format": null }
+      ] },
+    { "name": "PostAccountPinReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "PostAccountRemoveFromFollowersReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "GetAccountStatusesReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null },
+        { "name": "exclude_reblogs", "type": "boolean", "optional": true, "doc": "Filter out boosts from the response.", "format": null },
+        { "name": "exclude_replies", "type": "boolean", "optional": true, "doc": "Filter out statuses in reply to a different account.", "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.", "format": null },
+        { "name": "max_id", "type": "string", "optional": true, "doc": "All results returned will be lesser than this ID. In effect, sets an upper bound on results.", "format": null },
+        { "name": "min_id", "type": "string", "optional": true, "doc": "Returns results immediately newer than this ID. In effect, sets a cursor at this ID and paginates forward.", "format": null },
+        { "name": "only_media", "type": "boolean", "optional": true, "doc": "Filter out statuses without attachments.", "format": null },
+        { "name": "pinned", "type": "boolean", "optional": true, "doc": "Filter for pinned statuses only. Defaults to false, which includes all statuses. Pinned statuses do not receive special priority in the order of the returned results.", "format": null },
+        { "name": "since_id", "type": "string", "optional": true, "doc": "All results returned will be greater than this ID. In effect, sets a lower bound on results.", "format": null },
+        { "name": "tagged", "type": "string", "optional": true, "doc": "Filter for statuses using a specific hashtag.", "format": null }
+      ] },
+    { "name": "PostAccountUnblockReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "PostAccountUnendorseReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "PostAccountUnfollowReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "PostAccountUnmuteReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "PostAccountUnpinReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "GetAccountsFamiliarFollowersReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string[]", "optional": true, "doc": "Find familiar followers for the provided account IDs.", "format": null }
+      ] },
+    { "name": "GetAccountLookupReq", "kind": "record", "fields": [
+        { "name": "acct", "type": "string", "optional": false, "doc": "The username or WebFinger address to lookup.", "format": null }
+      ] },
+    { "name": "GetAccountRelationshipsReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string[]", "optional": true, "doc": "Check relationships for the provided account IDs.", "format": null },
+        { "name": "with_suspended", "type": "boolean", "optional": true, "doc": "Whether relationships should be returned for suspended users, defaults to false.", "format": null }
+      ] },
+    { "name": "GetAccountSearchReq", "kind": "record", "fields": [
+        { "name": "q", "type": "string", "optional": false, "doc": "Search query for accounts.", "format": null },
+        { "name": "following", "type": "boolean", "optional": true, "doc": "Limit the search to users you are following. Defaults to false.", "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results. Defaults to 40 accounts. Max 80 accounts.", "format": null },
+        { "name": "offset", "type": "number", "optional": true, "doc": "Skip the first n results.", "format": null },
+        { "name": "resolve", "type": "boolean", "optional": true, "doc": "Attempt WebFinger lookup. Defaults to false. Use this when `q` is an exact address.", "format": null }
+      ] },
+    { "name": "PatchAccountsUpdateCredentialsReq", "kind": "record", "fields": [
+        { "name": "attribution_domains", "type": "string[]", "optional": true, "doc": "Domains of websites allowed to credit the account. Maximum of 10 domains.", "format": null },
+        { "name": "avatar", "type": "string", "optional": true, "doc": "Avatar image encoded using `multipart/form-data`", "format": null },
+        { "name": "bot", "type": "boolean", "optional": true, "doc": "Whether the account has a bot flag.", "format": null },
+        { "name": "discoverable", "type": "boolean", "optional": true, "doc": "Whether the account should be shown in the profile directory.", "format": null },
+        { "name": "display_name", "type": "string", "optional": true, "doc": "The display name to use for the profile.", "format": null },
+        { "name": "fields_attributes", "type": "unknown", "optional": true, "doc": "The profile fields to be set. Inside this hash, the key is an integer cast to a string (although the exact integer does not matter), and the value is another hash including `name` and `value`. By default, max 4 fields (specified in [Instance#max_profile_fields]).", "format": null },
+        { "name": "header", "type": "string", "optional": true, "doc": "Header image encoded using `multipart/form-data`", "format": null },
+        { "name": "hide_collections", "type": "boolean", "optional": true, "doc": "Whether to hide followers and followed accounts.", "format": null },
+        { "name": "indexable", "type": "boolean", "optional": true, "doc": "Whether public posts should be searchable to anyone.", "format": null },
+        { "name": "locked", "type": "boolean", "optional": true, "doc": "Whether manual approval of follow requests is required.", "format": null },
+        { "name": "note", "type": "string", "optional": true, "doc": "The account bio.", "format": null },
+        { "name": "source", "type": "PatchAccountsUpdateCredentialsSource", "optional": true, "doc": "Object containing properties", "format": null }
+      ] },
+    { "name": "GetAccountsVerifyCredentialsReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "GetAnnouncementsReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "PostAnnouncementDismissReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "UpdateAnnouncementReactionReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null },
+        { "name": "name", "type": "string", "optional": false, "doc": "name parameter", "format": null }
+      ] },
+    { "name": "DeleteAnnouncementReactionReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null },
+        { "name": "name", "type": "string", "optional": false, "doc": "name parameter", "format": null }
+      ] },
+    { "name": "GetAnnualReportsReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "GetAnnualReportsByYearReq", "kind": "record", "fields": [
+        { "name": "year", "type": "string", "optional": false, "doc": "year parameter", "format": null }
+      ] },
+    { "name": "PostAnnualReportGenerateReq", "kind": "record", "fields": [
+        { "name": "year", "type": "string", "optional": false, "doc": "year parameter", "format": null }
+      ] },
+    { "name": "PostAnnualReportReadReq", "kind": "record", "fields": [
+        { "name": "year", "type": "string", "optional": false, "doc": "year parameter", "format": null }
+      ] },
+    { "name": "GetAnnualReportStateReq", "kind": "record", "fields": [
+        { "name": "year", "type": "string", "optional": false, "doc": "year parameter", "format": null }
+      ] },
+    { "name": "CreateAppReq", "kind": "record", "fields": [
+        { "name": "client_name", "type": "string", "optional": false, "doc": "A name for your application", "format": null },
+        { "name": "redirect_uris", "type": "string[]", "optional": false, "doc": "Where the user should be redirected after authorization. To display the authorization code to the user instead of redirecting to a web page, use `urn:ietf:wg:oauth:2.0:oob` in this parameter.", "format": null },
+        { "name": "scopes", "type": "string", "optional": true, "doc": "Space separated list of scopes. If none is provided, defaults to `read`. See [OAuth Scopes] for a list of possible scopes.", "format": "scopes" },
+        { "name": "website", "type": "string", "optional": true, "doc": "A URL to the homepage of your app", "format": null }
+      ] },
+    { "name": "GetAppsVerifyCredentialsReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "GetAsyncRefreshV1AlphaReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "GetBlocksReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.", "format": null },
+        { "name": "max_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null },
+        { "name": "min_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null },
+        { "name": "since_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null }
+      ] },
+    { "name": "GetBookmarksReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.", "format": null },
+        { "name": "max_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null },
+        { "name": "min_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null },
+        { "name": "since_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null }
+      ] },
+    { "name": "CreateCollectionReq", "kind": "record", "fields": [
+        { "name": "name", "type": "string", "optional": false, "doc": "A name for this Collection, max. 40 characters", "format": null },
+        { "name": "account_ids", "type": "string", "optional": true, "doc": "IDs of the accounts to feature in this Collection", "format": null },
+        { "name": "description", "type": "string", "optional": true, "doc": "A longer description of this Collection, max. 100 characters", "format": null },
+        { "name": "discoverable", "type": "boolean", "optional": true, "doc": "Whether this Collection should appear in search results and other discovery mechanisms", "format": null },
+        { "name": "language", "type": "string", "optional": true, "doc": "One of Mastodon's supported language codes (two letter ISO 639-1 plus exceptions)", "format": null },
+        { "name": "sensitive", "type": "boolean", "optional": true, "doc": "Whether this Collection should be marked as sensitive", "format": null },
+        { "name": "tag_name", "type": "string", "optional": true, "doc": "A single hashtag that describes the Collection", "format": null }
+      ] },
+    { "name": "PostCollectionItemsReq", "kind": "record", "fields": [
+        { "name": "collection_id", "type": "string", "optional": false, "doc": "collection_id parameter", "format": null },
+        { "name": "account_id", "type": "string", "optional": true, "doc": "ID of the account to add to this Collection", "format": null }
+      ] },
+    { "name": "DeleteCollectionItemReq", "kind": "record", "fields": [
+        { "name": "collection_id", "type": "string", "optional": false, "doc": "collection_id parameter", "format": null },
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "PostCollectionsByCollectionIdItemsByIdRevokeReq", "kind": "record", "fields": [
+        { "name": "collection_id", "type": "string", "optional": false, "doc": "collection_id parameter", "format": null },
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "GetCollectionReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "UpdateCollectionReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null },
+        { "name": "description", "type": "string", "optional": true, "doc": "A longer description of this Collection, max. 100 characters", "format": null },
+        { "name": "discoverable", "type": "boolean", "optional": true, "doc": "Whether this Collection should appear in search results and other discovery mechanisms", "format": null },
+        { "name": "language", "type": "string", "optional": true, "doc": "One of Mastodon's supported language codes (two letter ISO 639-1 plus exceptions)", "format": null },
+        { "name": "name", "type": "string", "optional": true, "doc": "A name for this Collection, max. 40 characters", "format": null },
+        { "name": "sensitive", "type": "boolean", "optional": true, "doc": "Whether this Collection should be marked as sensitive", "format": null },
+        { "name": "tag_name", "type": "string", "optional": true, "doc": "A single hashtag that describes the Collection", "format": null }
+      ] },
+    { "name": "DeleteCollectionReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "GetConversationsReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results to return. Defaults to 20 conversations. Max 40 conversations.", "format": null },
+        { "name": "max_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null },
+        { "name": "min_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null },
+        { "name": "since_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null }
+      ] },
+    { "name": "DeleteConversationReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "PostConversationReadReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "GetCustomEmojisReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "GetDirectoryReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": "How many accounts to load. Defaults to 40 accounts. Max 80 accounts.", "format": null },
+        { "name": "local", "type": "boolean", "optional": true, "doc": "If true, returns only local accounts.", "format": null },
+        { "name": "offset", "type": "number", "optional": true, "doc": "Skip the first n results.", "format": null },
+        { "name": "order", "type": "string", "optional": true, "doc": "Use `active` to sort by most recently posted statuses (default) or `new` to sort by most recently created profiles.", "format": null }
+      ] },
+    { "name": "GetDomainBlocksReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results to return. Defaults to 100 domain blocks. Max 200 domain blocks.", "format": null },
+        { "name": "max_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null },
+        { "name": "min_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null },
+        { "name": "since_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null }
+      ] },
+    { "name": "CreateDomainBlockReq", "kind": "record", "fields": [
+        { "name": "domain", "type": "string", "optional": false, "doc": "Domain to block.", "format": null }
+      ] },
+    { "name": "DeleteDomainBlocksReq", "kind": "record", "fields": [
+        { "name": "domain", "type": "string", "optional": false, "doc": "Domain to unblock.", "format": null }
+      ] },
+    { "name": "CreateEmailConfirmationsReq", "kind": "record", "fields": [
+        { "name": "email", "type": "string", "optional": true, "doc": "If provided, updates the unconfirmed user's email before resending the confirmation email.", "format": null }
+      ] },
+    { "name": "GetEndorsementsReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.", "format": null },
+        { "name": "max_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null },
+        { "name": "since_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null }
+      ] },
+    { "name": "GetFavouritesReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.", "format": null },
+        { "name": "max_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null },
+        { "name": "min_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null },
+        { "name": "since_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null }
+      ] },
+    { "name": "GetFeaturedTagsReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "CreateFeaturedTagReq", "kind": "record", "fields": [
+        { "name": "name", "type": "string", "optional": false, "doc": "The hashtag to be featured, without the hash sign.", "format": null }
+      ] },
+    { "name": "DeleteFeaturedTagReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "GetFeaturedTagSuggestionsReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "GetFiltersReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "CreateFilterReq", "kind": "record", "fields": [
+        { "name": "context", "type": "FilterContextEnum[]", "optional": false, "doc": "Where the filter should be applied. Specify at least one of `home`, `notifications`, `public`, `thread`, `account`.", "format": null },
+        { "name": "phrase", "type": "string", "optional": false, "doc": "The text to be filtered.", "format": null },
+        { "name": "expires_in", "type": "number", "optional": true, "doc": "Number of seconds from now that the filter should expire. Otherwise, `null` for a filter that doesn't expire.", "format": null },
+        { "name": "irreversible", "type": "boolean", "optional": true, "doc": "Should the server irreversibly drop matching entities from home and notifications? Defaults to false.", "format": null },
+        { "name": "whole_word", "type": "boolean", "optional": true, "doc": "Should the filter consider word boundaries for this keyword? Defaults to false.", "format": null }
+      ] },
+    { "name": "GetFilterReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "UpdateFilterReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null },
+        { "name": "context", "type": "FilterContextEnum[]", "optional": false, "doc": "Specify at least one of `home`, `notifications`, `public`, `thread`, `account`.", "format": null },
+        { "name": "phrase", "type": "string", "optional": false, "doc": "The text to be filtered.", "format": null },
+        { "name": "expires_in", "type": "number", "optional": true, "doc": "Number of seconds from now that the filter should expire. Otherwise, `null` for a filter that doesn't expire.", "format": null },
+        { "name": "irreversible", "type": "boolean", "optional": true, "doc": "Should the server irreversibly drop matching entities from home and notifications? Defaults to false.", "format": null },
+        { "name": "whole_word", "type": "boolean", "optional": true, "doc": "Should the filter consider word boundaries? Defaults to false.", "format": null }
+      ] },
+    { "name": "DeleteFilterReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "GetFiltersV2Req", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "CreateFilterV2Req", "kind": "record", "fields": [
+        { "name": "context", "type": "FilterContextEnum[]", "optional": false, "doc": "Where the filter should be applied. Specify at least one of `home`, `notifications`, `public`, `thread`, `account`.", "format": null },
+        { "name": "title", "type": "string", "optional": false, "doc": "The name of the filter group.", "format": null },
+        { "name": "expires_in", "type": "number", "optional": true, "doc": "How many seconds from now should the filter expire? Defaults to never expire.", "format": null },
+        { "name": "filter_action", "type": "string", "optional": true, "doc": "The policy to be applied when the filter is matched. Specify `warn`, `hide` or `blur`.", "format": null },
+        { "name": "keywords_attributes", "type": "CreateFilterV2KeywordsAttributes[]", "optional": true, "doc": "Array of objects with properties: keyword, whole_word, id, _destroy", "format": null }
+      ] },
+    { "name": "GetFilterKeywordsV2Req", "kind": "record", "fields": [
+        { "name": "filter_id", "type": "string", "optional": false, "doc": "filter_id parameter", "format": null }
+      ] },
+    { "name": "PostFilterKeywordsV2Req", "kind": "record", "fields": [
+        { "name": "filter_id", "type": "string", "optional": false, "doc": "filter_id parameter", "format": null },
+        { "name": "keyword", "type": "string", "optional": false, "doc": "The keyword to be added to the filter group.", "format": null },
+        { "name": "whole_word", "type": "boolean", "optional": true, "doc": "Whether the keyword should consider word boundaries.", "format": null }
+      ] },
+    { "name": "GetFilterStatusesV2Req", "kind": "record", "fields": [
+        { "name": "filter_id", "type": "string", "optional": false, "doc": "filter_id parameter", "format": null }
+      ] },
+    { "name": "PostFilterStatusesV2Req", "kind": "record", "fields": [
+        { "name": "filter_id", "type": "string", "optional": false, "doc": "filter_id parameter", "format": null },
+        { "name": "status_id", "type": "string", "optional": false, "doc": "The status ID to be added to the filter group.", "format": null }
+      ] },
+    { "name": "GetFilterV2Req", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "UpdateFilterV2Req", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null },
+        { "name": "context", "type": "FilterContextEnum[]", "optional": true, "doc": "Where the filter should be applied. Specify at least one of `home`, `notifications`, `public`, `thread`, `account`.", "format": null },
+        { "name": "expires_in", "type": "number", "optional": true, "doc": "How many seconds from now should the filter expire?", "format": null },
+        { "name": "filter_action", "type": "string", "optional": true, "doc": "The policy to be applied when the filter is matched. Specify `warn`, `hide` or `blur`.", "format": null },
+        { "name": "keywords_attributes", "type": "CreateFilterV2KeywordsAttributes[]", "optional": true, "doc": "Array of objects with properties: keyword, whole_word, id, _destroy", "format": null },
+        { "name": "title", "type": "string", "optional": true, "doc": "The name of the filter group.", "format": null }
+      ] },
+    { "name": "DeleteFilterV2Req", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "GetFiltersKeywordsByIdV2Req", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "UpdateFiltersKeywordsByIdV2Req", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null },
+        { "name": "keyword", "type": "string", "optional": false, "doc": "The keyword to be added to the filter group.", "format": null },
+        { "name": "whole_word", "type": "boolean", "optional": true, "doc": "Whether the keyword should consider word boundaries.", "format": null }
+      ] },
+    { "name": "DeleteFiltersKeywordsByIdV2Req", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "GetFiltersStatusesByIdV2Req", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "DeleteFiltersStatusesByIdV2Req", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "GetFollowRequestsReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.", "format": null },
+        { "name": "max_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null },
+        { "name": "since_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null }
+      ] },
+    { "name": "PostFollowRequestAuthorizeReq", "kind": "record", "fields": [
+        { "name": "account_id", "type": "string", "optional": false, "doc": "account_id parameter", "format": null }
+      ] },
+    { "name": "PostFollowRequestRejectReq", "kind": "record", "fields": [
+        { "name": "account_id", "type": "string", "optional": false, "doc": "account_id parameter", "format": null }
+      ] },
+    { "name": "GetFollowedTagsReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results to return. Defaults to 100 tags. Max 200 tags.", "format": null },
+        { "name": "max_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null },
+        { "name": "min_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null },
+        { "name": "since_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null }
+      ] },
+    { "name": "GetHealthReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "GetInstanceReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "GetInstanceActivityReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "GetInstanceDomainBlocksReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "GetInstanceExtendedDescriptionReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "GetInstancePeersReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "GetInstancePrivacyPolicyReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "GetInstanceRulesReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "GetInstanceTermsOfServiceReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "GetInstanceTermsOfServiceByDateReq", "kind": "record", "fields": [
+        { "name": "date", "type": "string", "optional": false, "doc": "date parameter", "format": null }
+      ] },
+    { "name": "GetInstanceTranslationLanguagesReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "GetInstanceV2Req", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "GetListsReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "CreateListReq", "kind": "record", "fields": [
+        { "name": "title", "type": "string", "optional": false, "doc": "The title of the list to be created.", "format": null },
+        { "name": "exclusive", "type": "boolean", "optional": true, "doc": "Whether members of this list need to get removed from the “Home” feed.", "format": null },
+        { "name": "replies_policy", "type": "ListRepliesPolicyEnum", "optional": true, "doc": "One of `followed`, `list`, or `none`. Defaults to `list`.", "format": null }
+      ] },
+    { "name": "GetListReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "UpdateListReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null },
+        { "name": "title", "type": "string", "optional": false, "doc": "The title of the list to be created.", "format": null },
+        { "name": "exclusive", "type": "boolean", "optional": true, "doc": "Whether members of this list need to get removed from the “Home” feed.", "format": null },
+        { "name": "replies_policy", "type": "ListRepliesPolicyEnum", "optional": true, "doc": "One of `followed`, `list`, or `none`. Defaults to `list`.", "format": null }
+      ] },
+    { "name": "DeleteListReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "GetListAccountsReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results. Defaults to 40 accounts. Max 80 accounts. Set to 0 in order to get all accounts without pagination.", "format": null },
+        { "name": "max_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null },
+        { "name": "min_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null },
+        { "name": "since_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null }
+      ] },
+    { "name": "PostListAccountsReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null },
+        { "name": "account_ids", "type": "string[]", "optional": false, "doc": "The accounts that should be added to the list.", "format": null }
+      ] },
+    { "name": "DeleteListAccountsReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null },
+        { "name": "account_ids", "type": "string[]", "optional": false, "doc": "The accounts that should be removed from the list.", "format": null }
+      ] },
+    { "name": "GetMarkersReq", "kind": "record", "fields": [
+        { "name": "timeline", "type": "FilterContextEnum[]", "optional": true, "doc": "Specify the timeline(s) for which markers should be fetched. Possible values: `home`, `notifications`. If not provided, an empty object will be returned.", "format": null }
+      ] },
+    { "name": "CreateMarkerReq", "kind": "record", "fields": [
+        { "name": "home", "type": "CreateMarkerHome", "optional": true, "doc": "Object containing properties", "format": null },
+        { "name": "notifications", "type": "CreateMarkerHome", "optional": true, "doc": "Object containing properties", "format": null }
+      ] },
+    { "name": "CreateMediaReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "GetMediaReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "DeleteMediaReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "UpdateMediaReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "CreateMediaV2Req", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "GetMutesReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.", "format": null },
+        { "name": "max_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null },
+        { "name": "since_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null }
+      ] },
+    { "name": "GetNotificationsReq", "kind": "record", "fields": [
+        { "name": "account_id", "type": "string", "optional": true, "doc": "Return only notifications received from the specified account.", "format": null },
+        { "name": "exclude_types", "type": "NotificationTypeEnum[]", "optional": true, "doc": "Types to exclude from the results.", "format": null },
+        { "name": "include_filtered", "type": "boolean", "optional": true, "doc": "Whether to include notifications filtered by the user's [NotificationPolicy]. Defaults to false.", "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results to return. Defaults to 40 notifications. Max 80 notifications.", "format": null },
+        { "name": "max_id", "type": "string", "optional": true, "doc": "All results returned will be lesser than this ID. In effect, sets an upper bound on results.", "format": null },
+        { "name": "min_id", "type": "string", "optional": true, "doc": "Returns results immediately newer than this ID. In effect, sets a cursor at this ID and paginates forward.", "format": null },
+        { "name": "since_id", "type": "string", "optional": true, "doc": "All results returned will be greater than this ID. In effect, sets a lower bound on results.", "format": null },
+        { "name": "supported_types", "type": "string[]", "optional": true, "doc": "Notification types to not get fallback representation for even when some is available. Passing this parameter is required to get any notification fallback at all. When this parameter is used, and a notification which type is *not* included in `supported_types` has an available fallback representation, it will be included in the notification's `fallback` attribute.", "format": null },
+        { "name": "types", "type": "NotificationTypeEnum[]", "optional": true, "doc": "Types to include in the result.", "format": null }
+      ] },
+    { "name": "GetNotificationReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null },
+        { "name": "supported_types", "type": "string[]", "optional": true, "doc": "Notification types to not get fallback representation for even when some is available. Passing this parameter is required to get any notification fallback at all. When this parameter is used, and a notification which type is *not* included in `supported_types` has an available fallback representation, it will be included in the notification's `fallback` attribute.", "format": null }
+      ] },
+    { "name": "PostNotificationDismissReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "CreateNotificationClearReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "GetNotificationRequestsReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results to return. Defaults to 40 notification requests. Max 80 notification requests.", "format": null },
+        { "name": "max_id", "type": "string", "optional": true, "doc": "All results returned will be lesser than this ID. In effect, sets an upper bound on results.", "format": null },
+        { "name": "min_id", "type": "string", "optional": true, "doc": "Returns results immediately newer than this ID. In effect, sets a cursor at this ID and paginates forward.", "format": null },
+        { "name": "since_id", "type": "string", "optional": true, "doc": "All results returned will be greater than this ID. In effect, sets a lower bound on results.", "format": null }
+      ] },
+    { "name": "GetNotificationsRequestsByIdReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "PostNotificationsRequestsByIdAcceptReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "PostNotificationsRequestsByIdDismissReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "CreateNotificationsRequestsAcceptReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "CreateNotificationsRequestsDismissReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "GetNotificationsRequestsMergedReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "GetNotificationsUnreadCountReq", "kind": "record", "fields": [
+        { "name": "account_id", "type": "string", "optional": true, "doc": "Only count unread notifications received from the specified account.", "format": null },
+        { "name": "exclude_types", "type": "string[]", "optional": true, "doc": "Types of notifications that should not count towards unread notifications.", "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results to return. Defaults to 100 notifications. Max 1000 notifications.", "format": null },
+        { "name": "types", "type": "string[]", "optional": true, "doc": "Types of notifications that should count towards unread notifications.", "format": null }
+      ] },
+    { "name": "GetNotificationsV2Req", "kind": "record", "fields": [
+        { "name": "account_id", "type": "string", "optional": true, "doc": "Return only notifications received from the specified account.", "format": null },
+        { "name": "exclude_types", "type": "NotificationTypeEnum[]", "optional": true, "doc": "Types to exclude from the results.", "format": null },
+        { "name": "expand_accounts", "type": "string", "optional": true, "doc": "One of `full` (default) or `partial_avatars`. When set to `partial_avatars`, some accounts will not be rendered in full in the returned `accounts` list but will be instead returned in stripped-down form in the `partial_accounts` list. The most recent account in a notification group is always rendered in full in the `accounts` attribute.", "format": null },
+        { "name": "grouped_types", "type": "NotificationTypeEnum[]", "optional": true, "doc": "Restrict which notification types can be grouped. Use this if there are notification types for which your client does not support grouping. If omitted, the server will group notifications of all types it supports (currently, `favourite`, `follow`, `reblog` and `admin.sign_up`). If you do not want any notification grouping, use [GET `/api/v1/notifications`] instead. Notifications that would be grouped if not for this parameter will instead be returned as individual single-notification groups with a unique `group_key` that can be assumed to be of the form `ungrouped-{notification_id}`. Please note that neither the streaming API nor the individual notification APIs are aware of this parameter and will always include a “proper” `group_key` that can be different from what is returned here, meaning that you may have to ignore `group_key` for such notifications that you do not want grouped and use `ungrouped-{notification_id}` instead for consistency.", "format": null },
+        { "name": "include_filtered", "type": "boolean", "optional": true, "doc": "Whether to include notifications filtered by the user's [NotificationPolicy]. Defaults to false.", "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results to return. Defaults to 40 notifications. Max 80 notification groups.", "format": null },
+        { "name": "max_id", "type": "string", "optional": true, "doc": "All results returned will be about notifications strictly older than this notification ID. In effect, sets an upper bound on results.", "format": null },
+        { "name": "min_id", "type": "string", "optional": true, "doc": "Returns results about notifications immediately newer than this notification ID. In effect, sets a cursor at this ID and paginates forward.", "format": null },
+        { "name": "since_id", "type": "string", "optional": true, "doc": "All results returned will be about notifications strictly newer than this notification ID. In effect, sets a lower bound on results.", "format": null },
+        { "name": "supported_types", "type": "string[]", "optional": true, "doc": "Notification types to not get fallback representation for even when some is available. Passing this parameter is required to get any notification fallback at all. When this parameter is used, and a notification which type is *not* included in `supported_types` has an available fallback representation, it will be included in the notification group's `fallback` attribute.", "format": null },
+        { "name": "types", "type": "NotificationTypeEnum[]", "optional": true, "doc": "Types to include in the result.", "format": null }
+      ] },
+    { "name": "GetNotificationsByGroupKeyV2Req", "kind": "record", "fields": [
+        { "name": "group_key", "type": "string", "optional": false, "doc": "group_key parameter", "format": null },
+        { "name": "supported_types", "type": "string[]", "optional": true, "doc": "Notification types to not get fallback representation for even when some is available. Passing this parameter is required to get any notification fallback at all. When this parameter is used, and a notification which type is *not* included in `supported_types` has an available fallback representation, it will be included in the notification group's `fallback` attribute.", "format": null }
+      ] },
+    { "name": "GetNotificationAccountsV2Req", "kind": "record", "fields": [
+        { "name": "group_key", "type": "string", "optional": false, "doc": "group_key parameter", "format": null }
+      ] },
+    { "name": "PostNotificationDismissV2Req", "kind": "record", "fields": [
+        { "name": "group_key", "type": "string", "optional": false, "doc": "group_key parameter", "format": null }
+      ] },
+    { "name": "GetNotificationPolicyV2Req", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "PatchNotificationPolicyV2Req", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "GetNotificationsUnreadCountV2Req", "kind": "record", "fields": [
+        { "name": "account_id", "type": "string", "optional": true, "doc": "Only count unread notifications received from the specified account.", "format": null },
+        { "name": "exclude_types", "type": "string[]", "optional": true, "doc": "Types of notifications that should not count towards unread notifications.", "format": null },
+        { "name": "grouped_types", "type": "string[]", "optional": true, "doc": "Restrict which notification types can be grouped. Use this if there are notification types for which your client does not support grouping. If omitted, the server will group notifications of all types it supports (currently, `favourite`, `follow` and `reblog`). If you do not want any notification grouping, use [GET `/api/v1/notifications/unread_count`] instead.", "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results to return. Defaults to 100 notifications. Max 1000 notifications.", "format": null },
+        { "name": "types", "type": "string[]", "optional": true, "doc": "Types of notifications that should count towards unread notifications.", "format": null }
+      ] },
+    { "name": "GetOauthAuthorizeReq", "kind": "record", "fields": [
+        { "name": "client_id", "type": "string", "optional": false, "doc": "The client ID, obtained during app registration.", "format": null },
+        { "name": "redirect_uri", "type": "string", "optional": false, "doc": "Set a URI to redirect the user to. If this parameter is set to `urn:ietf:wg:oauth:2.0:oob` then the authorization code will be shown instead. Must match one of the `redirect_uris` declared during app registration.", "format": null },
+        { "name": "response_type", "type": "string", "optional": false, "doc": "Should be set equal to `code`.", "format": null },
+        { "name": "code_challenge", "type": "string", "optional": true, "doc": "The [PKCE code challenge] for the authorization request.", "format": null },
+        { "name": "code_challenge_method", "type": "string", "optional": true, "doc": "Must be `S256`, as this is the only code challenge method that is supported by Mastodon for PKCE.", "format": null },
+        { "name": "force_login", "type": "boolean", "optional": true, "doc": "Forces the user to re-login, which is necessary for authorizing with multiple accounts from the same instance.", "format": null },
+        { "name": "lang", "type": "string", "optional": true, "doc": "The ISO 639-1 two-letter language code to use while rendering the authorization form.", "format": null },
+        { "name": "scope", "type": "string", "optional": true, "doc": "List of requested [OAuth scopes], separated by spaces (or by pluses, if using query parameters). Must be a subset of `scopes` declared during app registration. If not provided, defaults to `read`.", "format": null },
+        { "name": "state", "type": "string", "optional": true, "doc": "Arbitrary value to pass through to your server when the user authorizes or rejects the authorization request.", "format": null }
+      ] },
+    { "name": "PostOauthRevokeReq", "kind": "record", "fields": [
+        { "name": "client_id", "type": "string", "optional": false, "doc": "The client ID, obtained during app registration.", "format": null },
+        { "name": "client_secret", "type": "string", "optional": false, "doc": "The client secret, obtained during app registration.", "format": null },
+        { "name": "token", "type": "string", "optional": false, "doc": "The previously obtained token, to be invalidated.", "format": null }
+      ] },
+    { "name": "PostOauthTokenReq", "kind": "record", "fields": [
+        { "name": "client_id", "type": "string", "optional": false, "doc": "The client ID, obtained during app registration.", "format": null },
+        { "name": "client_secret", "type": "string", "optional": false, "doc": "The client secret, obtained during app registration.", "format": null },
+        { "name": "code", "type": "string", "optional": false, "doc": "A user authorization code, obtained from the redirect after an [Authorization request] is approved. May alternatively be displayed to the user if `urn:ietf:wg:oauth:2.0:oob` is used as the `redirect_uri`.", "format": null },
+        { "name": "grant_type", "type": "string", "optional": false, "doc": "Set equal to `authorization_code` if `code` is provided in order to gain user-level access. Otherwise, set equal to `client_credentials` to obtain app-level access only.", "format": null },
+        { "name": "redirect_uri", "type": "string", "optional": false, "doc": "Must match the `redirect_uri` used during the [Authorization request].", "format": null },
+        { "name": "code_verifier", "type": "string", "optional": true, "doc": "Required if [PKCE] is used during the authorization request. This is the code verifier which was used to create the `code_challenge` using the `code_challenge_method` for the authorization request.", "format": null },
+        { "name": "scope", "type": "string", "optional": true, "doc": "When `grant_type` is set to `client_credentials`, the list of requested OAuth scopes, separated by spaces (or pluses, if using query parameters). Must be a subset of the scopes requested at the time the application was created. If omitted, it defaults to `read`. Has no effect when `grant_type` is `authorization_code`.", "format": null }
+      ] },
+    { "name": "GetOauthUserinfoReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "GetOembedReq", "kind": "record", "fields": [
+        { "name": "url", "type": "string", "optional": false, "doc": "URL of a status.", "format": null },
+        { "name": "maxheight", "type": "number", "optional": true, "doc": "Height of the iframe. Defaults to null", "format": null },
+        { "name": "maxwidth", "type": "number", "optional": true, "doc": "Width of the iframe. Defaults to 400", "format": null }
+      ] },
+    { "name": "GetPollReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "PostPollVotesReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null },
+        { "name": "choices", "type": "number[]", "optional": false, "doc": "Provide your own votes as an index for each option (starting from 0).", "format": null }
+      ] },
+    { "name": "GetPreferencesReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "GetProfileReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "PatchProfileReq", "kind": "record", "fields": [
+        { "name": "attribution_domains", "type": "string[]", "optional": true, "doc": "Domains of websites allowed to credit the account. Maximum of 10 domains.", "format": null },
+        { "name": "avatar", "type": "string", "optional": true, "doc": "Avatar image encoded using `multipart/form-data`", "format": null },
+        { "name": "avatar_description", "type": "string", "optional": true, "doc": "A plain-text description of the avatar, for accessibility purposes.", "format": null },
+        { "name": "bot", "type": "boolean", "optional": true, "doc": "Whether the account has a bot flag.", "format": null },
+        { "name": "discoverable", "type": "boolean", "optional": true, "doc": "Whether the account should be shown in the profile directory.", "format": null },
+        { "name": "display_name", "type": "string", "optional": true, "doc": "The display name to use for the profile.", "format": null },
+        { "name": "fields_attributes", "type": "unknown", "optional": true, "doc": "The profile fields to be set. Each hash includes `name` and `value`. By default, max 4 fields (specified in [Instance#max_profile_fields]).", "format": null },
+        { "name": "header", "type": "string", "optional": true, "doc": "Header image encoded using `multipart/form-data`", "format": null },
+        { "name": "header_description", "type": "string", "optional": true, "doc": "A plain-text description of the header, for accessibility purposes.", "format": null },
+        { "name": "hide_collections", "type": "boolean", "optional": true, "doc": "Whether to hide followers and followed accounts.", "format": null },
+        { "name": "indexable", "type": "boolean", "optional": true, "doc": "Whether public posts should be searchable to anyone.", "format": null },
+        { "name": "locked", "type": "boolean", "optional": true, "doc": "Whether manual approval of follow requests is required.", "format": null },
+        { "name": "note", "type": "string", "optional": true, "doc": "The account bio.", "format": null },
+        { "name": "show_featured", "type": "boolean", "optional": true, "doc": "Whether a “Featured” tab should be shown on this profile.", "format": null },
+        { "name": "show_media", "type": "boolean", "optional": true, "doc": "Whether a “Media” tab with media attachments should be shown on this profile.", "format": null },
+        { "name": "show_media_replies", "type": "boolean", "optional": true, "doc": "Whether media attachments in replies should be shown in the “Media” tab of this profile.", "format": null }
+      ] },
+    { "name": "DeleteAvatarReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "DeleteProfileHeaderReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "CreatePushSubscriptionReq", "kind": "record", "fields": [
+        { "name": "subscription", "type": "CreatePushSubscriptionSubscription", "optional": false, "doc": "Object containing properties", "format": null },
+        { "name": "data", "type": "CreatePushSubscriptionData", "optional": true, "doc": "Object containing properties", "format": null }
+      ] },
+    { "name": "GetPushSubscriptionReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "PutPushSubscriptionReq", "kind": "record", "fields": [
+        { "name": "data", "type": "PutPushSubscriptionData", "optional": true, "doc": "Object containing properties", "format": null },
+        { "name": "policy", "type": "string", "optional": true, "doc": "Specify whether to receive push notifications from `all`, `followed`, `follower`, or `none` users.", "format": null }
+      ] },
+    { "name": "DeletePushSubscriptionReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "CreateReportReq", "kind": "record", "fields": [
+        { "name": "account_id", "type": "string", "optional": false, "doc": "ID of the account to report.", "format": null },
+        { "name": "category", "type": "ReportCategoryEnum", "optional": true, "doc": "Specify if the report is due to `spam`, `legal` (illegal content), `violation` of enumerated instance rules, or some `other` reason. Defaults to `other`. Will be set to `violation` if `rule_ids[]` is provided (regardless of any category value you provide).", "format": null },
+        { "name": "collection_ids", "type": "string[]", "optional": true, "doc": "You can attach Collections to the report to provide additional context.", "format": null },
+        { "name": "comment", "type": "string", "optional": true, "doc": "The reason for the report. Default maximum of 1000 characters.", "format": null },
+        { "name": "forward", "type": "boolean", "optional": true, "doc": "If the account is remote, should the report be forwarded to the remote admin? Defaults to false.", "format": null },
+        { "name": "rule_ids", "type": "string[]", "optional": true, "doc": "For `violation` category reports, specify the ID of the exact rules broken. Rules and their IDs are available via [GET /api/v1/instance/rules] and [GET /api/v1/instance]. See [Handling and sorting IDs] for more information.", "format": null },
+        { "name": "status_ids", "type": "string[]", "optional": true, "doc": "You can attach statuses to the report to provide additional context.", "format": null }
+      ] },
+    { "name": "GetScheduledStatusesReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.", "format": null },
+        { "name": "max_id", "type": "string", "optional": true, "doc": "All results returned will be lesser than this ID. In effect, sets an upper bound on results.", "format": null },
+        { "name": "min_id", "type": "string", "optional": true, "doc": "Returns results immediately newer than this ID. In effect, sets a cursor at this ID and paginates forward.", "format": null },
+        { "name": "since_id", "type": "string", "optional": true, "doc": "All results returned will be greater than this ID. In effect, sets a lower bound on results.", "format": null }
+      ] },
+    { "name": "GetScheduledStatusReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "UpdateScheduledStatusReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null },
+        { "name": "scheduled_at", "type": "string", "optional": true, "doc": "[Datetime] at which the status will be published. Must be at least 5 minutes into the future.", "format": "date-time" }
+      ] },
+    { "name": "DeleteScheduledStatusReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "GetSearchV2Req", "kind": "record", "fields": [
+        { "name": "q", "type": "string", "optional": false, "doc": "The search query.", "format": null },
+        { "name": "account_id", "type": "string", "optional": true, "doc": "If provided, will only return statuses authored by this account.", "format": null },
+        { "name": "exclude_unreviewed", "type": "boolean", "optional": true, "doc": "Filter out unreviewed tags? Defaults to false. Use true when trying to find trending tags.", "format": null },
+        { "name": "following", "type": "boolean", "optional": true, "doc": "Only include accounts that the user is following? Defaults to false.", "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results to return, per type. Defaults to 20 results per category. Max 40 results per category.", "format": null },
+        { "name": "max_id", "type": "string", "optional": true, "doc": "All results returned will be lesser than this ID. In effect, sets an upper bound on results.", "format": null },
+        { "name": "min_id", "type": "string", "optional": true, "doc": "Returns results immediately newer than this ID. In effect, sets a cursor at this ID and paginates forward.", "format": null },
+        { "name": "offset", "type": "number", "optional": true, "doc": "Skip the first n results. Only applies when `type` is also present (ignored otherwise).", "format": null },
+        { "name": "resolve", "type": "boolean", "optional": true, "doc": "Only relevant if `type` includes `accounts` or if `q` is a HTTPS URL. In the first case, if `true` and (a) the search query is for a remote account (e.g., `someaccount@someother.server`) and (b) the local server does not know about the account, [WebFinger] is used to try and resolve the account at `someother.server`. This provides the best recall at higher latency. If `false`, only accounts the server knows about are returned. In the second case, if `true`, resolving the URL and returning the matching status, account or Collection is attempted. If `false`, this resolving logic is circumvented and a regular search is performed instead.", "format": null },
+        { "name": "type", "type": "string", "optional": true, "doc": "Specify whether to search for only `accounts`, `hashtags`, `statuses`", "format": null }
+      ] },
+    { "name": "CreateStatusReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "GetStatusesReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string[]", "optional": true, "doc": "The IDs of the Statuses in the database.", "format": null }
+      ] },
+    { "name": "GetStatusReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "DeleteStatusReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null },
+        { "name": "delete_media", "type": "boolean", "optional": true, "doc": "Whether to immediately delete the post's media attachments. If omitted or `false`, media attachments may be kept for approximately 24 hours so they can be re-used in a new post.", "format": null }
+      ] },
+    { "name": "UpdateStatusReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null },
+        { "name": "language", "type": "string", "optional": true, "doc": "ISO 639-1 language code for the status.", "format": null },
+        { "name": "media_attributes[]", "type": "string[]", "optional": true, "doc": "Each array includes id, description, and focus.", "format": null },
+        { "name": "media_ids", "type": "string[]", "optional": true, "doc": "Include Attachment IDs to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used.", "format": null },
+        { "name": "poll", "type": "PollStatusPoll", "optional": true, "doc": "Object containing properties", "format": null },
+        { "name": "quote_approval_policy", "type": "string", "optional": true, "doc": "String (Enumerable, oneOf). Sets who is allowed to quote the status. Ignored if `visibility` is `private` or `direct`, in which case the policy will always be set to `nobody`. Changing the policy does not invalidate past quotes.", "format": null },
+        { "name": "sensitive", "type": "boolean", "optional": true, "doc": "Whether the status should be marked as sensitive.", "format": null },
+        { "name": "spoiler_text", "type": "string", "optional": true, "doc": "The plain text subject or content warning of the status.", "format": null },
+        { "name": "status", "type": "string", "optional": true, "doc": "The plain text content of the status.", "format": null }
+      ] },
+    { "name": "PostStatusBookmarkReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "GetStatusContextReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "PostStatusFavouriteReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "GetStatusFavouritedByReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.", "format": null },
+        { "name": "max_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null },
+        { "name": "since_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null }
+      ] },
+    { "name": "GetStatusHistoryReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "UpdateStatusInteractionPolicyReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null },
+        { "name": "quote_approval_policy", "type": "string", "optional": true, "doc": "String (Enumerable, oneOf). Sets who is allowed to quote the status. Ignored if `visibility` is `private` or `direct`, in which case the policy will always be set to `nobody`. Changing the policy does not invalidate past quotes.", "format": null }
+      ] },
+    { "name": "PostStatusMuteReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "PostStatusPinReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "GetStatusQuotesReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.", "format": null },
+        { "name": "max_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null },
+        { "name": "since_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null }
+      ] },
+    { "name": "PostStatusesByIdQuotesByQuotingStatusIdRevokeReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null },
+        { "name": "quoting_status_id", "type": "string", "optional": false, "doc": "quoting_status_id parameter", "format": null }
+      ] },
+    { "name": "PostStatusReblogReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null },
+        { "name": "visibility", "type": "StatusVisibilityEnum", "optional": true, "doc": "String (Enumerable, oneOf `public`, `unlisted`, or `private`). Defaults to public.", "format": null }
+      ] },
+    { "name": "GetStatusRebloggedByReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.", "format": null },
+        { "name": "max_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null },
+        { "name": "since_id", "type": "string", "optional": true, "doc": "Internal parameter. Use HTTP `Link` header for pagination.", "format": null }
+      ] },
+    { "name": "GetStatusSourceReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "PostStatusTranslateReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null },
+        { "name": "lang", "type": "string", "optional": true, "doc": "String (ISO 639-1 language code). The status content will be translated into this language. Defaults to the user's current locale (which in turn falls back to server default).", "format": null }
+      ] },
+    { "name": "PostStatusUnbookmarkReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "PostStatusUnfavouriteReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "PostStatusUnmuteReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "PostStatusUnpinReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "PostStatusUnreblogReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "GetStreamingDirectReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "GetStreamingHashtagReq", "kind": "record", "fields": [
+        { "name": "tag", "type": "string", "optional": false, "doc": "The name of the hashtag to watch.", "format": null }
+      ] },
+    { "name": "GetStreamingHashtagLocalReq", "kind": "record", "fields": [
+        { "name": "tag", "type": "string", "optional": false, "doc": "The name of the hashtag to watch.", "format": null }
+      ] },
+    { "name": "GetStreamingHealthReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "GetStreamingListReq", "kind": "record", "fields": [
+        { "name": "list", "type": "string", "optional": false, "doc": "The ID of the list to watch.", "format": null }
+      ] },
+    { "name": "GetStreamingPublicReq", "kind": "record", "fields": [
+        { "name": "only_media", "type": "boolean", "optional": true, "doc": "If true, return only statuses with media attachments.", "format": null }
+      ] },
+    { "name": "GetStreamingPublicLocalReq", "kind": "record", "fields": [
+        { "name": "only_media", "type": "boolean", "optional": true, "doc": "If true, return only statuses with media attachments.", "format": null }
+      ] },
+    { "name": "GetStreamingPublicRemoteReq", "kind": "record", "fields": [
+        { "name": "only_media", "type": "boolean", "optional": true, "doc": "If true, return only statuses with media attachments.", "format": null }
+      ] },
+    { "name": "GetStreamingUserReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "GetStreamingUserNotificationReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "GetSuggestionsReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.", "format": null }
+      ] },
+    { "name": "DeleteSuggestionsByAccountIdReq", "kind": "record", "fields": [
+        { "name": "account_id", "type": "string", "optional": false, "doc": "account_id parameter", "format": null }
+      ] },
+    { "name": "GetSuggestionsV2Req", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results to return. Defaults to 40 accounts. Max 80 accounts.", "format": null }
+      ] },
+    { "name": "PostTagFeatureReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "PostTagUnfeatureReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": "id parameter", "format": null }
+      ] },
+    { "name": "GetTagsByNameReq", "kind": "record", "fields": [
+        { "name": "name", "type": "string", "optional": false, "doc": "name parameter", "format": null }
+      ] },
+    { "name": "PostTagFollowReq", "kind": "record", "fields": [
+        { "name": "name", "type": "string", "optional": false, "doc": "name parameter", "format": null }
+      ] },
+    { "name": "PostTagUnfollowReq", "kind": "record", "fields": [
+        { "name": "name", "type": "string", "optional": false, "doc": "name parameter", "format": null }
+      ] },
+    { "name": "GetTimelineDirectReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.", "format": null },
+        { "name": "max_id", "type": "string", "optional": true, "doc": "All results returned will be lesser than this ID. In effect, sets an upper bound on results.", "format": null },
+        { "name": "min_id", "type": "string", "optional": true, "doc": "Returns results immediately newer than this ID. In effect, sets a cursor at this ID and paginates forward.", "format": null },
+        { "name": "since_id", "type": "string", "optional": true, "doc": "All results returned will be greater than this ID. In effect, sets a lower bound on results.", "format": null }
+      ] },
+    { "name": "GetTimelineHomeReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.", "format": null },
+        { "name": "max_id", "type": "string", "optional": true, "doc": "All results returned will be lesser than this ID. In effect, sets an upper bound on results.", "format": null },
+        { "name": "min_id", "type": "string", "optional": true, "doc": "Returns results immediately newer than this ID. In effect, sets a cursor at this ID and paginates forward.", "format": null },
+        { "name": "since_id", "type": "string", "optional": true, "doc": "All results returned will be greater than this ID. In effect, sets a lower bound on results.", "format": null }
+      ] },
+    { "name": "GetTimelineLinkReq", "kind": "record", "fields": [
+        { "name": "url", "type": "string", "optional": false, "doc": "The URL of the trending article.", "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.", "format": null },
+        { "name": "max_id", "type": "string", "optional": true, "doc": "All results returned will be lesser than this ID. In effect, sets an upper bound on results.", "format": null },
+        { "name": "min_id", "type": "string", "optional": true, "doc": "Returns results immediately newer than this ID. In effect, sets a cursor at this ID and paginates forward.", "format": null },
+        { "name": "since_id", "type": "string", "optional": true, "doc": "All results returned will be greater than this ID. In effect, sets a lower bound on results.", "format": null }
+      ] },
+    { "name": "GetTimelinesListByListIdReq", "kind": "record", "fields": [
+        { "name": "list_id", "type": "string", "optional": false, "doc": "list_id parameter", "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.", "format": null },
+        { "name": "max_id", "type": "string", "optional": true, "doc": "All results returned will be lesser than this ID. In effect, sets an upper bound on results.", "format": null },
+        { "name": "min_id", "type": "string", "optional": true, "doc": "Returns results immediately newer than this ID. In effect, sets a cursor at this ID and paginates forward.", "format": null },
+        { "name": "since_id", "type": "string", "optional": true, "doc": "All results returned will be greater than this ID. In effect, sets a lower bound on results.", "format": null }
+      ] },
+    { "name": "GetTimelinePublicReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.", "format": null },
+        { "name": "local", "type": "boolean", "optional": true, "doc": "Show only local statuses? Defaults to false.", "format": null },
+        { "name": "max_id", "type": "string", "optional": true, "doc": "All results returned will be lesser than this ID. In effect, sets an upper bound on results.", "format": null },
+        { "name": "min_id", "type": "string", "optional": true, "doc": "Returns results immediately newer than this ID. In effect, sets a cursor at this ID and paginates forward.", "format": null },
+        { "name": "only_media", "type": "boolean", "optional": true, "doc": "Show only statuses with media attached? Defaults to false.", "format": null },
+        { "name": "remote", "type": "boolean", "optional": true, "doc": "Show only remote statuses? Defaults to false.", "format": null },
+        { "name": "since_id", "type": "string", "optional": true, "doc": "All results returned will be greater than this ID. In effect, sets a lower bound on results.", "format": null }
+      ] },
+    { "name": "GetTimelinesTagByHashtagReq", "kind": "record", "fields": [
+        { "name": "hashtag", "type": "string", "optional": false, "doc": "hashtag parameter", "format": null },
+        { "name": "all", "type": "string[]", "optional": true, "doc": "Return statuses that contain all of these additional tags.", "format": null },
+        { "name": "any", "type": "string[]", "optional": true, "doc": "Return statuses that contain any of these additional tags.", "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.", "format": null },
+        { "name": "local", "type": "boolean", "optional": true, "doc": "Return only local statuses? Defaults to false.", "format": null },
+        { "name": "max_id", "type": "string", "optional": true, "doc": "All results returned will be lesser than this ID. In effect, sets an upper bound on results.", "format": null },
+        { "name": "min_id", "type": "string", "optional": true, "doc": "Returns results immediately newer than this ID. In effect, sets a cursor at this ID and paginates forward.", "format": null },
+        { "name": "none", "type": "string[]", "optional": true, "doc": "Return statuses that contain none of these additional tags.", "format": null },
+        { "name": "only_media", "type": "boolean", "optional": true, "doc": "Return only statuses with media attachments? Defaults to false.", "format": null },
+        { "name": "remote", "type": "boolean", "optional": true, "doc": "Return only remote statuses? Defaults to false.", "format": null },
+        { "name": "since_id", "type": "string", "optional": true, "doc": "All results returned will be greater than this ID. In effect, sets a lower bound on results.", "format": null }
+      ] },
+    { "name": "GetTrendLinksReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results to return. Defaults to 10 links. Max 20 links.", "format": null },
+        { "name": "offset", "type": "number", "optional": true, "doc": "Skip the first n results.", "format": null }
+      ] },
+    { "name": "GetTrendStatusesReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results to return. Defaults to 20 statuses. Max 40 statuses.", "format": null },
+        { "name": "offset", "type": "number", "optional": true, "doc": "Skip the first n results.", "format": null }
+      ] },
+    { "name": "GetTrendTagsReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum number of results to return. Defaults to 10 tags. Max 20 tags.", "format": null },
+        { "name": "offset", "type": "number", "optional": true, "doc": "Skip the first n results.", "format": null }
+      ] },
+    { "name": "GetWellKnownOauthAuthorizationServerReq", "kind": "record", "fields": [
+        
+      ] }
+  ],
+  "sends": [
+    { "name": "getByAccountIdCollections_send", "request": "GetByAccountIdCollectionsReq", "response": "unknown", "doc": "Version history:\n\n4.6.0 (`mastodon` [API version] 10) - added" },
+    { "name": "getByAccountIdInCollections_send", "request": "GetByAccountIdInCollectionsReq", "response": "unknown", "doc": "Version history:\n\n4.6.0 (`mastodon` [API version] 10) - added" },
+    { "name": "createAccount_send", "request": "CreateAccountReq", "response": "Token", "doc": "Creates a user and account records. Returns an account access token for the app that initiated the request. The app should save this token for later, and should wait for the user to confirm their account by clicking a link in their email inbox.\n\nVersion history:\n\n2.7.0 - added\\\n3.0.0 - added `reason` parameter\\\n3.4.0 - added `details` to failure response\\\n4.4.0 - added `date_of_birth` parameter" },
+    { "name": "getAccounts_send", "request": "GetAccountsReq", "response": "Account[]", "doc": "View information about multiple profiles.\n\nVersion history:\n\n4.3.0 - added" },
+    { "name": "getAccount_send", "request": "GetAccountReq", "response": "Account", "doc": "View information about a profile.\n\nVersion history:\n\n0.0.0 - added\\\n2.4.0 - returns 410 if account is suspended\\\n3.3.0 - returns an Account with `suspended: true` instead of 410" },
+    { "name": "postAccountBlock_send", "request": "PostAccountBlockReq", "response": "Relationship", "doc": "[Blocks]({{< relref \"user/moderating#block\">}}) the given account.\n\nVersion history:\n\n0.0.0 - added\\\n3.5.0 - deprecated `follow` scope. now additionally accepts `write`" },
+    { "name": "postAccountEndorse_send", "request": "PostAccountEndorseReq", "response": "Relationship", "doc": "Add the given account to the user's featured profiles.\n\nVersion history:\n\n4.4.0 - added" },
+    { "name": "getAccountEndorsements_send", "request": "GetAccountEndorsementsReq", "response": "Account[]", "doc": "Accounts that the user is currently featuring on their profile.\n\nVersion history:\n\n4.4.0 - added" },
+    { "name": "getAccountFeaturedTags_send", "request": "GetAccountFeaturedTagsReq", "response": "FeaturedTag[]", "doc": "Tags featured by this account.\n\nVersion history:\n\n3.3.0 - added" },
+    { "name": "postAccountFollow_send", "request": "PostAccountFollowReq", "response": "Relationship", "doc": "Follow the given account. Can also be used to update whether to show reblogs or enable notifications.\n\nVersion history:\n\n0.0.0 - added\\\n3.3.0 - added `notify`\\\n3.5.0 - deprecated `follow` scope. now additionally accepts `write`\\\n4.0.0 - added `languages`" },
+    { "name": "getAccountFollowers_send", "request": "GetAccountFollowersReq", "response": "Account[]", "doc": "Accounts which follow the given account, if network is not hidden by the account owner.\n\nVersion history:\n\n0.0.0 - added\\\n3.3.0 - both `min_id` and `max_id` can be used at the same time now\\\n4.0.0 - no longer requires an app token + `read:accounts`" },
+    { "name": "getAccountFollowing_send", "request": "GetAccountFollowingReq", "response": "Account[]", "doc": "Accounts which the given account is following, if network is not hidden by the account owner.\n\nVersion history:\n\n0.0.0 - added\\\n3.3.0 - both `min_id` and `max_id` can be used at the same time now\\\n4.0.0 - no longer requires an app token + `read:accounts`" },
+    { "name": "getAccountIdentityProofs_send", "request": "GetAccountIdentityProofsReq", "response": "IdentityProof[]", "doc": "Version history:\n\n2.8.0 - added\\\n3.5.0 - deprecated. now returns an empty array." },
+    { "name": "getAccountLists_send", "request": "GetAccountListsReq", "response": "List[]", "doc": "User lists that you have added this account to.\n\nVersion history:\n\n2.1.0 - added" },
+    { "name": "postAccountMute_send", "request": "PostAccountMuteReq", "response": "Relationship", "doc": "Mute the given account. Clients should filter statuses and notifications from this account, if received (e.g. due to a boost in the Home timeline).\n\nVersion history:\n\n0.0.0 - added\\\n3.3.0 - added `duration`\\\n3.5.0 - deprecated `follow` scope. now additionally accepts `write`" },
+    { "name": "postAccountNote_send", "request": "PostAccountNoteReq", "response": "Relationship", "doc": "Sets a private note on a user.\n\nVersion history:\n\n3.2.0 - added" },
+    { "name": "postAccountPin_send", "request": "PostAccountPinReq", "response": "Relationship", "doc": "Add the given account to the user's featured profiles. (Featured profiles are currently shown on the user's own public profile.)\n\nVersion history:\n\n2.5.0 - added\\\n4.0.0 - calling this method is now idempotent\\\n4.4.0 - deprecated in favor of `/api/v1/accounts/:id/endorse`" },
+    { "name": "postAccountRemoveFromFollowers_send", "request": "PostAccountRemoveFromFollowersReq", "response": "Relationship", "doc": "Remove the given account from your followers.\n\nVersion history:\n\n3.5.0 - added" },
+    { "name": "getAccountStatuses_send", "request": "GetAccountStatusesReq", "response": "Status[]", "doc": "Statuses posted to the given account.\n\nVersion history:\n\n0.0.0 - added\\\n1.4.2 - add `only_media` and `exclude_replies`\\\n1.6.0 - add `pinned`\\\n2.6.0 - add `min_id`\\\n2.7.0 - add `exclude_reblogs` and allow unauthed use\\\n2.8.0 - add `tagged` parameter\\\n3.3.0 - both `min_id` and `max_id` can be used at the same time now" },
+    { "name": "postAccountUnblock_send", "request": "PostAccountUnblockReq", "response": "Relationship", "doc": "Unblock the given account.\n\nVersion history:\n\n0.0.0 - added\\\n3.5.0 - deprecated `follow` scope. now additionally accepts `write`" },
+    { "name": "postAccountUnendorse_send", "request": "PostAccountUnendorseReq", "response": "Relationship", "doc": "Remove the given account from the user's featured profiles.\n\nVersion history:\n\n4.4.0 - added" },
+    { "name": "postAccountUnfollow_send", "request": "PostAccountUnfollowReq", "response": "Relationship", "doc": "Unfollow the given account.\n\nVersion history:\n\n0.0.0 - added\\\n3.5.0 - deprecated `follow` scope. now additionally accepts `write`" },
+    { "name": "postAccountUnmute_send", "request": "PostAccountUnmuteReq", "response": "Relationship", "doc": "Unmute the given account.\n\nVersion history:\n\n0.0.0 - added\\\n3.5.0 - deprecated `follow` scope. now additionally accepts `write`" },
+    { "name": "postAccountUnpin_send", "request": "PostAccountUnpinReq", "response": "Relationship", "doc": "Remove the given account from the user's featured profiles.\n\nVersion history:\n\n2.5.0 - added\\\n4.4.0 - deprecated in favor of `/api/v1/accounts/:id/unendorse`" },
+    { "name": "getAccountsFamiliarFollowers_send", "request": "GetAccountsFamiliarFollowersReq", "response": "FamiliarFollowers[]", "doc": "Obtain a list of all accounts that follow a given account, filtered for accounts you follow.\n\nVersion history:\n\n3.5.0 - added" },
+    { "name": "getAccountLookup_send", "request": "GetAccountLookupReq", "response": "Account", "doc": "Quickly lookup a username to see if it is available, skipping WebFinger resolution.\n\nVersion history:\n\n3.4.0 - added" },
+    { "name": "getAccountRelationships_send", "request": "GetAccountRelationshipsReq", "response": "Relationship[]", "doc": "Find out whether a given account is followed, blocked, muted, etc.\n\nVersion history:\n\n0.0.0 - added\\\n4.3.0 - added `with_suspended` parameter\n4.6.0 - added `muting_expires_at`" },
+    { "name": "getAccountSearch_send", "request": "GetAccountSearchReq", "response": "Account[]", "doc": "Search for matching accounts by username or display name.\n\nVersion history:\n\n0.0.0 - added\\\n2.8.0 - add `limit`, `offset` and `following`" },
+    { "name": "patchAccountsUpdateCredentials_send", "request": "PatchAccountsUpdateCredentialsReq", "response": "CredentialAccount", "doc": "Update the user's display and preferences.\n\nVersion history:\n\n1.1.1 - added\\\n2.3.0 - added `locked` parameter\\\n2.4.0 - added `source[privacy,sensitive]` parameters\\\n2.4.2 - added `source[language]` parameter\\\n2.7.0 - added `discoverable` parameter\\\n4.1.0 - added `hide_collections` parameter\\\n4.2.0 - added `indexable` parameter\\\n4.4.0 (`mastodon` [API version] 3) - added `attribution_domains` parameter\\\n4.5.0 (`mastodon` [API version] 7) - added `quote_policy` parameter" },
+    { "name": "getAccountsVerifyCredentials_send", "request": "GetAccountsVerifyCredentialsReq", "response": "CredentialAccount", "doc": "Test to make sure that the user token works.\n\nVersion history:\n\n0.0.0 - added\\\n4.3.0 - added `profile` scope" },
+    { "name": "getAnnouncements_send", "request": "GetAnnouncementsReq", "response": "Announcement[]", "doc": "See all currently active announcements set by admins.\n\nVersion history:\n\n3.1.0 - added" },
+    { "name": "postAnnouncementDismiss_send", "request": "PostAnnouncementDismissReq", "response": "unknown", "doc": "Allows a user to mark the announcement as read.\n\nVersion history:\n\n3.1.0 - added" },
+    { "name": "updateAnnouncementReaction_send", "request": "UpdateAnnouncementReactionReq", "response": "unknown", "doc": "React to an announcement with an emoji.\n\nVersion history:\n\n3.1.0 - added" },
+    { "name": "deleteAnnouncementReaction_send", "request": "DeleteAnnouncementReactionReq", "response": "unknown", "doc": "Undo a react emoji to an announcement.\n\nVersion history:\n\n3.1.0 - added" },
+    { "name": "getAnnualReports_send", "request": "GetAnnualReportsReq", "response": "unknown", "doc": "Returns all of the current user's generated annual reports, if any.\n\nVersion history:\n\n4.3.0 - added" },
+    { "name": "getAnnualReportsByYear_send", "request": "GetAnnualReportsByYearReq", "response": "unknown", "doc": "Returns the current user's generated annual report for the given year, if it exists.\n\nVersion history:\n\n4.4.0 - added" },
+    { "name": "postAnnualReportGenerate_send", "request": "PostAnnualReportGenerateReq", "response": "unknown", "doc": "Generate the user's annual report for the specified year.\n\nVersion history:\n\n4.6.0 (`mastodon` [API version] 8) - added" },
+    { "name": "postAnnualReportRead_send", "request": "PostAnnualReportReadReq", "response": "unknown", "doc": "Marks the user's generated annual report for the given year as read.\n\nVersion history:\n\n4.3.0 - added" },
+    { "name": "getAnnualReportState_send", "request": "GetAnnualReportStateReq", "response": "unknown", "doc": "Returns the state of the annual report for the current user and given year.\n\nVersion history:\n\n4.6.0 (`mastodon` [API version] 8) - added" },
+    { "name": "createApp_send", "request": "CreateAppReq", "response": "CredentialApplication", "doc": "Create a new application to obtain OAuth2 credentials.\n\nVersion history:\n\n0.0.0 - added\\\n2.7.2 - now returns `vapid_key`\\\n4.3.0 - deprecated `vapid_key`, please see [api/v2/instance]\\\n4.3.0 - added support for multiple `redirect_uris` in Form data parameters\\\n4.3.0 - added `redirect_uris` response property\\\n4.3.0 - deprecated `redirect_uri` response property, since this can be a non-URI if multiple `redirect_uris` are registered, use `redirect_uris` instead\\\n4.3.0 - changed entity type from [Application] to [CredentialApplication]\\\n4.4.0 - added `client_secret_expires_at`" },
+    { "name": "getAppsVerifyCredentials_send", "request": "GetAppsVerifyCredentialsReq", "response": "Application", "doc": "Confirm that the app's OAuth2 credentials work.\n\nVersion history:\n\n2.0.0 - added\\\n2.7.2 - now returns `vapid_key`\\\n4.3.0 - deprecated `vapid_key`, please see [api/v2/instance]\\\n4.3.0 - removed needing `read` scope to access this API, now any valid App token can be used\\\n4.3.0 - added `scopes` and `redirect_uris` properties" },
+    { "name": "getAsyncRefreshV1Alpha_send", "request": "GetAsyncRefreshV1AlphaReq", "response": "AsyncRefreshResponse", "doc": "Sometimes an API request might not return the expected results or not all possible results as either a background job is already running to (re-)create these results or the request triggers a background job to create or fetch results.\n\nVersion history:\n\n4.4.0 - added" },
+    { "name": "getBlocks_send", "request": "GetBlocksReq", "response": "Account[]", "doc": "Returns your blocked accounts.\n\nVersion history:\n\n0.0.0 - added\\\n3.3.0 - both `min_id` and `max_id` can be used at the same time now" },
+    { "name": "getBookmarks_send", "request": "GetBookmarksReq", "response": "Status[]", "doc": "Statuses the user has bookmarked.\n\nVersion history:\n\n3.1.0 - added\\\n3.3.0 - both `min_id` and `max_id` can be used at the same time now" },
+    { "name": "createCollection_send", "request": "CreateCollectionReq", "response": "unknown", "doc": "Create a new Collection.\n\nVersion history:\n\n4.6.0 (`mastodon` [API version] 10) - added" },
+    { "name": "postCollectionItems_send", "request": "PostCollectionItemsReq", "response": "unknown", "doc": "Add an account to a Collection.\n\nVersion history:\n\n4.6.0 (`mastodon` [API version] 10) - added" },
+    { "name": "deleteCollectionItem_send", "request": "DeleteCollectionItemReq", "response": "unknown", "doc": "Remove an account from a Collection.\n\nVersion history:\n\n4.6.0 (`mastodon` [API version] 10) - added" },
+    { "name": "postCollectionsByCollectionIdItemsByIdRevoke_send", "request": "PostCollectionsByCollectionIdItemsByIdRevokeReq", "response": "unknown", "doc": "Remove the current user from a Collection created by a different user.\n\nVersion history:\n\n4.6.0 (`mastodon` [API version] 10) - added" },
+    { "name": "getCollection_send", "request": "GetCollectionReq", "response": "CollectionWithAccounts", "doc": "Version history:\n\n4.6.0 (`mastodon` [API version] 10) - added" },
+    { "name": "updateCollection_send", "request": "UpdateCollectionReq", "response": "unknown", "doc": "Update an existing Collection.\n\nVersion history:\n\n4.6.0 (`mastodon` [API version] 10) - added" },
+    { "name": "deleteCollection_send", "request": "DeleteCollectionReq", "response": "unknown", "doc": "Delete a Collection.\n\nVersion history:\n\n4.6.0 (`mastodon` [API version] 10) - added" },
+    { "name": "getConversations_send", "request": "GetConversationsReq", "response": "Conversation[]", "doc": "Version history:\n\n2.6.0 - added\\\n3.3.0 - both `min_id` and `max_id` can be used at the same time now" },
+    { "name": "deleteConversation_send", "request": "DeleteConversationReq", "response": "unknown", "doc": "Removes a conversation from your list of conversations.\n\nVersion history:\n\n2.6.0 - added" },
+    { "name": "postConversationRead_send", "request": "PostConversationReadReq", "response": "Conversation", "doc": "Version history:\n\n2.6.0 - added" },
+    { "name": "getCustomEmojis_send", "request": "GetCustomEmojisReq", "response": "CustomEmoji[]", "doc": "Returns custom emojis that are available on the server.\n\nVersion history:\n\n2.0.0 - added\\\n3.0.0 - optional `category` added to response" },
+    { "name": "getDirectory_send", "request": "GetDirectoryReq", "response": "Account[]", "doc": "List accounts visible in the directory.\n\nVersion history:\n\n3.0.0 - added" },
+    { "name": "getDomainBlocks_send", "request": "GetDomainBlocksReq", "response": "string[]", "doc": "View domains the user has blocked." },
+    { "name": "createDomainBlock_send", "request": "CreateDomainBlockReq", "response": "unknown", "doc": "Block a domain to change interactions with that domain's server:" },
+    { "name": "deleteDomainBlocks_send", "request": "DeleteDomainBlocksReq", "response": "unknown", "doc": "Remove a domain block, if it exists in the user's array of blocked domains.\n\nVersion history:\n\n1.4.0 - added" },
+    { "name": "createEmailConfirmations_send", "request": "CreateEmailConfirmationsReq", "response": "unknown", "doc": "Resend a new confirmation email. If an email is provided, updates the unconfirmed user's email before resending the confirmation email.\n\nVersion history:\n\n3.4.0 - added" },
+    { "name": "getEndorsements_send", "request": "GetEndorsementsReq", "response": "Account[]", "doc": "Accounts that the user is currently featuring on their profile.\n\nVersion history:\n\n2.5.0 - added" },
+    { "name": "getFavourites_send", "request": "GetFavouritesReq", "response": "Status[]", "doc": "Statuses the user has favourited." },
+    { "name": "getFeaturedTags_send", "request": "GetFeaturedTagsReq", "response": "FeaturedTag[]", "doc": "List all hashtags featured on your profile.\n\nVersion history:\n\n3.0.0 - added" },
+    { "name": "createFeaturedTag_send", "request": "CreateFeaturedTagReq", "response": "FeaturedTag", "doc": "Promote a hashtag on your profile.\n\nVersion history:\n\n3.0.0 - added" },
+    { "name": "deleteFeaturedTag_send", "request": "DeleteFeaturedTagReq", "response": "unknown", "doc": "Stop promoting a hashtag on your profile.\n\nVersion history:\n\n3.0.0 - added" },
+    { "name": "getFeaturedTagSuggestions_send", "request": "GetFeaturedTagSuggestionsReq", "response": "Tag[]", "doc": "Shows up to 10 recently-used tags.\n\nVersion history:\n\n3.0.0 - added" },
+    { "name": "getFilters_send", "request": "GetFiltersReq", "response": "V1Filter", "doc": "Version history:\n\n2.4.3 - added\\\n4.0.0 - deprecated. For compatibility purposes, now returns a List of V1::Filter, with each V1::Filter representing one FilterKeyword (with the `keyword` being presented in the `phrase` attribute)" },
+    { "name": "createFilter_send", "request": "CreateFilterReq", "response": "V1Filter", "doc": "Version history:\n\n2.4.3 - added\\\n3.1.0 - added `account` context to filter in profile views\\\n4.0.0 - deprecated. For compatibility purposes, now returns a V1::Filter representing one FilterKeyword (with the `keyword` being presented in the `phrase` attribute). This method will create a Filter that contains only one FilterKeyword. The `title` of the Filter and the `keyword` of the FilterKeyword will be set equal to the `phrase` provided." },
+    { "name": "getFilter_send", "request": "GetFilterReq", "response": "V1Filter", "doc": "Version history:\n\n2.4.3 - added\\\n4.0.0 - deprecated. For compatibility purposes, now returns a V1::Filter representing one FilterKeyword (with the `keyword` being presented in the `phrase` attribute)" },
+    { "name": "updateFilter_send", "request": "UpdateFilterReq", "response": "V1Filter", "doc": "Replaces a filter's parameters in-place.\n\nVersion history:\n\n2.4.3 - added\\\n3.1.0 - added `account` context to filter in profile views\\\n4.0.0 - deprecated. For compatibility purposes, now returns a V1::Filter representing one FilterKeyword (with the `keyword` being presented in the `phrase` attribute). This method will return an error if you attempt to change `expires_in`, `irreversible`, or `context` for a filter with multiple keywords. Changing `phrase` and `whole_word` is always safe." },
+    { "name": "deleteFilter_send", "request": "DeleteFilterReq", "response": "unknown", "doc": "Version history:\n\n2.4.3 - added\\\n4.0.0 - deprecated. This method will delete only the FilterKeyword from its parent Filter. To delete the parent Filter, you must use the v2 filters API." },
+    { "name": "getFiltersV2_send", "request": "GetFiltersV2Req", "response": "Filter[]", "doc": "Obtain a list of all filter groups for the current user.\n\nVersion history:\n\n4.0.0 - added" },
+    { "name": "createFilterV2_send", "request": "CreateFilterV2Req", "response": "Filter", "doc": "Create a filter group with the given parameters.\n\nVersion history:\n\n4.0.0 - added\\\n4.4.0 (`mastodon` [API version] 5) - added `blur` value to `filter_action` attribute" },
+    { "name": "getFilterKeywordsV2_send", "request": "GetFilterKeywordsV2Req", "response": "FilterKeyword[]", "doc": "List all keywords attached to the current filter group.\n\nVersion history:\n\n4.0.0 - added" },
+    { "name": "postFilterKeywordsV2_send", "request": "PostFilterKeywordsV2Req", "response": "FilterKeyword", "doc": "Add the given keyword to the specified filter group\n\nVersion history:\n\n4.0.0 - added" },
+    { "name": "getFilterStatusesV2_send", "request": "GetFilterStatusesV2Req", "response": "FilterStatus[]", "doc": "Obtain a list of all status filters within this filter group.\n\nVersion history:\n\n4.0.0 - added" },
+    { "name": "postFilterStatusesV2_send", "request": "PostFilterStatusesV2Req", "response": "FilterStatus", "doc": "Add a status filter to the current filter group.\n\nVersion history:\n\n4.0.0 - added" },
+    { "name": "getFilterV2_send", "request": "GetFilterV2Req", "response": "Filter", "doc": "Obtain a single filter group owned by the current user.\n\nVersion history:\n\n4.0.0 - added" },
+    { "name": "updateFilterV2_send", "request": "UpdateFilterV2Req", "response": "Filter", "doc": "Update a filter group with the given parameters.\n\nVersion history:\n\n4.0.0 - added\\\n4.4.0 (`mastodon` [API version] 5) - added `blur` value to `filter_action` attribute" },
+    { "name": "deleteFilterV2_send", "request": "DeleteFilterV2Req", "response": "unknown", "doc": "Delete a filter group with the given id.\n\nVersion history:\n\n4.0.0 - added" },
+    { "name": "getFiltersKeywordsByIdV2_send", "request": "GetFiltersKeywordsByIdV2Req", "response": "FilterKeyword", "doc": "Get one filter keyword by the given id.\n\nVersion history:\n\n4.0.0 - added" },
+    { "name": "updateFiltersKeywordsByIdV2_send", "request": "UpdateFiltersKeywordsByIdV2Req", "response": "FilterKeyword", "doc": "Update the given filter keyword.\n\nVersion history:\n\n4.0.0 - added" },
+    { "name": "deleteFiltersKeywordsByIdV2_send", "request": "DeleteFiltersKeywordsByIdV2Req", "response": "unknown", "doc": "Deletes the given filter keyword.\n\nVersion history:\n\n4.0.0 - added" },
+    { "name": "getFiltersStatusesByIdV2_send", "request": "GetFiltersStatusesByIdV2Req", "response": "FilterStatus", "doc": "Obtain a single status filter.\n\nVersion history:\n\n4.0.0 - added" },
+    { "name": "deleteFiltersStatusesByIdV2_send", "request": "DeleteFiltersStatusesByIdV2Req", "response": "FilterStatus", "doc": "Remove a status filter from the current filter group.\n\nVersion history:\n\n4.0.0 - added" },
+    { "name": "getFollowRequests_send", "request": "GetFollowRequestsReq", "response": "Account[]", "doc": "Version history:\n\n0.0.0 - added" },
+    { "name": "postFollowRequestAuthorize_send", "request": "PostFollowRequestAuthorizeReq", "response": "Relationship", "doc": "Version history:\n\n0.0.0 - added\\\n3.0.0 - now returns Relationship instead of nothing" },
+    { "name": "postFollowRequestReject_send", "request": "PostFollowRequestRejectReq", "response": "Relationship", "doc": "Version history:\n\n0.0.0 - added\\\n3.0.0 - now returns Relationship instead of nothing" },
+    { "name": "getFollowedTags_send", "request": "GetFollowedTagsReq", "response": "Tag[]", "doc": "List your followed hashtags.\n\nVersion history:\n\n4.0.0 - added\\\n4.1.0 - add pagination headers" },
+    { "name": "getHealth_send", "request": "GetHealthReq", "response": "unknown", "doc": "Version history:\n\n3.0.0 - added" },
+    { "name": "getInstance_send", "request": "GetInstanceReq", "response": "V1Instance", "doc": "Obtain general information about the server. See [api/v2/instance]({{< relref \"methods/Instance#v2\">}}) instead.\n\nVersion history:\n\n1.1.0 - added\\\n3.0.0 - requires user token if instance is in whitelist mode\\\n3.1.4 - added `invites_enabled` to response\\\n3.4.0 - added `rules`\\\n3.4.2 - added `configuration`\\\n4.0.0 - deprecated. added `configuration[accounts]`." },
+    { "name": "getInstanceActivity_send", "request": "GetInstanceActivityReq", "response": "GetInstanceActivityResponse[]", "doc": "Server activity over the last 3 months, binned weekly.\n\nVersion history:\n\n2.1.2 - added\\\n3.0.0 - requires user token if server is in whitelist mode" },
+    { "name": "getInstanceDomainBlocks_send", "request": "GetInstanceDomainBlocksReq", "response": "DomainBlock[]", "doc": "Obtain a list of domains that have been blocked.\n\nVersion history:\n\n4.0.0 - added" },
+    { "name": "getInstanceExtendedDescription_send", "request": "GetInstanceExtendedDescriptionReq", "response": "ExtendedDescription", "doc": "Obtain an extended description of this server.\n\nVersion history:\n\n4.0.0 - added" },
+    { "name": "getInstancePeers_send", "request": "GetInstancePeersReq", "response": "string[]", "doc": "Domains that this server is aware of.\n\nVersion history:\n\n2.1.2 - added\\\n3.0.0 - requires user token if server is in whitelist mode" },
+    { "name": "getInstancePrivacyPolicy_send", "request": "GetInstancePrivacyPolicyReq", "response": "PrivacyPolicy", "doc": "Obtain the contents of this server's privacy policy.\n\nVersion history:\n\n4.0.0 - added" },
+    { "name": "getInstanceRules_send", "request": "GetInstanceRulesReq", "response": "Rule[]", "doc": "Rules that the users of this service should follow.\n\nVersion history:\n\n3.4.0 - added" },
+    { "name": "getInstanceTermsOfService_send", "request": "GetInstanceTermsOfServiceReq", "response": "TermsOfService", "doc": "Obtain the contents of this server's terms of service, if configured.\n\nVersion history:\n\n4.4.0 - added" },
+    { "name": "getInstanceTermsOfServiceByDate_send", "request": "GetInstanceTermsOfServiceByDateReq", "response": "TermsOfService", "doc": "Obtain the contents of this server's terms of service, for a specified date, if configured.\n\nVersion history:\n\n4.4.0 - added" },
+    { "name": "getInstanceTranslationLanguages_send", "request": "GetInstanceTranslationLanguagesReq", "response": "unknown", "doc": "Translation language pairs supported by the translation engine used by the server.\n\nVersion history:\n\n4.2.0 - added" },
+    { "name": "getInstanceV2_send", "request": "GetInstanceV2Req", "response": "Instance", "doc": "Obtain general information about the server.\n\nVersion history:\n\n4.0.0 - added\\\n4.1.0 - added `configuration.urls.status`\\\n4.2.0 - added `registrations.url`\\\n4.3.0 - added `configuration.vapid.public_key`, `api_versions`, `configuration.accounts.max_pinned_statuses`, `icon`\\\n4.4.0 - added `configuration.urls.about`, `configuration.urls.privacy_policy`, `configuration.urls.terms_of_service`, `registrations.min_age`, `registrations.reason_required`, `configuration.limited_federation`\\\n4.6.0 - added `thumbnail.description`" },
+    { "name": "getLists_send", "request": "GetListsReq", "response": "List[]", "doc": "Fetch all lists that the user owns.\n\nVersion history:\n\n2.1.0 - added" },
+    { "name": "createList_send", "request": "CreateListReq", "response": "List", "doc": "Create a new list.\n\nVersion history:\n\n2.1.0 - added\\\n3.3.0 - added `replies_policy`\\\n4.2.0 - added `exclusive`" },
+    { "name": "getList_send", "request": "GetListReq", "response": "List", "doc": "Fetch the list with the given ID.\n\nVersion history:\n\n2.1.0 - added" },
+    { "name": "updateList_send", "request": "UpdateListReq", "response": "List", "doc": "Change the properties of a list.\n\nVersion history:\n\n2.1.0 - added\\\n3.3.0 - added `replies_policy`\n4.2.0 - added `exclusive`" },
+    { "name": "deleteList_send", "request": "DeleteListReq", "response": "unknown", "doc": "Version history:\n\n2.1.0 - added" },
+    { "name": "getListAccounts_send", "request": "GetListAccountsReq", "response": "Account[]", "doc": "Version history:\n\n2.1.0 - added\\\n3.3.0 - both `min_id` and `max_id` can be used at the same time now" },
+    { "name": "postListAccounts_send", "request": "PostListAccountsReq", "response": "unknown", "doc": "Add accounts to the given list. Note that the user must be following these accounts.\n\nVersion history:\n\n2.1.0 - added" },
+    { "name": "deleteListAccounts_send", "request": "DeleteListAccountsReq", "response": "unknown", "doc": "Remove accounts from the given list.\n\nVersion history:\n\n2.1.0 - added" },
+    { "name": "getMarkers_send", "request": "GetMarkersReq", "response": "unknown", "doc": "Get current positions in timelines.\n\nVersion history:\n\n3.0.0 - added" },
+    { "name": "createMarker_send", "request": "CreateMarkerReq", "response": "unknown", "doc": "Save current position in timeline.\n\nVersion history:\n\n3.0.0 - added" },
+    { "name": "createMedia_send", "request": "CreateMediaReq", "response": "MediaAttachment", "doc": "Creates an attachment to be used with a new status. This method will return after the full sized media is done processing.\n\nVersion history:\n\n0.0.0 - added\\\n2.3.0 - add `focus` parameter\\\n3.1.3 - deprecated in favor of [POST /api/v2/media], which is equal to v1 in all aspects, except it returns HTTP 202, and the returned JSON object has a url of null. This is because while the thumbnail is prepared synchronously, the full version of the media attachment will be processed in the background.\\\n3.2.0 - add `thumbnail` parameter" },
+    { "name": "getMedia_send", "request": "GetMediaReq", "response": "MediaAttachment", "doc": "Get a media attachment, before it is attached to a status and posted, but after it is accepted for processing. Use this method to check that the full-sized media has finished processing.\n\nVersion history:\n\n3.1.3 - added" },
+    { "name": "deleteMedia_send", "request": "DeleteMediaReq", "response": "unknown", "doc": "Delete a media attachment that is not currently attached to a status.\n\nVersion history:\n\n- 4.4.0 (`mastodon` [API version] 4) - added" },
+    { "name": "updateMedia_send", "request": "UpdateMediaReq", "response": "MediaAttachment", "doc": "Update a MediaAttachment's parameters, before it is attached to a status and posted.\n\nVersion history:\n\n0.0.0 - added\\\n2.3.0 - add `focus` parameter\\\n3.2.0 - added `thumbnail`" },
+    { "name": "createMediaV2_send", "request": "CreateMediaV2Req", "response": "MediaAttachment", "doc": "Creates a media attachment to be used with a new status. The full sized media will be processed asynchronously in the background for large uploads.\n\nVersion history:\n\n3.1.3 - added\\\n3.2.0 - add `thumbnail` parameter\\\n4.0.0 - Smaller media formats (image) will be processed synchronously and return 200 instead of 202. Larger media formats (video, gifv, audio) will continue to be processed asynchronously and return 202." },
+    { "name": "getMutes_send", "request": "GetMutesReq", "response": "MutedAccount[]", "doc": "Accounts the user has muted.\n\nVersion history:\n\n0.0.0 - added\\\n3.3.0 - added `mute_expires_at`" },
+    { "name": "getNotifications_send", "request": "GetNotificationsReq", "response": "Notification[]", "doc": "Notifications concerning the user. This API returns Link headers containing links to the next/previous page. However, the links can also be constructed dynamically using query params and `id` values.\n\nVersion history:\n\n0.0.0 - added\\\n2.6.0 - added `min_id`\\\n2.9.0 - added `account_id`\\\n3.1.0 - added `follow_request` type\\\n3.3.0 - added `status` type; both `min_id` and `max_id` can be used at the same time now\\\n3.5.0 - added `types`; add `update` and `admin.sign_up` types\\\n4.0.0 - added `admin.report` type\\\n4.1.0 - notification limit changed from 15 (max 30) to 40 (max 80)\\\n4.3.0 - added `include_filtered` parameter\\\n4.6.0 (`mastodon` [API version] 10) - added `supported_types` optional parameter" },
+    { "name": "getNotification_send", "request": "GetNotificationReq", "response": "Notification", "doc": "View information about a notification with a given ID.\n\nVersion history:\n\n0.0.0 - added\\\n4.6.0 (`mastodon` [API version] 10) - added `supported_types` optional parameter" },
+    { "name": "postNotificationDismiss_send", "request": "PostNotificationDismissReq", "response": "unknown", "doc": "Dismiss a single notification from the server.\n\nVersion history:\n\n1.3.0 - added" },
+    { "name": "createNotificationClear_send", "request": "CreateNotificationClearReq", "response": "unknown", "doc": "Clear all notifications from the server.\n\nVersion history:\n\n0.0.0 - added" },
+    { "name": "getNotificationRequests_send", "request": "GetNotificationRequestsReq", "response": "NotificationRequest[]", "doc": "Notification requests for notifications filtered by the user's policy. This API returns Link headers containing links to the next/previous page.\n\nVersion history:\n\n4.3.0 - added" },
+    { "name": "getNotificationsRequestsById_send", "request": "GetNotificationsRequestsByIdReq", "response": "NotificationRequest", "doc": "View information about a notification request with a given ID.\n\nVersion history:\n\n4.3.0 - added" },
+    { "name": "postNotificationsRequestsByIdAccept_send", "request": "PostNotificationsRequestsByIdAcceptReq", "response": "unknown", "doc": "Accept a notification request, which merges the filtered notifications from that user back into the main notification and accepts any future notification from them.\n\nVersion history:\n\n4.3.0 - added" },
+    { "name": "postNotificationsRequestsByIdDismiss_send", "request": "PostNotificationsRequestsByIdDismissReq", "response": "unknown", "doc": "Dismiss a notification request, which hides it and prevent it from contributing to the pending notification requests count.\n\nVersion history:\n\n4.3.0 - added" },
+    { "name": "createNotificationsRequestsAccept_send", "request": "CreateNotificationsRequestsAcceptReq", "response": "unknown", "doc": "Accepts multiple notification requests, which merges the filtered notifications from those users back into the main notifications and accepts any future notification from them.\n\nVersion history:\n\n4.3.0 - added" },
+    { "name": "createNotificationsRequestsDismiss_send", "request": "CreateNotificationsRequestsDismissReq", "response": "unknown", "doc": "Dismiss multiple notification requests, which hides them and prevent them from contributing to the pending notification requests count.\n\nVersion history:\n\n4.3.0 - added" },
+    { "name": "getNotificationsRequestsMerged_send", "request": "GetNotificationsRequestsMergedReq", "response": "MergedResponse", "doc": "Check whether accepted notification requests have been merged.\n\nVersion history:\n\n4.3.0 - added" },
+    { "name": "getNotificationsUnreadCount_send", "request": "GetNotificationsUnreadCountReq", "response": "CountResponse", "doc": "Get the (capped) number of unread notifications for the current user." },
+    { "name": "getNotificationsV2_send", "request": "GetNotificationsV2Req", "response": "GroupedNotificationsResults", "doc": "Return grouped notifications concerning the user. This API returns Link headers containing links to the next/previous page. However, the links can also be constructed dynamically using query params and `id` values.\n\nVersion history:\n\n4.3.0 (`mastodon` [API version] 2) - added\\\n4.4.0 - added `admin.sign_up` to grouped notification types\\\n4.6.0 (`mastodon` [API version] 10) - added `supported_types` optional parameter" },
+    { "name": "getNotificationsByGroupKeyV2_send", "request": "GetNotificationsByGroupKeyV2Req", "response": "GroupedNotificationsResults", "doc": "View information about a specific notification group with a given group key.\n\nVersion history:\n\n4.3.0 (`mastodon` [API version] 2) - added\\\n4.6.0 (`mastodon` [API version] 10) - added `supported_types` optional parameter" },
+    { "name": "getNotificationAccountsV2_send", "request": "GetNotificationAccountsV2Req", "response": "Account[]", "doc": "Version history:\n\n4.3.0 (`mastodon` [API version] 2) - added" },
+    { "name": "postNotificationDismissV2_send", "request": "PostNotificationDismissV2Req", "response": "unknown", "doc": "Dismiss a single notification group from the server.\n\nVersion history:\n\n4.3.0 (`mastodon` [API version] 2) - added" },
+    { "name": "getNotificationPolicyV2_send", "request": "GetNotificationPolicyV2Req", "response": "NotificationPolicy", "doc": "Notifications filtering policy for the user.\n\nVersion history:\n\n4.3.0 - added" },
+    { "name": "patchNotificationPolicyV2_send", "request": "PatchNotificationPolicyV2Req", "response": "NotificationPolicy", "doc": "Update the user's notifications filtering policy.\n\nVersion history:\n\n4.3.0 - added" },
+    { "name": "getNotificationsUnreadCountV2_send", "request": "GetNotificationsUnreadCountV2Req", "response": "CountResponse", "doc": "Get the (capped) number of unread notification groups for the current user." },
+    { "name": "getOauthAuthorize_send", "request": "GetOauthAuthorizeReq", "response": "unknown", "doc": "Displays an authorization form to the user. If approved, it will create and return an authorization code, then redirect to the desired `redirect_uri`, or show the authorization code if `urn:ietf:wg:oauth:2.0:oob` was requested. The authorization code can be used while requesting a token to obtain access to user-level methods.\n\nVersion history:\n\n0.1.0 - added\\\n2.6.0 - added `force_login`\\\n3.5.0 - added `lang`\\\n4.3.0 - added support for PKCE parameters" },
+    { "name": "postOauthRevoke_send", "request": "PostOauthRevokeReq", "response": "unknown", "doc": "Revoke an access token to make it no longer valid for use.\n\nVersion history:\n\n0.1.0 - added" },
+    { "name": "postOauthToken_send", "request": "PostOauthTokenReq", "response": "Token", "doc": "Obtain an access token, to be used during API calls that are not public.\n\nVersion history:\n\n0.1.0 - added\\\n4.3.0 - added support for PKCE parameter" },
+    { "name": "getOauthUserinfo_send", "request": "GetOauthUserinfoReq", "response": "unknown", "doc": "Retrieves standardised OIDC [claims](https://www.iana.org/assignments/jwt/jwt.xhtml#claims) about the currently authenticated user.\\\n\nVersion history:\n\n4.4.0 - added" },
+    { "name": "getOembed_send", "request": "GetOembedReq", "response": "OEmbedResponse", "doc": "Version history:\n\n1.0.0 - added" },
+    { "name": "getPoll_send", "request": "GetPollReq", "response": "Poll", "doc": "View a poll attached to a status.\n\nVersion history:\n\n2.8.0 - added" },
+    { "name": "postPollVotes_send", "request": "PostPollVotesReq", "response": "Poll", "doc": "Vote on a poll attached to a status.\n\nVersion history:\n\n2.8.0 - added" },
+    { "name": "getPreferences_send", "request": "GetPreferencesReq", "response": "unknown", "doc": "Preferences defined by the user in their account settings.\n\nVersion history:\n\n2.8.0 - added\\\n4.5.0 (`mastodon` [API version] 7) - added `posting:default:quoted_policy`" },
+    { "name": "getProfile_send", "request": "GetProfileReq", "response": "Profile", "doc": "Version history:\n\n4.6.0 (`mastodon` [API version] 8) - added\\\n4.6.0 (`mastodon` [API version] 9) - added `avatar_description` and `header_description`" },
+    { "name": "patchProfile_send", "request": "PatchProfileReq", "response": "Profile", "doc": "Update the current user's profile.\n\nVersion history:\n\n4.6.0 (`mastodon` [API version] 8) - added" },
+    { "name": "deleteAvatar_send", "request": "DeleteAvatarReq", "response": "CredentialAccount", "doc": "Version history:\n\n4.2.0 - added\n\nDeletes the avatar associated with the user's profile." },
+    { "name": "deleteProfileHeader_send", "request": "DeleteProfileHeaderReq", "response": "CredentialAccount", "doc": "Version history:\n\n4.2.0 - added\n\nDeletes the header image associated with the user's profile." },
+    { "name": "createPushSubscription_send", "request": "CreatePushSubscriptionReq", "response": "WebPushSubscription", "doc": "Add a Web Push API subscription to receive notifications. Each access token can have one push subscription. If you create a new subscription, the old subscription is deleted.\n\nVersion history:\n\n2.4.0 - added\\\n3.3.0 - added `data[alerts][status]`\\\n3.4.0 - added `data[policy]`\\\n3.5.0 - added `data[alerts][update]` and `data[alerts][admin.sign_up]`\\\n4.0.0 - added `data[alerts][admin.report]`\\\n4.3.0 - added stricter request parameter validation, invalid endpoint URLs and subscription keys will now result in an error, previously these would be accepted, but silently fail.\\\n4.4.0 - added `subscription[standard]`\\\n4.5.0 (`mastodon` [API version] 7)- added `data[alerts][quote]` and `data[alerts][quoted_update]`" },
+    { "name": "getPushSubscription_send", "request": "GetPushSubscriptionReq", "response": "WebPushSubscription", "doc": "View the PushSubscription currently associated with this access token.\n\nVersion history:\n\n2.4.0 - added" },
+    { "name": "putPushSubscription_send", "request": "PutPushSubscriptionReq", "response": "WebPushSubscription", "doc": "Updates the current push subscription. Only the data part can be updated. To change fundamentals, a new subscription must be created instead.\n\nVersion history:\n\n2.4.0 - added\\\n3.3.0 - added `data[alerts][status]`\\\n3.4.0 - added `policy`\\\n3.5.0 - added `data[alerts][update]` and `data[alerts][admin.sign_up]`\\\n4.0.0 - added `data[alerts][admin.report]`" },
+    { "name": "deletePushSubscription_send", "request": "DeletePushSubscriptionReq", "response": "unknown", "doc": "Removes the current Web Push API subscription.\n\nVersion history:\n\n2.4.0 - added" },
+    { "name": "createReport_send", "request": "CreateReportReq", "response": "Report", "doc": "Report problematic accounts and contents to your moderators.\n\nVersion history:\n\n1.1 - added\\\n2.3.0 - add `forward` parameter\\\n3.5.0 - add `category` and `rule_ids` parameters\\\n4.0.0 - `category` is now optional if `rule_ids` is provided\\\n4.2.0 - add `legal` category\\\n4.6.0 - add `collection_ids` parameter" },
+    { "name": "getScheduledStatuses_send", "request": "GetScheduledStatusesReq", "response": "ScheduledStatus[]", "doc": "Version history:\n\n2.7.0 - added\\\n3.3.0 - both `min_id` and `max_id` can be used at the same time now" },
+    { "name": "getScheduledStatus_send", "request": "GetScheduledStatusReq", "response": "ScheduledStatus", "doc": "Version history:\n\n2.7.0 - added" },
+    { "name": "updateScheduledStatus_send", "request": "UpdateScheduledStatusReq", "response": "ScheduledStatus", "doc": "Version history:\n\n2.7.0 - added" },
+    { "name": "deleteScheduledStatus_send", "request": "DeleteScheduledStatusReq", "response": "unknown", "doc": "Version history:\n\n2.7.0 - added" },
+    { "name": "getSearchV2_send", "request": "GetSearchV2Req", "response": "Search", "doc": "Perform a search for content in accounts, statuses and hashtags with the given parameters. Note that the availability of results depends on the specific backend search configuration of the server being queried. By default, accounts and hashtags are always searchable, while statuses depend on an ElasticSearch backend being present and the API request being authenticated (full text search is not available to unauthenticated users).\n\nVersion history:\n\n2.4.1 - added, limit hardcoded to 5\\\n2.8.0 - add `type`, `limit`, `offset`, `min_id`, `max_id`, `account_id`\\\n3.0.0 - add `exclude_unreviewed` param\\\n3.3.0 - `min_id` and `max_id` can be used together\\\n4.0.0 - no longer requires a user token. Without a valid user token, you cannot use the `resolve` or `offset` parameters." },
+    { "name": "createStatus_send", "request": "CreateStatusReq", "response": "unknown", "doc": "Publish a status with the given parameters.\n\nVersion history:\n\n0.0.0 - added\\\n2.7.0 - `scheduled_at` added\\\n2.8.0 - `poll` added\\\n4.5.0 (`mastodon` [API version] 7) - `quoted_status_id` and `quote_approval_policy` added" },
+    { "name": "getStatuses_send", "request": "GetStatusesReq", "response": "Status[]", "doc": "Obtain information about multiple statuses.\n\nVersion history:\n\n4.3.0 - added" },
+    { "name": "getStatus_send", "request": "GetStatusReq", "response": "Status", "doc": "Obtain information about a status.\n\nVersion history:\n\n0.0.0 - added\\\n2.7.0 - public statuses no longer require token" },
+    { "name": "deleteStatus_send", "request": "DeleteStatusReq", "response": "Status", "doc": "Delete one of your own statuses.\n\nVersion history:\n\n0.0.0 - added\\\n2.9.0 - return source properties, for use with delete and redraft\\\n4.4.0 (`mastodon` [API version] 4) - added `delete_media` optional parameter" },
+    { "name": "updateStatus_send", "request": "UpdateStatusReq", "response": "Status", "doc": "Edit a given status to change its text, sensitivity, media attachments, or poll. Notes:\n\nVersion history:\n\n3.5.0 - added\\\n4.0.0 - add `language`\\\n4.5.0 (`mastodon` [API version] 7) - add `quote_approval_policy`" },
+    { "name": "postStatusBookmark_send", "request": "PostStatusBookmarkReq", "response": "Status", "doc": "Privately bookmark a status.\n\nVersion history:\n\n3.1.0 - added" },
+    { "name": "getStatusContext_send", "request": "GetStatusContextReq", "response": "Context", "doc": "View statuses above and below this status in the thread.\n\nVersion history:\n\n0.0.0 - added\\\n4.0.0 - limit unauthenticated requests\\\n4.5.0 - added experimental `Mastodon-Async-Refresh` header" },
+    { "name": "postStatusFavourite_send", "request": "PostStatusFavouriteReq", "response": "Status", "doc": "Add a status to your favourites list.\n\nVersion history:\n\n0.0.0 - added" },
+    { "name": "getStatusFavouritedBy_send", "request": "GetStatusFavouritedByReq", "response": "Account[]", "doc": "View who favourited a given status.\n\nVersion history:\n\n0.0.0 - added" },
+    { "name": "getStatusHistory_send", "request": "GetStatusHistoryReq", "response": "StatusEdit[]", "doc": "Get all known versions of a status, including the initial and current states.\n\nVersion history:\n\n3.5.0 - added" },
+    { "name": "updateStatusInteractionPolicy_send", "request": "UpdateStatusInteractionPolicyReq", "response": "Status", "doc": "Edit a given status to change its interaction policies. Currently, this means changing its quote approval policy.\n\nVersion history:\n\n4.5.0 (`mastodon` [API version] 7) - added" },
+    { "name": "postStatusMute_send", "request": "PostStatusMuteReq", "response": "Status", "doc": "Do not receive notifications for the thread that this status is part of. Must be a thread in which you are a participant.\n\nVersion history:\n\n1.4.2 - added" },
+    { "name": "postStatusPin_send", "request": "PostStatusPinReq", "response": "Status", "doc": "Feature one of your own public statuses at the top of your profile.\n\nVersion history:\n\n1.6.0 - added\\\n3.5.0 - you can now pin private posts" },
+    { "name": "getStatusQuotes_send", "request": "GetStatusQuotesReq", "response": "Status[]", "doc": "View quotes of a status.\n\nVersion history:\n\n4.5.0 (`mastodon` [API version] 7) - added" },
+    { "name": "postStatusesByIdQuotesByQuotingStatusIdRevoke_send", "request": "PostStatusesByIdQuotesByQuotingStatusIdRevokeReq", "response": "Status", "doc": "Revoke quote authorization of status `quoting_status_id`, detaching status `id`.\n\nVersion history:\n\n4.5.0 (`mastodon` [API version] 7) - added" },
+    { "name": "postStatusReblog_send", "request": "PostStatusReblogReq", "response": "Status", "doc": "Reshare a status on your own profile.\n\nVersion history:\n\n0.0.0 - added\\\n2.8.0 - add `visibility` parameter" },
+    { "name": "getStatusRebloggedBy_send", "request": "GetStatusRebloggedByReq", "response": "Account[]", "doc": "View who boosted a given status.\n\nVersion history:\n\n0.0.0 - added" },
+    { "name": "getStatusSource_send", "request": "GetStatusSourceReq", "response": "StatusSource", "doc": "Obtain the source properties for a status so that it can be edited.\n\nVersion history:\n\n3.5.0 - added" },
+    { "name": "postStatusTranslate_send", "request": "PostStatusTranslateReq", "response": "Translation", "doc": "Translate the status content into some language. Only statuses with Public and Unlisted visibility can be translated.\n\nVersion history:\n\n4.0.0 - added" },
+    { "name": "postStatusUnbookmark_send", "request": "PostStatusUnbookmarkReq", "response": "Status", "doc": "Remove a status from your private bookmarks.\n\nVersion history:\n\n3.1.0 - added" },
+    { "name": "postStatusUnfavourite_send", "request": "PostStatusUnfavouriteReq", "response": "Status", "doc": "Remove a status from your favourites list.\n\nVersion history:\n\n0.0.0 - added" },
+    { "name": "postStatusUnmute_send", "request": "PostStatusUnmuteReq", "response": "Status", "doc": "Start receiving notifications again for the thread that this status is part of.\n\nVersion history:\n\n1.4.2 - added" },
+    { "name": "postStatusUnpin_send", "request": "PostStatusUnpinReq", "response": "Status", "doc": "Unfeature a status from the top of your profile.\n\nVersion history:\n\n1.6.0 - added" },
+    { "name": "postStatusUnreblog_send", "request": "PostStatusUnreblogReq", "response": "Status", "doc": "Undo a reshare of a status.\n\nVersion history:\n\n0.0.0 - added" },
+    { "name": "getStreamingDirect_send", "request": "GetStreamingDirectReq", "response": "unknown", "doc": "Returns events for received direct messages.\n\nVersion history:\n\n2.4.0 - added\\\n2.6.0 - now returns `conversation` instead of `update`" },
+    { "name": "getStreamingHashtag_send", "request": "GetStreamingHashtagReq", "response": "unknown", "doc": "Returns all public statuses for a particular hashtag\n\nVersion history:\n\n1.0.0 - added\\\n3.5.0 - now returns `status.update`\\\n4.2.0 - changed to require a User token, removing Public and App token access [#23989]" },
+    { "name": "getStreamingHashtagLocal_send", "request": "GetStreamingHashtagLocalReq", "response": "unknown", "doc": "Returns all local public statuses for a particular hashtag\n\nVersion history:\n\n1.1.0 - added\\\n3.5.0 - now returns `status.update`\\\n4.2.0 - changed to require a User token, removing Public and App token access [#23989]" },
+    { "name": "getStreamingHealth_send", "request": "GetStreamingHealthReq", "response": "unknown", "doc": "Verify that the streaming service is alive before connecting to it\n\nVersion history:\n\n2.5.0 - added" },
+    { "name": "getStreamingList_send", "request": "GetStreamingListReq", "response": "unknown", "doc": "Returns statuses for a list\n\nVersion history:\n\n2.1.0 - added\\\n3.5.0 - now returns `status.update`\\\n4.2.0 - changed to require a User token, removing Public and App token access [#23989]" },
+    { "name": "getStreamingPublic_send", "request": "GetStreamingPublicReq", "response": "unknown", "doc": "Returns all public statuses\n\nVersion history:\n\n1.0.0 - added\\\n2.4.0 - add `only_media` parameter\\\n3.5.0 - now returns `status.update`\\\n4.2.0 - changed to require a User token, removing Public and App token access [#23989]" },
+    { "name": "getStreamingPublicLocal_send", "request": "GetStreamingPublicLocalReq", "response": "unknown", "doc": "Returns all local public statuses\n\nVersion history:\n\n1.1.0 - added\\\n2.4.0 - add `only_media` parameter\\\n3.5.0 - now returns `status.update`\\\n4.2.0 - changed to require a User token, removing Public and App token access [#23989]" },
+    { "name": "getStreamingPublicRemote_send", "request": "GetStreamingPublicRemoteReq", "response": "unknown", "doc": "Returns all public statuses from remote servers.\n\nVersion history:\n\n3.1.4 - added\\\n3.5.0 - now returns `status.update`\\\n4.2.0 - changed to require a User token, removing Public and App token access [#23989]" },
+    { "name": "getStreamingUser_send", "request": "GetStreamingUserReq", "response": "unknown", "doc": "Returns events that are relevant to the authorized user, i.e. home timeline and notifications\n\nVersion history:\n\n1.0.0 - added\\\n1.4.2 - now returns `notification`\\\n2.4.3 - now returns `filters_changed`\\\n3.1.0 - now returns `announcement`, `announcement.reaction`, `announcement.delete`\\\n3.5.0 - now returns `status.update`" },
+    { "name": "getStreamingUserNotification_send", "request": "GetStreamingUserNotificationReq", "response": "unknown", "doc": "Returns events for received notifications\n\nVersion history:\n\n1.4.2 - added" },
+    { "name": "getSuggestions_send", "request": "GetSuggestionsReq", "response": "Account[]", "doc": "Accounts the user has had past positive interactions with, but is not yet following.\n\nVersion history:\n\n2.4.3 - added\\\n3.4.0 - deprecated" },
+    { "name": "deleteSuggestionsByAccountId_send", "request": "DeleteSuggestionsByAccountIdReq", "response": "unknown", "doc": "Remove an account from follow suggestions.\n\nVersion history:\n\n2.4.3 - added" },
+    { "name": "getSuggestionsV2_send", "request": "GetSuggestionsV2Req", "response": "Suggestion[]", "doc": "Accounts that are promoted by staff, or that the user has had past positive interactions with, but is not yet following.\n\nVersion history:\n\n3.4.0 - added" },
+    { "name": "postTagFeature_send", "request": "PostTagFeatureReq", "response": "Tag", "doc": "Feature the hashtag on your profile.\n\nVersion history:\n\n4.4.0 - added" },
+    { "name": "postTagUnfeature_send", "request": "PostTagUnfeatureReq", "response": "Tag", "doc": "Stop featuring the hashtag on your profile.\n\nVersion history:\n\n4.4.0 - added" },
+    { "name": "getTagsByName_send", "request": "GetTagsByNameReq", "response": "Tag", "doc": "Show a hashtag and its associated information\n\nVersion history:\n\n4.0.0 - added" },
+    { "name": "postTagFollow_send", "request": "PostTagFollowReq", "response": "Tag", "doc": "Follow a hashtag. Posts containing a followed hashtag will be inserted into your home timeline.\n\nVersion history:\n\n4.0.0 - added\\\n4.1.0 - this action is now idempotent" },
+    { "name": "postTagUnfollow_send", "request": "PostTagUnfollowReq", "response": "Tag", "doc": "Unfollow a hashtag. Posts containing this hashtag will no longer be inserted into your home timeline.\n\nVersion history:\n\n4.0.0 - added" },
+    { "name": "getTimelineDirect_send", "request": "GetTimelineDirectReq", "response": "Status[]", "doc": "View statuses with a \"direct\" privacy, from your account or in your notifications.\n\nVersion history:\n\nx.x.x - added\\\n2.6.0 - add `min_id`. deprecated in favor of [Conversations API]\\\n3.0.0 - removed" },
+    { "name": "getTimelineHome_send", "request": "GetTimelineHomeReq", "response": "Status[]", "doc": "View statuses from followed users and hashtags.\n\nVersion history:\n\n0.0.0 - added\\\n2.6.0 - add `min_id`\\\n3.3.0 - both `min_id` and `max_id` can be used at the same time now\\\n4.0.0 - as users can now follow hashtags, statuses from non-followed users may appear in the timeline" },
+    { "name": "getTimelineLink_send", "request": "GetTimelineLinkReq", "response": "Status[]", "doc": "View public statuses containing a link to the specified currently-trending article. This only lists statuses from people who have opted in to discoverability features.\n\nVersion history:\n\n4.3.0 - added\\\n4.5.0 - add [access control settings]" },
+    { "name": "getTimelinesListByListId_send", "request": "GetTimelinesListByListIdReq", "response": "Status[]", "doc": "View statuses in the given list timeline.\n\nVersion history:\n\n2.1.0 - added\\\n2.6.0 - add `min_id`\\\n3.3.0 - both `min_id` and `max_id` can be used at the same time now" },
+    { "name": "getTimelinePublic_send", "request": "GetTimelinePublicReq", "response": "Status[]", "doc": "View public statuses.\n\nVersion history:\n\n0.0.0 - added\\\n2.3.0 - added `only_media`\\\n2.6.0 - add `min_id`\\\n3.0.0 - auth is required if public preview is disabled\\\n3.1.4 - added `remote`\\\n3.3.0 - both `min_id` and `max_id` can be used at the same time now\\\n4.5.0 - add [access control settings]" },
+    { "name": "getTimelinesTagByHashtag_send", "request": "GetTimelinesTagByHashtagReq", "response": "Status[]", "doc": "View public statuses containing the given hashtag.\n\nVersion history:\n\n0.0.0 - added\\\n2.3.0 - added `only_media`\\\n2.6.0 - add `min_id`\\\n2.7.0 - add `any[]`, `all[]`, `none[]` for additional tags\\\n3.0.0 - auth is required if public preview is disabled\\\n3.3.0 - both `min_id` and `max_id` can be used at the same time now. add `remote`\\\n4.5.0 - add [access control settings]" },
+    { "name": "getTrendLinks_send", "request": "GetTrendLinksReq", "response": "TrendsLink[]", "doc": "Links that have been shared more than others.\n\nVersion history:\n\n3.5.0 - added" },
+    { "name": "getTrendStatuses_send", "request": "GetTrendStatusesReq", "response": "Status[]", "doc": "Statuses that have been interacted with more than others.\n\nVersion history:\n\n3.5.0 - added" },
+    { "name": "getTrendTags_send", "request": "GetTrendTagsReq", "response": "Tag[]", "doc": "Tags that are being used more frequently within the past week.\n\nVersion history:\n\n3.0.0 - added\\\n3.5.0 - method signature changed from `GET /api/v1/trends` to `GET /api/v1/trends/tags`. The former is a deprecated alias that may be removed in the future." },
+    { "name": "getWellKnownOauthAuthorizationServer_send", "request": "GetWellKnownOauthAuthorizationServerReq", "response": "DiscoverOauthServerConfigurationResponse", "doc": "Returns the OAuth 2 Authorization Server Metadata for the Mastodon server, as defined by [RFC 8414](https://datatracker.ietf.org/doc/html/rfc8414#section-3.2).\n\nVersion history:\n\n4.3.0 - added\\\n4.4.0 - added `userinfo_endpoint`" }
+  ]
+}

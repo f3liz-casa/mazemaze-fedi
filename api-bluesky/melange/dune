@@ -1,0 +1,8 @@
+; Melange-native bindings (types + ppx decoders), emitted to JS for the ReScript
+; type layer (../src/melange-api) to bind against, and JSDoc-annotated for TS.
+(melange.emit
+ (target dist)
+ (libraries melange-json)
+ (preprocess
+  (pps melange.ppx melange-json.ppx))
+ (module_systems es6))

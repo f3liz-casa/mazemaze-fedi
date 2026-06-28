@@ -1,0 +1,34 @@
+# The public timeline: a Relay connection whose node is the `Post` interface.
+# Common interface fields are selected directly; Article/Note specifics come in
+# inline fragments, discriminated at runtime by __typename.
+query PublicTimeline($after: String, $first: Int) {
+  publicTimeline(after: $after, first: $first) {
+    edges {
+      cursor
+      node {
+        __typename
+        id
+        content
+        excerpt
+        language
+        published
+        actor {
+          handle
+          name
+          avatarUrl
+        }
+        ... on Article {
+          slug
+        }
+        ... on Note {
+          visibility
+          viewerHasBookmarked
+        }
+      }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "_note": "Spike slice 2: a mutation whose result is a GraphQL union (the dominant hackerspub pattern — 80 of them are `XResult = XPayload | …Error`). Selection uses __typename + inline fragments. Faithful to hackerspub's addReactionToPost. The variable `input` is an input object, modelled opaque (Json) on the request side for now.",
+  "operations": [
+    {
+      "name": "AddReaction",
+      "operationType": "mutation",
+      "document": "mutation AddReaction($input: AddReactionToPostInput!) {\n  addReactionToPost(input: $input) {\n    __typename\n    ... on AddReactionToPostPayload { clientMutationId }\n    ... on InvalidInputError { inputPath }\n    ... on NotAuthenticatedError { notAuthenticated }\n  }\n}",
+      "variables": [
+        { "name": "input", "optional": false }
+      ],
+      "selection": {
+        "object": [
+          {
+            "name": "addReactionToPost", "optional": false, "nullable": false,
+            "type": {
+              "union": {
+                "common": [],
+                "branches": [
+                  { "typename": "AddReactionToPostPayload", "fields": [
+                    { "name": "clientMutationId", "optional": false, "nullable": true, "type": { "scalar": "ID" } }
+                  ] },
+                  { "typename": "InvalidInputError", "fields": [
+                    { "name": "inputPath", "optional": false, "nullable": false, "type": { "scalar": "String" } }
+                  ] },
+                  { "typename": "NotAuthenticatedError", "fields": [
+                    { "name": "notAuthenticated", "optional": false, "nullable": false, "type": { "scalar": "String" } }
+                  ] }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

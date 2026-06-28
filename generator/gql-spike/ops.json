@@ -1,0 +1,65 @@
+{
+  "_note": "Spike fixture: the probe's normalized output for ONE hackerspub query. Hand-written for slice 1 (no unions/interfaces; Post's interface-level scalar fields only). Field types and names are faithful to hackerspub's schema.graphql. The real probe (graphql-js TypeInfo) will emit this shape.",
+  "operations": [
+    {
+      "name": "PublicTimeline",
+      "operationType": "query",
+      "document": "query PublicTimeline($after: String) {\n  publicTimeline(after: $after) {\n    edges {\n      cursor\n      node {\n        id\n        content\n        excerpt\n        language\n        published\n        actor {\n          handle\n          name\n          avatarUrl\n        }\n      }\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}",
+      "variables": [
+        { "name": "after", "scalar": "String", "optional": true }
+      ],
+      "selection": {
+        "object": [
+          {
+            "name": "publicTimeline", "optional": false, "nullable": false,
+            "type": {
+              "object": [
+                {
+                  "name": "edges", "optional": false, "nullable": false,
+                  "type": {
+                    "list": {
+                      "object": [
+                        { "name": "cursor", "optional": false, "nullable": false, "type": { "scalar": "String" } },
+                        {
+                          "name": "node", "optional": false, "nullable": false,
+                          "type": {
+                            "object": [
+                              { "name": "id",        "optional": false, "nullable": false, "type": { "scalar": "ID" } },
+                              { "name": "content",   "optional": false, "nullable": false, "type": { "scalar": "HTML" } },
+                              { "name": "excerpt",   "optional": false, "nullable": false, "type": { "scalar": "String" } },
+                              { "name": "language",  "optional": false, "nullable": true,  "type": { "scalar": "String" } },
+                              { "name": "published", "optional": false, "nullable": false, "type": { "scalar": "DateTime" } },
+                              {
+                                "name": "actor", "optional": false, "nullable": false,
+                                "type": {
+                                  "object": [
+                                    { "name": "handle",    "optional": false, "nullable": false, "type": { "scalar": "String" } },
+                                    { "name": "name",      "optional": false, "nullable": true,  "type": { "scalar": "HTML" } },
+                                    { "name": "avatarUrl", "optional": false, "nullable": false, "type": { "scalar": "URL" } }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "name": "pageInfo", "optional": false, "nullable": false,
+                  "type": {
+                    "object": [
+                      { "name": "endCursor",   "optional": false, "nullable": true,  "type": { "scalar": "String" } },
+                      { "name": "hasNextPage", "optional": false, "nullable": false, "type": { "scalar": "Boolean" } }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

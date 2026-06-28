@@ -1,0 +1,815 @@
+{
+  "module": "Endpoints",
+  "fetchType": "(method: string, url: string, body: unknown) => Promise<unknown>",
+  "imports": [ "AppBskyActorDefsLabelerPrefItem", "AppBskyActorDefsPreferences", "AppBskyActorDefsProfileViewDetailed", "AppBskyActorGetPreferencesResponse", "AppBskyActorGetProfilesResponse", "AppBskyActorGetSuggestionsResponse", "AppBskyActorSearchActorsResponse", "AppBskyActorSearchActorsTypeaheadResponse", "AppBskyAgeassuranceDefsConfig", "AppBskyAgeassuranceDefsState", "AppBskyAgeassuranceGetStateResponse", "AppBskyBookmarkGetBookmarksResponse", "AppBskyContactGetMatchesResponse", "AppBskyContactGetSyncStatusResponse", "AppBskyContactImportContactsResponse", "AppBskyContactVerifyPhoneResponse", "AppBskyDraftCreateDraftResponse", "AppBskyDraftDefsDraft", "AppBskyDraftDefsDraftWithId", "AppBskyDraftGetDraftsResponse", "AppBskyFeedDefsInteraction", "AppBskyFeedDescribeFeedGeneratorResponse", "AppBskyFeedGetActorFeedsResponse", "AppBskyFeedGetActorLikesResponse", "AppBskyFeedGetFeedGeneratorResponse", "AppBskyFeedGetFeedGeneratorsResponse", "AppBskyFeedGetFeedSkeletonResponse", "AppBskyFeedGetLikesResponse", "AppBskyFeedGetPostThreadResponse", "AppBskyFeedGetPostsResponse", "AppBskyFeedGetQuotesResponse", "AppBskyFeedGetRepostedByResponse", "AppBskyFeedSearchPostsResponse", "AppBskyFeedSendInteractionsResponse", "AppBskyGraphGetActorStarterPacksResponse", "AppBskyGraphGetBlocksResponse", "AppBskyGraphGetFollowersResponse", "AppBskyGraphGetFollowsResponse", "AppBskyGraphGetListBlocksResponse", "AppBskyGraphGetListResponse", "AppBskyGraphGetListsWithMembershipResponse", "AppBskyGraphGetMutesResponse", "AppBskyGraphGetRelationshipsResponse", "AppBskyGraphGetStarterPackResponse", "AppBskyGraphGetStarterPacksResponse", "AppBskyGraphGetStarterPacksWithMembershipResponse", "AppBskyGraphGetSuggestedFollowsByActorResponse", "AppBskyLabelerGetServicesResponse", "AppBskyNotificationDefsActivitySubscription", "AppBskyNotificationDefsChatPreference", "AppBskyNotificationDefsFilterablePreference", "AppBskyNotificationDefsPreference", "AppBskyNotificationGetPreferencesResponse", "AppBskyNotificationGetUnreadCountResponse", "AppBskyNotificationListActivitySubscriptionsResponse", "AppBskyNotificationListNotificationsResponse", "AppBskyNotificationPutActivitySubscriptionResponse", "AppBskyVideoGetJobStatusResponse", "AppBskyVideoGetUploadLimitsResponse", "ComAtprotoAdminDefsAccountView", "ComAtprotoAdminDefsStatusAttr", "ComAtprotoAdminGetAccountInfosResponse", "ComAtprotoAdminGetInviteCodesResponse", "ComAtprotoAdminGetSubjectStatusResponse", "ComAtprotoAdminSearchAccountsResponse", "ComAtprotoAdminSendEmailResponse", "ComAtprotoAdminUpdateSubjectStatusResponse", "ComAtprotoIdentityDefsIdentityInfo", "ComAtprotoIdentityGetRecommendedDidCredentialsResponse", "ComAtprotoIdentitySignPlcOperationResponse", "ComAtprotoLabelQueryLabelsResponse", "ComAtprotoModerationCreateReportModTool", "ComAtprotoModerationCreateReportResponse", "ComAtprotoModerationDefsReasonType", "ComAtprotoRepoApplyWritesResponse", "ComAtprotoRepoCreateRecordResponse", "ComAtprotoRepoDefsCommitMeta", "ComAtprotoRepoDeleteRecordResponse", "ComAtprotoRepoDescribeRepoResponse", "ComAtprotoRepoGetRecordResponse", "ComAtprotoRepoListMissingBlobsResponse", "ComAtprotoRepoListRecordsResponse", "ComAtprotoRepoUploadBlobResponse", "ComAtprotoServerCheckAccountStatusResponse", "ComAtprotoServerCreateAccountResponse", "ComAtprotoServerCreateAppPasswordAppPassword", "ComAtprotoServerCreateInviteCodeResponse", "ComAtprotoServerCreateInviteCodesResponse", "ComAtprotoServerCreateSessionResponse", "ComAtprotoServerDescribeServerResponse", "ComAtprotoServerGetAccountInviteCodesResponse", "ComAtprotoServerGetSessionResponse", "ComAtprotoServerListAppPasswordsResponse", "ComAtprotoServerRequestEmailUpdateResponse", "ComAtprotoServerReserveSigningKeyResponse", "ComAtprotoSyncGetRepoStatusResponse", "ComAtprotoSyncListBlobsResponse", "ComAtprotoSyncListHostsHost", "ComAtprotoSyncListHostsResponse", "ComAtprotoSyncListReposByCollectionResponse", "ComAtprotoSyncListReposResponse" ],
+  "types": [
+    { "name": "AppBskyActorGetPreferencesReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "AppBskyActorGetProfileReq", "kind": "record", "fields": [
+        { "name": "actor", "type": "string", "optional": false, "doc": "Handle or DID of account to fetch profile of.", "format": null }
+      ] },
+    { "name": "AppBskyActorGetProfilesReq", "kind": "record", "fields": [
+        { "name": "actors", "type": "string[]", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyActorGetSuggestionsReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyActorPutPreferencesReq", "kind": "record", "fields": [
+        { "name": "preferences", "type": "AppBskyActorDefsPreferences", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyActorSearchActorsReq", "kind": "record", "fields": [
+        { "name": "q", "type": "string", "optional": true, "doc": "Search query string. Syntax, phrase, boolean, and faceting is unspecified, but Lucene query syntax is recommended.", "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyActorSearchActorsTypeaheadReq", "kind": "record", "fields": [
+        { "name": "q", "type": "string", "optional": true, "doc": "Search query prefix; not a full query string.", "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyAgeassuranceBeginReq", "kind": "record", "fields": [
+        { "name": "email", "type": "string", "optional": false, "doc": "The user's email address to receive Age Assurance instructions.", "format": null },
+        { "name": "language", "type": "string", "optional": false, "doc": "The user's preferred language for communication during the Age Assurance process.", "format": null },
+        { "name": "regionCode", "type": "string", "optional": true, "doc": "An optional ISO 3166-2 code of the user's region or state within the country.", "format": null },
+        { "name": "countryCode", "type": "string", "optional": false, "doc": "An ISO 3166-1 alpha-2 code of the user's location.", "format": null }
+      ] },
+    { "name": "AppBskyAgeassuranceGetConfigReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "AppBskyAgeassuranceGetStateReq", "kind": "record", "fields": [
+        { "name": "regionCode", "type": "string", "optional": true, "doc": null, "format": null },
+        { "name": "countryCode", "type": "string", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyBookmarkCreateBookmarkReq", "kind": "record", "fields": [
+        { "name": "cid", "type": "string", "optional": false, "doc": null, "format": "cid" },
+        { "name": "uri", "type": "string", "optional": false, "doc": null, "format": "at-uri" }
+      ] },
+    { "name": "AppBskyBookmarkDeleteBookmarkReq", "kind": "record", "fields": [
+        { "name": "uri", "type": "string", "optional": false, "doc": null, "format": "at-uri" }
+      ] },
+    { "name": "AppBskyBookmarkGetBookmarksReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyContactDismissMatchReq", "kind": "record", "fields": [
+        { "name": "subject", "type": "string", "optional": false, "doc": "The subject's DID to dismiss the match with.", "format": "did" }
+      ] },
+    { "name": "AppBskyContactGetMatchesReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyContactGetSyncStatusReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "AppBskyContactImportContactsReq", "kind": "record", "fields": [
+        { "name": "token", "type": "string", "optional": false, "doc": "JWT to authenticate the call. Use the JWT received as a response to the call to `app.bsky.contact.verifyPhone`.", "format": null },
+        { "name": "contacts", "type": "string[]", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyContactRemoveDataReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "AppBskyContactSendNotificationReq", "kind": "record", "fields": [
+        { "name": "to", "type": "string", "optional": false, "doc": "The DID of who this notification should go to.", "format": "did" },
+        { "name": "from", "type": "string", "optional": false, "doc": "The DID of who this notification comes from.", "format": "did" }
+      ] },
+    { "name": "AppBskyContactStartPhoneVerificationReq", "kind": "record", "fields": [
+        { "name": "phone", "type": "string", "optional": false, "doc": "The phone number to receive the code via SMS.", "format": null }
+      ] },
+    { "name": "AppBskyContactVerifyPhoneReq", "kind": "record", "fields": [
+        { "name": "code", "type": "string", "optional": false, "doc": "The code received via SMS as a result of the call to `app.bsky.contact.startPhoneVerification`.", "format": null },
+        { "name": "phone", "type": "string", "optional": false, "doc": "The phone number to verify. Should be the same as the one passed to `app.bsky.contact.startPhoneVerification`.", "format": null }
+      ] },
+    { "name": "AppBskyDraftCreateDraftReq", "kind": "record", "fields": [
+        { "name": "draft", "type": "AppBskyDraftDefsDraft", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyDraftDeleteDraftReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": null, "format": "tid" }
+      ] },
+    { "name": "AppBskyDraftGetDraftsReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyDraftUpdateDraftReq", "kind": "record", "fields": [
+        { "name": "draft", "type": "AppBskyDraftDefsDraftWithId", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyFeedDescribeFeedGeneratorReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "AppBskyFeedGetActorFeedsReq", "kind": "record", "fields": [
+        { "name": "actor", "type": "string", "optional": false, "doc": null, "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyFeedGetActorLikesReq", "kind": "record", "fields": [
+        { "name": "actor", "type": "string", "optional": false, "doc": null, "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyFeedGetAuthorFeedReq", "kind": "record", "fields": [
+        { "name": "actor", "type": "string", "optional": false, "doc": null, "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null },
+        { "name": "filter", "type": "string", "optional": true, "doc": "Combinations of post/repost types to include in response.", "format": null },
+        { "name": "includePins", "type": "boolean", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyFeedGetFeedReq", "kind": "record", "fields": [
+        { "name": "feed", "type": "string", "optional": false, "doc": null, "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyFeedGetFeedGeneratorReq", "kind": "record", "fields": [
+        { "name": "feed", "type": "string", "optional": false, "doc": "AT-URI of the feed generator record.", "format": null }
+      ] },
+    { "name": "AppBskyFeedGetFeedGeneratorsReq", "kind": "record", "fields": [
+        { "name": "feeds", "type": "string[]", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyFeedGetFeedSkeletonReq", "kind": "record", "fields": [
+        { "name": "feed", "type": "string", "optional": false, "doc": "Reference to feed generator record describing the specific feed being requested.", "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyFeedGetLikesReq", "kind": "record", "fields": [
+        { "name": "cid", "type": "string", "optional": true, "doc": "CID of the subject record (aka, specific version of record), to filter likes.", "format": null },
+        { "name": "uri", "type": "string", "optional": false, "doc": "AT-URI of the subject (eg, a post record).", "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyFeedGetListFeedReq", "kind": "record", "fields": [
+        { "name": "list", "type": "string", "optional": false, "doc": "Reference (AT-URI) to the list record.", "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyFeedGetPostThreadReq", "kind": "record", "fields": [
+        { "name": "uri", "type": "string", "optional": false, "doc": "Reference (AT-URI) to post record.", "format": null },
+        { "name": "depth", "type": "number", "optional": true, "doc": "How many levels of reply depth should be included in response.", "format": null },
+        { "name": "parentHeight", "type": "number", "optional": true, "doc": "How many levels of parent (and grandparent, etc) post to include.", "format": null }
+      ] },
+    { "name": "AppBskyFeedGetPostsReq", "kind": "record", "fields": [
+        { "name": "uris", "type": "string[]", "optional": false, "doc": "List of post AT-URIs to return hydrated views for.", "format": null }
+      ] },
+    { "name": "AppBskyFeedGetQuotesReq", "kind": "record", "fields": [
+        { "name": "cid", "type": "string", "optional": true, "doc": "If supplied, filters to quotes of specific version (by CID) of the post record.", "format": null },
+        { "name": "uri", "type": "string", "optional": false, "doc": "Reference (AT-URI) of post record", "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyFeedGetRepostedByReq", "kind": "record", "fields": [
+        { "name": "cid", "type": "string", "optional": true, "doc": "If supplied, filters to reposts of specific version (by CID) of the post record.", "format": null },
+        { "name": "uri", "type": "string", "optional": false, "doc": "Reference (AT-URI) of post record", "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyFeedGetSuggestedFeedsReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyFeedGetTimelineReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null },
+        { "name": "algorithm", "type": "string", "optional": true, "doc": "Variant 'algorithm' for timeline. Implementation-specific. NOTE: most feed flexibility has been moved to feed generator mechanism.", "format": null }
+      ] },
+    { "name": "AppBskyFeedSearchPostsReq", "kind": "record", "fields": [
+        { "name": "q", "type": "string", "optional": false, "doc": "Search query string; syntax, phrase, boolean, and faceting is unspecified, but Lucene query syntax is recommended.", "format": null },
+        { "name": "tag", "type": "string[]", "optional": true, "doc": "Filter to posts with the given tag (hashtag), based on rich-text facet or tag field. Do not include the hash (#) prefix. Multiple tags can be specified, with 'AND' matching.", "format": null },
+        { "name": "url", "type": "string", "optional": true, "doc": "Filter to posts with links (facet links or embeds) pointing to this URL. Server may apply URL normalization or fuzzy matching.", "format": null },
+        { "name": "lang", "type": "string", "optional": true, "doc": "Filter to posts in the given language. Expected to be based on post language field, though server may override language detection.", "format": null },
+        { "name": "sort", "type": "string", "optional": true, "doc": "Specifies the ranking order of results.", "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "since", "type": "string", "optional": true, "doc": "Filter results for posts after the indicated datetime (inclusive). Expected to use 'sortAt' timestamp, which may not match 'createdAt'. Can be a datetime, or just an ISO date (YYYY-MM-DD).", "format": null },
+        { "name": "until", "type": "string", "optional": true, "doc": "Filter results for posts before the indicated datetime (not inclusive). Expected to use 'sortAt' timestamp, which may not match 'createdAt'. Can be a datetime, or just an ISO date (YYY-MM-DD).", "format": null },
+        { "name": "author", "type": "string", "optional": true, "doc": "Filter to posts by the given account. Handles are resolved to DID before query-time.", "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": "Optional pagination mechanism; may not necessarily allow scrolling through entire result set.", "format": null },
+        { "name": "domain", "type": "string", "optional": true, "doc": "Filter to posts with URLs (facet links or embeds) linking to the given domain (hostname). Server may apply hostname normalization.", "format": null },
+        { "name": "mentions", "type": "string", "optional": true, "doc": "Filter to posts which mention the given account. Handles are resolved to DID before query-time. Only matches rich-text facet mentions.", "format": null }
+      ] },
+    { "name": "AppBskyFeedSendInteractionsReq", "kind": "record", "fields": [
+        { "name": "feed", "type": "string", "optional": true, "doc": null, "format": "at-uri" },
+        { "name": "interactions", "type": "AppBskyFeedDefsInteraction[]", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyGraphGetActorStarterPacksReq", "kind": "record", "fields": [
+        { "name": "actor", "type": "string", "optional": false, "doc": null, "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyGraphGetBlocksReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyGraphGetFollowersReq", "kind": "record", "fields": [
+        { "name": "actor", "type": "string", "optional": false, "doc": null, "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyGraphGetFollowsReq", "kind": "record", "fields": [
+        { "name": "actor", "type": "string", "optional": false, "doc": null, "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyGraphGetKnownFollowersReq", "kind": "record", "fields": [
+        { "name": "actor", "type": "string", "optional": false, "doc": null, "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyGraphGetListReq", "kind": "record", "fields": [
+        { "name": "list", "type": "string", "optional": false, "doc": "Reference (AT-URI) of the list record to hydrate.", "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyGraphGetListBlocksReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyGraphGetListMutesReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyGraphGetListsReq", "kind": "record", "fields": [
+        { "name": "actor", "type": "string", "optional": false, "doc": "The account (actor) to enumerate lists from.", "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null },
+        { "name": "purposes", "type": "string[]", "optional": true, "doc": "Optional filter by list purpose. If not specified, all supported types are returned.", "format": null }
+      ] },
+    { "name": "AppBskyGraphGetListsWithMembershipReq", "kind": "record", "fields": [
+        { "name": "actor", "type": "string", "optional": false, "doc": "The account (actor) to check for membership.", "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null },
+        { "name": "purposes", "type": "string[]", "optional": true, "doc": "Optional filter by list purpose. If not specified, all supported types are returned.", "format": null }
+      ] },
+    { "name": "AppBskyGraphGetMutesReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyGraphGetRelationshipsReq", "kind": "record", "fields": [
+        { "name": "actor", "type": "string", "optional": false, "doc": "Primary account requesting relationships for.", "format": null },
+        { "name": "others", "type": "string[]", "optional": true, "doc": "List of 'other' accounts to be related back to the primary.", "format": null }
+      ] },
+    { "name": "AppBskyGraphGetStarterPackReq", "kind": "record", "fields": [
+        { "name": "starterPack", "type": "string", "optional": false, "doc": "Reference (AT-URI) of the starter pack record.", "format": null }
+      ] },
+    { "name": "AppBskyGraphGetStarterPacksReq", "kind": "record", "fields": [
+        { "name": "uris", "type": "string[]", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyGraphGetStarterPacksWithMembershipReq", "kind": "record", "fields": [
+        { "name": "actor", "type": "string", "optional": false, "doc": "The account (actor) to check for membership.", "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyGraphGetSuggestedFollowsByActorReq", "kind": "record", "fields": [
+        { "name": "actor", "type": "string", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyGraphMuteActorReq", "kind": "record", "fields": [
+        { "name": "actor", "type": "string", "optional": false, "doc": null, "format": "at-identifier" }
+      ] },
+    { "name": "AppBskyGraphMuteActorListReq", "kind": "record", "fields": [
+        { "name": "list", "type": "string", "optional": false, "doc": null, "format": "at-uri" }
+      ] },
+    { "name": "AppBskyGraphMuteThreadReq", "kind": "record", "fields": [
+        { "name": "root", "type": "string", "optional": false, "doc": null, "format": "at-uri" }
+      ] },
+    { "name": "AppBskyGraphSearchStarterPacksReq", "kind": "record", "fields": [
+        { "name": "q", "type": "string", "optional": false, "doc": "Search query string. Syntax, phrase, boolean, and faceting is unspecified, but Lucene query syntax is recommended.", "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyGraphUnmuteActorReq", "kind": "record", "fields": [
+        { "name": "actor", "type": "string", "optional": false, "doc": null, "format": "at-identifier" }
+      ] },
+    { "name": "AppBskyGraphUnmuteActorListReq", "kind": "record", "fields": [
+        { "name": "list", "type": "string", "optional": false, "doc": null, "format": "at-uri" }
+      ] },
+    { "name": "AppBskyGraphUnmuteThreadReq", "kind": "record", "fields": [
+        { "name": "root", "type": "string", "optional": false, "doc": null, "format": "at-uri" }
+      ] },
+    { "name": "AppBskyLabelerGetServicesReq", "kind": "record", "fields": [
+        { "name": "dids", "type": "string[]", "optional": false, "doc": null, "format": null },
+        { "name": "detailed", "type": "boolean", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyNotificationGetPreferencesReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "AppBskyNotificationGetUnreadCountReq", "kind": "record", "fields": [
+        { "name": "seenAt", "type": "string", "optional": true, "doc": null, "format": null },
+        { "name": "priority", "type": "boolean", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyNotificationListActivitySubscriptionsReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyNotificationListNotificationsReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null },
+        { "name": "seenAt", "type": "string", "optional": true, "doc": null, "format": null },
+        { "name": "reasons", "type": "string[]", "optional": true, "doc": "Notification reasons to include in response.", "format": null },
+        { "name": "priority", "type": "boolean", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyNotificationPutActivitySubscriptionReq", "kind": "record", "fields": [
+        { "name": "subject", "type": "string", "optional": false, "doc": null, "format": "did" },
+        { "name": "activitySubscription", "type": "AppBskyNotificationDefsActivitySubscription", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyNotificationPutPreferencesReq", "kind": "record", "fields": [
+        { "name": "priority", "type": "boolean", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyNotificationPutPreferencesV2Req", "kind": "record", "fields": [
+        { "name": "chat", "type": "AppBskyNotificationDefsChatPreference", "optional": true, "doc": null, "format": null },
+        { "name": "like", "type": "AppBskyNotificationDefsFilterablePreference", "optional": true, "doc": null, "format": null },
+        { "name": "quote", "type": "AppBskyNotificationDefsFilterablePreference", "optional": true, "doc": null, "format": null },
+        { "name": "reply", "type": "AppBskyNotificationDefsFilterablePreference", "optional": true, "doc": null, "format": null },
+        { "name": "follow", "type": "AppBskyNotificationDefsFilterablePreference", "optional": true, "doc": null, "format": null },
+        { "name": "repost", "type": "AppBskyNotificationDefsFilterablePreference", "optional": true, "doc": null, "format": null },
+        { "name": "mention", "type": "AppBskyNotificationDefsFilterablePreference", "optional": true, "doc": null, "format": null },
+        { "name": "verified", "type": "AppBskyNotificationDefsPreference", "optional": true, "doc": null, "format": null },
+        { "name": "unverified", "type": "AppBskyNotificationDefsPreference", "optional": true, "doc": null, "format": null },
+        { "name": "likeViaRepost", "type": "AppBskyNotificationDefsFilterablePreference", "optional": true, "doc": null, "format": null },
+        { "name": "subscribedPost", "type": "AppBskyNotificationDefsPreference", "optional": true, "doc": null, "format": null },
+        { "name": "repostViaRepost", "type": "AppBskyNotificationDefsFilterablePreference", "optional": true, "doc": null, "format": null },
+        { "name": "starterpackJoined", "type": "AppBskyNotificationDefsPreference", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyNotificationRegisterPushReq", "kind": "record", "fields": [
+        { "name": "appId", "type": "string", "optional": false, "doc": null, "format": null },
+        { "name": "token", "type": "string", "optional": false, "doc": null, "format": null },
+        { "name": "platform", "type": "(\"ios\"|\"android\"|\"web\")", "optional": false, "doc": null, "format": null },
+        { "name": "serviceDid", "type": "string", "optional": false, "doc": null, "format": "did" },
+        { "name": "ageRestricted", "type": "boolean", "optional": true, "doc": "Set to true when the actor is age restricted", "format": null }
+      ] },
+    { "name": "AppBskyNotificationUnregisterPushReq", "kind": "record", "fields": [
+        { "name": "appId", "type": "string", "optional": false, "doc": null, "format": null },
+        { "name": "token", "type": "string", "optional": false, "doc": null, "format": null },
+        { "name": "platform", "type": "(\"ios\"|\"android\"|\"web\")", "optional": false, "doc": null, "format": null },
+        { "name": "serviceDid", "type": "string", "optional": false, "doc": null, "format": "did" }
+      ] },
+    { "name": "AppBskyNotificationUpdateSeenReq", "kind": "record", "fields": [
+        { "name": "seenAt", "type": "string", "optional": false, "doc": null, "format": "date-time" }
+      ] },
+    { "name": "AppBskyVideoGetJobStatusReq", "kind": "record", "fields": [
+        { "name": "jobId", "type": "string", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "AppBskyVideoGetUploadLimitsReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "AppBskyVideoUploadVideoReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "ComAtprotoAdminDeleteAccountReq", "kind": "record", "fields": [
+        { "name": "did", "type": "string", "optional": false, "doc": null, "format": "did" }
+      ] },
+    { "name": "ComAtprotoAdminDisableAccountInvitesReq", "kind": "record", "fields": [
+        { "name": "note", "type": "string", "optional": true, "doc": "Optional reason for disabled invites.", "format": null },
+        { "name": "account", "type": "string", "optional": false, "doc": null, "format": "did" }
+      ] },
+    { "name": "ComAtprotoAdminDisableInviteCodesReq", "kind": "record", "fields": [
+        { "name": "codes", "type": "string[]", "optional": true, "doc": null, "format": null },
+        { "name": "accounts", "type": "string[]", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "ComAtprotoAdminEnableAccountInvitesReq", "kind": "record", "fields": [
+        { "name": "note", "type": "string", "optional": true, "doc": "Optional reason for enabled invites.", "format": null },
+        { "name": "account", "type": "string", "optional": false, "doc": null, "format": "did" }
+      ] },
+    { "name": "ComAtprotoAdminGetAccountInfoReq", "kind": "record", "fields": [
+        { "name": "did", "type": "string", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "ComAtprotoAdminGetAccountInfosReq", "kind": "record", "fields": [
+        { "name": "dids", "type": "string[]", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "ComAtprotoAdminGetInviteCodesReq", "kind": "record", "fields": [
+        { "name": "sort", "type": "string", "optional": true, "doc": null, "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "ComAtprotoAdminGetSubjectStatusReq", "kind": "record", "fields": [
+        { "name": "did", "type": "string", "optional": true, "doc": null, "format": null },
+        { "name": "uri", "type": "string", "optional": true, "doc": null, "format": null },
+        { "name": "blob", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "ComAtprotoAdminSearchAccountsReq", "kind": "record", "fields": [
+        { "name": "email", "type": "string", "optional": true, "doc": null, "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "ComAtprotoAdminSendEmailReq", "kind": "record", "fields": [
+        { "name": "comment", "type": "string", "optional": true, "doc": "Additional comment by the sender that won't be used in the email itself but helpful to provide more context for moderators/reviewers", "format": null },
+        { "name": "content", "type": "string", "optional": false, "doc": null, "format": null },
+        { "name": "subject", "type": "string", "optional": true, "doc": null, "format": null },
+        { "name": "senderDid", "type": "string", "optional": false, "doc": null, "format": "did" },
+        { "name": "recipientDid", "type": "string", "optional": false, "doc": null, "format": "did" }
+      ] },
+    { "name": "ComAtprotoAdminUpdateAccountEmailReq", "kind": "record", "fields": [
+        { "name": "email", "type": "string", "optional": false, "doc": null, "format": null },
+        { "name": "account", "type": "string", "optional": false, "doc": "The handle or DID of the repo.", "format": "at-identifier" }
+      ] },
+    { "name": "ComAtprotoAdminUpdateAccountHandleReq", "kind": "record", "fields": [
+        { "name": "did", "type": "string", "optional": false, "doc": null, "format": "did" },
+        { "name": "handle", "type": "string", "optional": false, "doc": null, "format": "handle" }
+      ] },
+    { "name": "ComAtprotoAdminUpdateAccountPasswordReq", "kind": "record", "fields": [
+        { "name": "did", "type": "string", "optional": false, "doc": null, "format": "did" },
+        { "name": "password", "type": "string", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "ComAtprotoAdminUpdateAccountSigningKeyReq", "kind": "record", "fields": [
+        { "name": "did", "type": "string", "optional": false, "doc": null, "format": "did" },
+        { "name": "signingKey", "type": "string", "optional": false, "doc": "Did-key formatted public key", "format": "did" }
+      ] },
+    { "name": "ComAtprotoAdminUpdateSubjectStatusReq", "kind": "record", "fields": [
+        { "name": "subject", "type": "unknown", "optional": false, "doc": null, "format": null },
+        { "name": "takedown", "type": "ComAtprotoAdminDefsStatusAttr", "optional": true, "doc": null, "format": null },
+        { "name": "deactivated", "type": "ComAtprotoAdminDefsStatusAttr", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "ComAtprotoIdentityGetRecommendedDidCredentialsReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "ComAtprotoIdentityRefreshIdentityReq", "kind": "record", "fields": [
+        { "name": "identifier", "type": "string", "optional": false, "doc": null, "format": "at-identifier" }
+      ] },
+    { "name": "ComAtprotoIdentityRequestPlcOperationSignatureReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "ComAtprotoIdentityResolveHandleReq", "kind": "record", "fields": [
+        { "name": "handle", "type": "string", "optional": false, "doc": "The handle to resolve.", "format": null }
+      ] },
+    { "name": "ComAtprotoIdentitySignPlcOperationReq", "kind": "record", "fields": [
+        { "name": "token", "type": "string", "optional": true, "doc": "A token received through com.atproto.identity.requestPlcOperationSignature", "format": null },
+        { "name": "services", "type": "unknown", "optional": true, "doc": null, "format": null },
+        { "name": "alsoKnownAs", "type": "string[]", "optional": true, "doc": null, "format": null },
+        { "name": "rotationKeys", "type": "string[]", "optional": true, "doc": null, "format": null },
+        { "name": "verificationMethods", "type": "unknown", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "ComAtprotoIdentitySubmitPlcOperationReq", "kind": "record", "fields": [
+        { "name": "operation", "type": "unknown", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "ComAtprotoIdentityUpdateHandleReq", "kind": "record", "fields": [
+        { "name": "handle", "type": "string", "optional": false, "doc": "The new handle.", "format": "handle" }
+      ] },
+    { "name": "ComAtprotoLabelQueryLabelsReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null },
+        { "name": "sources", "type": "string[]", "optional": true, "doc": "Optional list of label sources (DIDs) to filter on.", "format": null },
+        { "name": "uriPatterns", "type": "string[]", "optional": false, "doc": "List of AT URI patterns to match (boolean 'OR'). Each may be a prefix (ending with '*'; will match inclusive of the string leading to '*'), or a full URI.", "format": null }
+      ] },
+    { "name": "ComAtprotoModerationCreateReportReq", "kind": "record", "fields": [
+        { "name": "reason", "type": "string", "optional": true, "doc": "Additional context about the content and violation.", "format": null },
+        { "name": "modTool", "type": "ComAtprotoModerationCreateReportModTool", "optional": true, "doc": null, "format": null },
+        { "name": "subject", "type": "unknown", "optional": false, "doc": null, "format": null },
+        { "name": "reasonType", "type": "ComAtprotoModerationDefsReasonType", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "ComAtprotoRepoApplyWritesReq", "kind": "record", "fields": [
+        { "name": "repo", "type": "string", "optional": false, "doc": "The handle or DID of the repo (aka, current account).", "format": "at-identifier" },
+        { "name": "writes", "type": "unknown[]", "optional": false, "doc": null, "format": null },
+        { "name": "validate", "type": "boolean", "optional": true, "doc": "Can be set to 'false' to skip Lexicon schema validation of record data across all operations, 'true' to require it, or leave unset to validate only for known Lexicons.", "format": null },
+        { "name": "swapCommit", "type": "string", "optional": true, "doc": "If provided, the entire operation will fail if the current repo commit CID does not match this value. Used to prevent conflicting repo mutations.", "format": "cid" }
+      ] },
+    { "name": "ComAtprotoRepoCreateRecordReq", "kind": "record", "fields": [
+        { "name": "repo", "type": "string", "optional": false, "doc": "The handle or DID of the repo (aka, current account).", "format": "at-identifier" },
+        { "name": "rkey", "type": "string", "optional": true, "doc": "The Record Key.", "format": "record-key" },
+        { "name": "record", "type": "unknown", "optional": false, "doc": null, "format": null },
+        { "name": "validate", "type": "boolean", "optional": true, "doc": "Can be set to 'false' to skip Lexicon schema validation of record data, 'true' to require it, or leave unset to validate only for known Lexicons.", "format": null },
+        { "name": "collection", "type": "string", "optional": false, "doc": "The NSID of the record collection.", "format": "nsid" },
+        { "name": "swapCommit", "type": "string", "optional": true, "doc": "Compare and swap with the previous commit by CID.", "format": "cid" }
+      ] },
+    { "name": "ComAtprotoRepoDeleteRecordReq", "kind": "record", "fields": [
+        { "name": "repo", "type": "string", "optional": false, "doc": "The handle or DID of the repo (aka, current account).", "format": "at-identifier" },
+        { "name": "rkey", "type": "string", "optional": false, "doc": "The Record Key.", "format": "record-key" },
+        { "name": "collection", "type": "string", "optional": false, "doc": "The NSID of the record collection.", "format": "nsid" },
+        { "name": "swapCommit", "type": "string", "optional": true, "doc": "Compare and swap with the previous commit by CID.", "format": "cid" },
+        { "name": "swapRecord", "type": "string", "optional": true, "doc": "Compare and swap with the previous record by CID.", "format": "cid" }
+      ] },
+    { "name": "ComAtprotoRepoDescribeRepoReq", "kind": "record", "fields": [
+        { "name": "repo", "type": "string", "optional": false, "doc": "The handle or DID of the repo.", "format": null }
+      ] },
+    { "name": "ComAtprotoRepoGetRecordReq", "kind": "record", "fields": [
+        { "name": "cid", "type": "string", "optional": true, "doc": "The CID of the version of the record. If not specified, then return the most recent version.", "format": null },
+        { "name": "repo", "type": "string", "optional": false, "doc": "The handle or DID of the repo.", "format": null },
+        { "name": "rkey", "type": "string", "optional": false, "doc": "The Record Key.", "format": null },
+        { "name": "collection", "type": "string", "optional": false, "doc": "The NSID of the record collection.", "format": null }
+      ] },
+    { "name": "ComAtprotoRepoImportRepoReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "ComAtprotoRepoListMissingBlobsReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "ComAtprotoRepoListRecordsReq", "kind": "record", "fields": [
+        { "name": "repo", "type": "string", "optional": false, "doc": "The handle or DID of the repo.", "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": "The number of records to return.", "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null },
+        { "name": "reverse", "type": "boolean", "optional": true, "doc": "Flag to reverse the order of the returned records.", "format": null },
+        { "name": "collection", "type": "string", "optional": false, "doc": "The NSID of the record type.", "format": null }
+      ] },
+    { "name": "ComAtprotoRepoPutRecordReq", "kind": "record", "fields": [
+        { "name": "repo", "type": "string", "optional": false, "doc": "The handle or DID of the repo (aka, current account).", "format": "at-identifier" },
+        { "name": "rkey", "type": "string", "optional": false, "doc": "The Record Key.", "format": "record-key" },
+        { "name": "record", "type": "unknown", "optional": false, "doc": null, "format": null },
+        { "name": "validate", "type": "boolean", "optional": true, "doc": "Can be set to 'false' to skip Lexicon schema validation of record data, 'true' to require it, or leave unset to validate only for known Lexicons.", "format": null },
+        { "name": "collection", "type": "string", "optional": false, "doc": "The NSID of the record collection.", "format": "nsid" },
+        { "name": "swapCommit", "type": "string", "optional": true, "doc": "Compare and swap with the previous commit by CID.", "format": "cid" },
+        { "name": "swapRecord", "type": "string", "optional": true, "doc": "Compare and swap with the previous record by CID. WARNING: nullable and optional field; may cause problems with golang implementation", "format": "cid" }
+      ] },
+    { "name": "ComAtprotoRepoUploadBlobReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "ComAtprotoServerActivateAccountReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "ComAtprotoServerCheckAccountStatusReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "ComAtprotoServerConfirmEmailReq", "kind": "record", "fields": [
+        { "name": "email", "type": "string", "optional": false, "doc": null, "format": null },
+        { "name": "token", "type": "string", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "ComAtprotoServerCreateAccountReq", "kind": "record", "fields": [
+        { "name": "did", "type": "string", "optional": true, "doc": "Pre-existing atproto DID, being imported to a new account.", "format": "did" },
+        { "name": "email", "type": "string", "optional": true, "doc": null, "format": null },
+        { "name": "plcOp", "type": "unknown", "optional": true, "doc": null, "format": null },
+        { "name": "handle", "type": "string", "optional": false, "doc": "Requested handle for the account.", "format": "handle" },
+        { "name": "password", "type": "string", "optional": true, "doc": "Initial account password. May need to meet instance-specific password strength requirements.", "format": null },
+        { "name": "inviteCode", "type": "string", "optional": true, "doc": null, "format": null },
+        { "name": "recoveryKey", "type": "string", "optional": true, "doc": "DID PLC rotation key (aka, recovery key) to be included in PLC creation operation.", "format": null },
+        { "name": "verificationCode", "type": "string", "optional": true, "doc": null, "format": null },
+        { "name": "verificationPhone", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "ComAtprotoServerCreateAppPasswordReq", "kind": "record", "fields": [
+        { "name": "name", "type": "string", "optional": false, "doc": "A short name for the App Password, to help distinguish them.", "format": null },
+        { "name": "privileged", "type": "boolean", "optional": true, "doc": "If an app password has 'privileged' access to possibly sensitive account state. Meant for use with trusted clients.", "format": null }
+      ] },
+    { "name": "ComAtprotoServerCreateInviteCodeReq", "kind": "record", "fields": [
+        { "name": "useCount", "type": "number", "optional": false, "doc": null, "format": null },
+        { "name": "forAccount", "type": "string", "optional": true, "doc": null, "format": "did" }
+      ] },
+    { "name": "ComAtprotoServerCreateInviteCodesReq", "kind": "record", "fields": [
+        { "name": "useCount", "type": "number", "optional": false, "doc": null, "format": null },
+        { "name": "codeCount", "type": "number", "optional": false, "doc": null, "format": null },
+        { "name": "forAccounts", "type": "string[]", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "ComAtprotoServerCreateSessionReq", "kind": "record", "fields": [
+        { "name": "password", "type": "string", "optional": false, "doc": null, "format": null },
+        { "name": "identifier", "type": "string", "optional": false, "doc": "Handle or other identifier supported by the server for the authenticating user.", "format": null },
+        { "name": "allowTakendown", "type": "boolean", "optional": true, "doc": "When true, instead of throwing error for takendown accounts, a valid response with a narrow scoped token will be returned", "format": null },
+        { "name": "authFactorToken", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "ComAtprotoServerDeactivateAccountReq", "kind": "record", "fields": [
+        { "name": "deleteAfter", "type": "string", "optional": true, "doc": "A recommendation to server as to how long they should hold onto the deactivated account before deleting.", "format": "date-time" }
+      ] },
+    { "name": "ComAtprotoServerDeleteAccountReq", "kind": "record", "fields": [
+        { "name": "did", "type": "string", "optional": false, "doc": null, "format": "did" },
+        { "name": "token", "type": "string", "optional": false, "doc": null, "format": null },
+        { "name": "password", "type": "string", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "ComAtprotoServerDeleteSessionReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "ComAtprotoServerDescribeServerReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "ComAtprotoServerGetAccountInviteCodesReq", "kind": "record", "fields": [
+        { "name": "includeUsed", "type": "boolean", "optional": true, "doc": null, "format": null },
+        { "name": "createAvailable", "type": "boolean", "optional": true, "doc": "Controls whether any new 'earned' but not 'created' invites should be created.", "format": null }
+      ] },
+    { "name": "ComAtprotoServerGetServiceAuthReq", "kind": "record", "fields": [
+        { "name": "aud", "type": "string", "optional": false, "doc": "The DID of the service that the token will be used to authenticate with", "format": null },
+        { "name": "exp", "type": "number", "optional": true, "doc": "The time in Unix Epoch seconds that the JWT expires. Defaults to 60 seconds in the future. The service may enforce certain time bounds on tokens depending on the requested scope.", "format": null },
+        { "name": "lxm", "type": "string", "optional": true, "doc": "Lexicon (XRPC) method to bind the requested token to", "format": null }
+      ] },
+    { "name": "ComAtprotoServerGetSessionReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "ComAtprotoServerListAppPasswordsReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "ComAtprotoServerRefreshSessionReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "ComAtprotoServerRequestAccountDeleteReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "ComAtprotoServerRequestEmailConfirmationReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "ComAtprotoServerRequestEmailUpdateReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "ComAtprotoServerRequestPasswordResetReq", "kind": "record", "fields": [
+        { "name": "email", "type": "string", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "ComAtprotoServerReserveSigningKeyReq", "kind": "record", "fields": [
+        { "name": "did", "type": "string", "optional": true, "doc": "The DID to reserve a key for.", "format": "did" }
+      ] },
+    { "name": "ComAtprotoServerResetPasswordReq", "kind": "record", "fields": [
+        { "name": "token", "type": "string", "optional": false, "doc": null, "format": null },
+        { "name": "password", "type": "string", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "ComAtprotoServerRevokeAppPasswordReq", "kind": "record", "fields": [
+        { "name": "name", "type": "string", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "ComAtprotoServerUpdateEmailReq", "kind": "record", "fields": [
+        { "name": "email", "type": "string", "optional": false, "doc": null, "format": null },
+        { "name": "token", "type": "string", "optional": true, "doc": "Requires a token from com.atproto.sever.requestEmailUpdate if the account's email has been confirmed.", "format": null },
+        { "name": "emailAuthFactor", "type": "boolean", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "ComAtprotoSyncGetBlobReq", "kind": "record", "fields": [
+        { "name": "cid", "type": "string", "optional": false, "doc": "The CID of the blob to fetch", "format": null },
+        { "name": "did", "type": "string", "optional": false, "doc": "The DID of the account.", "format": null }
+      ] },
+    { "name": "ComAtprotoSyncGetBlocksReq", "kind": "record", "fields": [
+        { "name": "did", "type": "string", "optional": false, "doc": "The DID of the repo.", "format": null },
+        { "name": "cids", "type": "string[]", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "ComAtprotoSyncGetHostStatusReq", "kind": "record", "fields": [
+        { "name": "hostname", "type": "string", "optional": false, "doc": "Hostname of the host (eg, PDS or relay) being queried.", "format": null }
+      ] },
+    { "name": "ComAtprotoSyncGetLatestCommitReq", "kind": "record", "fields": [
+        { "name": "did", "type": "string", "optional": false, "doc": "The DID of the repo.", "format": null }
+      ] },
+    { "name": "ComAtprotoSyncGetRecordReq", "kind": "record", "fields": [
+        { "name": "did", "type": "string", "optional": false, "doc": "The DID of the repo.", "format": null },
+        { "name": "rkey", "type": "string", "optional": false, "doc": "Record Key", "format": null },
+        { "name": "collection", "type": "string", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "ComAtprotoSyncGetRepoReq", "kind": "record", "fields": [
+        { "name": "did", "type": "string", "optional": false, "doc": "The DID of the repo.", "format": null },
+        { "name": "since", "type": "string", "optional": true, "doc": "The revision ('rev') of the repo to create a diff from.", "format": null }
+      ] },
+    { "name": "ComAtprotoSyncGetRepoStatusReq", "kind": "record", "fields": [
+        { "name": "did", "type": "string", "optional": false, "doc": "The DID of the repo.", "format": null }
+      ] },
+    { "name": "ComAtprotoSyncListBlobsReq", "kind": "record", "fields": [
+        { "name": "did", "type": "string", "optional": false, "doc": "The DID of the repo.", "format": null },
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "since", "type": "string", "optional": true, "doc": "Optional revision of the repo to list blobs since.", "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "ComAtprotoSyncListHostsReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "ComAtprotoSyncListReposReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "ComAtprotoSyncListReposByCollectionReq", "kind": "record", "fields": [
+        { "name": "limit", "type": "number", "optional": true, "doc": "Maximum size of response set. Recommend setting a large maximum (1000+) when enumerating large DID lists.", "format": null },
+        { "name": "cursor", "type": "string", "optional": true, "doc": null, "format": null },
+        { "name": "collection", "type": "string", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "ComAtprotoSyncNotifyOfUpdateReq", "kind": "record", "fields": [
+        { "name": "hostname", "type": "string", "optional": false, "doc": "Hostname of the current service (usually a PDS) that is notifying of update.", "format": null }
+      ] },
+    { "name": "ComAtprotoSyncRequestCrawlReq", "kind": "record", "fields": [
+        { "name": "hostname", "type": "string", "optional": false, "doc": "Hostname of the current service (eg, PDS) that is requesting to be crawled.", "format": null }
+      ] }
+  ],
+  "sends": [
+    { "name": "appBskyActorGetPreferences_send", "request": "AppBskyActorGetPreferencesReq", "response": "AppBskyActorGetPreferencesResponse", "doc": "Get private preferences attached to the current account. Expected use is synchronization between multiple devices, and import/export during account migration. Requires auth." },
+    { "name": "appBskyActorGetProfile_send", "request": "AppBskyActorGetProfileReq", "response": "AppBskyActorDefsProfileViewDetailed", "doc": "Get detailed profile view of an actor. Does not require auth, but contains relevant metadata with auth." },
+    { "name": "appBskyActorGetProfiles_send", "request": "AppBskyActorGetProfilesReq", "response": "AppBskyActorGetProfilesResponse", "doc": "Get detailed profile views of multiple actors." },
+    { "name": "appBskyActorGetSuggestions_send", "request": "AppBskyActorGetSuggestionsReq", "response": "AppBskyActorGetSuggestionsResponse", "doc": "Get a list of suggested actors. Expected use is discovery of accounts to follow during new account onboarding." },
+    { "name": "appBskyActorPutPreferences_send", "request": "AppBskyActorPutPreferencesReq", "response": "unknown", "doc": "Set the private preferences attached to the account." },
+    { "name": "appBskyActorSearchActors_send", "request": "AppBskyActorSearchActorsReq", "response": "AppBskyActorSearchActorsResponse", "doc": "Find actors (profiles) matching search criteria. Does not require auth." },
+    { "name": "appBskyActorSearchActorsTypeahead_send", "request": "AppBskyActorSearchActorsTypeaheadReq", "response": "AppBskyActorSearchActorsTypeaheadResponse", "doc": "Find actor suggestions for a prefix search term. Expected use is for auto-completion during text field entry. Does not require auth." },
+    { "name": "appBskyAgeassuranceBegin_send", "request": "AppBskyAgeassuranceBeginReq", "response": "AppBskyAgeassuranceDefsState", "doc": "Initiate Age Assurance for an account." },
+    { "name": "appBskyAgeassuranceGetConfig_send", "request": "AppBskyAgeassuranceGetConfigReq", "response": "AppBskyAgeassuranceDefsConfig", "doc": "Returns Age Assurance configuration for use on the client." },
+    { "name": "appBskyAgeassuranceGetState_send", "request": "AppBskyAgeassuranceGetStateReq", "response": "AppBskyAgeassuranceGetStateResponse", "doc": "Returns server-computed Age Assurance state, if available, and any additional metadata needed to compute Age Assurance state client-side." },
+    { "name": "appBskyBookmarkCreateBookmark_send", "request": "AppBskyBookmarkCreateBookmarkReq", "response": "unknown", "doc": "Creates a private bookmark for the specified record. Currently, only `app.bsky.feed.post` records are supported. Requires authentication." },
+    { "name": "appBskyBookmarkDeleteBookmark_send", "request": "AppBskyBookmarkDeleteBookmarkReq", "response": "unknown", "doc": "Deletes a private bookmark for the specified record. Currently, only `app.bsky.feed.post` records are supported. Requires authentication." },
+    { "name": "appBskyBookmarkGetBookmarks_send", "request": "AppBskyBookmarkGetBookmarksReq", "response": "AppBskyBookmarkGetBookmarksResponse", "doc": "Gets views of records bookmarked by the authenticated user. Requires authentication." },
+    { "name": "appBskyContactDismissMatch_send", "request": "AppBskyContactDismissMatchReq", "response": "unknown", "doc": "Removes a match that was found via contact import. It shouldn't appear again if the same contact is re-imported. Requires authentication." },
+    { "name": "appBskyContactGetMatches_send", "request": "AppBskyContactGetMatchesReq", "response": "AppBskyContactGetMatchesResponse", "doc": "Returns the matched contacts (contacts that were mutually imported). Excludes dismissed matches. Requires authentication." },
+    { "name": "appBskyContactGetSyncStatus_send", "request": "AppBskyContactGetSyncStatusReq", "response": "AppBskyContactGetSyncStatusResponse", "doc": "Gets the user's current contact import status. Requires authentication." },
+    { "name": "appBskyContactImportContacts_send", "request": "AppBskyContactImportContactsReq", "response": "AppBskyContactImportContactsResponse", "doc": "Import contacts for securely matching with other users. This follows the protocol explained in https://docs.bsky.app/blog/contact-import-rfc. Requires authentication." },
+    { "name": "appBskyContactRemoveData_send", "request": "AppBskyContactRemoveDataReq", "response": "unknown", "doc": "Removes all stored hashes used for contact matching, existing matches, and sync status. Requires authentication." },
+    { "name": "appBskyContactSendNotification_send", "request": "AppBskyContactSendNotificationReq", "response": "unknown", "doc": "System endpoint to send notifications related to contact imports. Requires role authentication." },
+    { "name": "appBskyContactStartPhoneVerification_send", "request": "AppBskyContactStartPhoneVerificationReq", "response": "unknown", "doc": "Starts a phone verification flow. The phone passed will receive a code via SMS that should be passed to `app.bsky.contact.verifyPhone`. Requires authentication." },
+    { "name": "appBskyContactVerifyPhone_send", "request": "AppBskyContactVerifyPhoneReq", "response": "AppBskyContactVerifyPhoneResponse", "doc": "Verifies control over a phone number with a code received via SMS and starts a contact import session. Requires authentication." },
+    { "name": "appBskyDraftCreateDraft_send", "request": "AppBskyDraftCreateDraftReq", "response": "AppBskyDraftCreateDraftResponse", "doc": "Inserts a draft using private storage (stash). An upper limit of drafts might be enforced. Requires authentication." },
+    { "name": "appBskyDraftDeleteDraft_send", "request": "AppBskyDraftDeleteDraftReq", "response": "unknown", "doc": "Deletes a draft by ID. Requires authentication." },
+    { "name": "appBskyDraftGetDrafts_send", "request": "AppBskyDraftGetDraftsReq", "response": "AppBskyDraftGetDraftsResponse", "doc": "Gets views of user drafts. Requires authentication." },
+    { "name": "appBskyDraftUpdateDraft_send", "request": "AppBskyDraftUpdateDraftReq", "response": "unknown", "doc": "Updates a draft using private storage (stash). If the draft ID points to a non-existing ID, the update will be silently ignored. This is done because updates don't enforce draft limit, so it accepts all writes, but will ignore invalid ones. Requires authentication." },
+    { "name": "appBskyFeedDescribeFeedGenerator_send", "request": "AppBskyFeedDescribeFeedGeneratorReq", "response": "AppBskyFeedDescribeFeedGeneratorResponse", "doc": "Get information about a feed generator, including policies and offered feed URIs. Does not require auth; implemented by Feed Generator services (not App View)." },
+    { "name": "appBskyFeedGetActorFeeds_send", "request": "AppBskyFeedGetActorFeedsReq", "response": "AppBskyFeedGetActorFeedsResponse", "doc": "Get a list of feeds (feed generator records) created by the actor (in the actor's repo)." },
+    { "name": "appBskyFeedGetActorLikes_send", "request": "AppBskyFeedGetActorLikesReq", "response": "AppBskyFeedGetActorLikesResponse", "doc": "Get a list of posts liked by an actor. Requires auth, actor must be the requesting account." },
+    { "name": "appBskyFeedGetAuthorFeed_send", "request": "AppBskyFeedGetAuthorFeedReq", "response": "AppBskyFeedGetActorLikesResponse", "doc": "Get a view of an actor's 'author feed' (post and reposts by the author). Does not require auth." },
+    { "name": "appBskyFeedGetFeed_send", "request": "AppBskyFeedGetFeedReq", "response": "AppBskyFeedGetActorLikesResponse", "doc": "Get a hydrated feed from an actor's selected feed generator. Implemented by App View." },
+    { "name": "appBskyFeedGetFeedGenerator_send", "request": "AppBskyFeedGetFeedGeneratorReq", "response": "AppBskyFeedGetFeedGeneratorResponse", "doc": "Get information about a feed generator. Implemented by AppView." },
+    { "name": "appBskyFeedGetFeedGenerators_send", "request": "AppBskyFeedGetFeedGeneratorsReq", "response": "AppBskyFeedGetFeedGeneratorsResponse", "doc": "Get information about a list of feed generators." },
+    { "name": "appBskyFeedGetFeedSkeleton_send", "request": "AppBskyFeedGetFeedSkeletonReq", "response": "AppBskyFeedGetFeedSkeletonResponse", "doc": "Get a skeleton of a feed provided by a feed generator. Auth is optional, depending on provider requirements, and provides the DID of the requester. Implemented by Feed Generator Service." },
+    { "name": "appBskyFeedGetLikes_send", "request": "AppBskyFeedGetLikesReq", "response": "AppBskyFeedGetLikesResponse", "doc": "Get like records which reference a subject (by AT-URI and CID)." },
+    { "name": "appBskyFeedGetListFeed_send", "request": "AppBskyFeedGetListFeedReq", "response": "AppBskyFeedGetActorLikesResponse", "doc": "Get a feed of recent posts from a list (posts and reposts from any actors on the list). Does not require auth." },
+    { "name": "appBskyFeedGetPostThread_send", "request": "AppBskyFeedGetPostThreadReq", "response": "AppBskyFeedGetPostThreadResponse", "doc": "Get posts in a thread. Does not require auth, but additional metadata and filtering will be applied for authed requests." },
+    { "name": "appBskyFeedGetPosts_send", "request": "AppBskyFeedGetPostsReq", "response": "AppBskyFeedGetPostsResponse", "doc": "Gets post views for a specified list of posts (by AT-URI). This is sometimes referred to as 'hydrating' a 'feed skeleton'." },
+    { "name": "appBskyFeedGetQuotes_send", "request": "AppBskyFeedGetQuotesReq", "response": "AppBskyFeedGetQuotesResponse", "doc": "Get a list of quotes for a given post." },
+    { "name": "appBskyFeedGetRepostedBy_send", "request": "AppBskyFeedGetRepostedByReq", "response": "AppBskyFeedGetRepostedByResponse", "doc": "Get a list of reposts for a given post." },
+    { "name": "appBskyFeedGetSuggestedFeeds_send", "request": "AppBskyFeedGetSuggestedFeedsReq", "response": "AppBskyFeedGetActorFeedsResponse", "doc": "Get a list of suggested feeds (feed generators) for the requesting account." },
+    { "name": "appBskyFeedGetTimeline_send", "request": "AppBskyFeedGetTimelineReq", "response": "AppBskyFeedGetActorLikesResponse", "doc": "Get a view of the requesting account's home timeline. This is expected to be some form of reverse-chronological feed." },
+    { "name": "appBskyFeedSearchPosts_send", "request": "AppBskyFeedSearchPostsReq", "response": "AppBskyFeedSearchPostsResponse", "doc": "Find posts matching search criteria, returning views of those posts. Note that this API endpoint may require authentication (eg, not public) for some service providers and implementations." },
+    { "name": "appBskyFeedSendInteractions_send", "request": "AppBskyFeedSendInteractionsReq", "response": "AppBskyFeedSendInteractionsResponse", "doc": "Send information about interactions with feed items back to the feed generator that served them." },
+    { "name": "appBskyGraphGetActorStarterPacks_send", "request": "AppBskyGraphGetActorStarterPacksReq", "response": "AppBskyGraphGetActorStarterPacksResponse", "doc": "Get a list of starter packs created by the actor." },
+    { "name": "appBskyGraphGetBlocks_send", "request": "AppBskyGraphGetBlocksReq", "response": "AppBskyGraphGetBlocksResponse", "doc": "Enumerates which accounts the requesting account is currently blocking. Requires auth." },
+    { "name": "appBskyGraphGetFollowers_send", "request": "AppBskyGraphGetFollowersReq", "response": "AppBskyGraphGetFollowersResponse", "doc": "Enumerates accounts which follow a specified account (actor)." },
+    { "name": "appBskyGraphGetFollows_send", "request": "AppBskyGraphGetFollowsReq", "response": "AppBskyGraphGetFollowsResponse", "doc": "Enumerates accounts which a specified account (actor) follows." },
+    { "name": "appBskyGraphGetKnownFollowers_send", "request": "AppBskyGraphGetKnownFollowersReq", "response": "AppBskyGraphGetFollowersResponse", "doc": "Enumerates accounts which follow a specified account (actor) and are followed by the viewer." },
+    { "name": "appBskyGraphGetList_send", "request": "AppBskyGraphGetListReq", "response": "AppBskyGraphGetListResponse", "doc": "Gets a 'view' (with additional context) of a specified list." },
+    { "name": "appBskyGraphGetListBlocks_send", "request": "AppBskyGraphGetListBlocksReq", "response": "AppBskyGraphGetListBlocksResponse", "doc": "Get mod lists that the requesting account (actor) is blocking. Requires auth." },
+    { "name": "appBskyGraphGetListMutes_send", "request": "AppBskyGraphGetListMutesReq", "response": "AppBskyGraphGetListBlocksResponse", "doc": "Enumerates mod lists that the requesting account (actor) currently has muted. Requires auth." },
+    { "name": "appBskyGraphGetLists_send", "request": "AppBskyGraphGetListsReq", "response": "AppBskyGraphGetListBlocksResponse", "doc": "Enumerates the lists created by a specified account (actor)." },
+    { "name": "appBskyGraphGetListsWithMembership_send", "request": "AppBskyGraphGetListsWithMembershipReq", "response": "AppBskyGraphGetListsWithMembershipResponse", "doc": "Enumerates the lists created by the session user, and includes membership information about `actor` in those lists. Only supports curation and moderation lists (no reference lists, used in starter packs). Requires auth." },
+    { "name": "appBskyGraphGetMutes_send", "request": "AppBskyGraphGetMutesReq", "response": "AppBskyGraphGetMutesResponse", "doc": "Enumerates accounts that the requesting account (actor) currently has muted. Requires auth." },
+    { "name": "appBskyGraphGetRelationships_send", "request": "AppBskyGraphGetRelationshipsReq", "response": "AppBskyGraphGetRelationshipsResponse", "doc": "Enumerates public relationships between one account, and a list of other accounts. Does not require auth." },
+    { "name": "appBskyGraphGetStarterPack_send", "request": "AppBskyGraphGetStarterPackReq", "response": "AppBskyGraphGetStarterPackResponse", "doc": "Gets a view of a starter pack." },
+    { "name": "appBskyGraphGetStarterPacks_send", "request": "AppBskyGraphGetStarterPacksReq", "response": "AppBskyGraphGetStarterPacksResponse", "doc": "Get views for a list of starter packs." },
+    { "name": "appBskyGraphGetStarterPacksWithMembership_send", "request": "AppBskyGraphGetStarterPacksWithMembershipReq", "response": "AppBskyGraphGetStarterPacksWithMembershipResponse", "doc": "Enumerates the starter packs created by the session user, and includes membership information about `actor` in those starter packs. Requires auth." },
+    { "name": "appBskyGraphGetSuggestedFollowsByActor_send", "request": "AppBskyGraphGetSuggestedFollowsByActorReq", "response": "AppBskyGraphGetSuggestedFollowsByActorResponse", "doc": "Enumerates follows similar to a given account (actor). Expected use is to recommend additional accounts immediately after following one account." },
+    { "name": "appBskyGraphMuteActor_send", "request": "AppBskyGraphMuteActorReq", "response": "unknown", "doc": "Creates a mute relationship for the specified account. Mutes are private in Bluesky. Requires auth." },
+    { "name": "appBskyGraphMuteActorList_send", "request": "AppBskyGraphMuteActorListReq", "response": "unknown", "doc": "Creates a mute relationship for the specified list of accounts. Mutes are private in Bluesky. Requires auth." },
+    { "name": "appBskyGraphMuteThread_send", "request": "AppBskyGraphMuteThreadReq", "response": "unknown", "doc": "Mutes a thread preventing notifications from the thread and any of its children. Mutes are private in Bluesky. Requires auth." },
+    { "name": "appBskyGraphSearchStarterPacks_send", "request": "AppBskyGraphSearchStarterPacksReq", "response": "AppBskyGraphGetActorStarterPacksResponse", "doc": "Find starter packs matching search criteria. Does not require auth." },
+    { "name": "appBskyGraphUnmuteActor_send", "request": "AppBskyGraphUnmuteActorReq", "response": "unknown", "doc": "Unmutes the specified account. Requires auth." },
+    { "name": "appBskyGraphUnmuteActorList_send", "request": "AppBskyGraphUnmuteActorListReq", "response": "unknown", "doc": "Unmutes the specified list of accounts. Requires auth." },
+    { "name": "appBskyGraphUnmuteThread_send", "request": "AppBskyGraphUnmuteThreadReq", "response": "unknown", "doc": "Unmutes the specified thread. Requires auth." },
+    { "name": "appBskyLabelerGetServices_send", "request": "AppBskyLabelerGetServicesReq", "response": "AppBskyLabelerGetServicesResponse", "doc": "Get information about a list of labeler services." },
+    { "name": "appBskyNotificationGetPreferences_send", "request": "AppBskyNotificationGetPreferencesReq", "response": "AppBskyNotificationGetPreferencesResponse", "doc": "Get notification-related preferences for an account. Requires auth." },
+    { "name": "appBskyNotificationGetUnreadCount_send", "request": "AppBskyNotificationGetUnreadCountReq", "response": "AppBskyNotificationGetUnreadCountResponse", "doc": "Count the number of unread notifications for the requesting account. Requires auth." },
+    { "name": "appBskyNotificationListActivitySubscriptions_send", "request": "AppBskyNotificationListActivitySubscriptionsReq", "response": "AppBskyNotificationListActivitySubscriptionsResponse", "doc": "Enumerate all accounts to which the requesting account is subscribed to receive notifications for. Requires auth." },
+    { "name": "appBskyNotificationListNotifications_send", "request": "AppBskyNotificationListNotificationsReq", "response": "AppBskyNotificationListNotificationsResponse", "doc": "Enumerate notifications for the requesting account. Requires auth." },
+    { "name": "appBskyNotificationPutActivitySubscription_send", "request": "AppBskyNotificationPutActivitySubscriptionReq", "response": "AppBskyNotificationPutActivitySubscriptionResponse", "doc": "Puts an activity subscription entry. The key should be omitted for creation and provided for updates. Requires auth." },
+    { "name": "appBskyNotificationPutPreferences_send", "request": "AppBskyNotificationPutPreferencesReq", "response": "unknown", "doc": "Set notification-related preferences for an account. Requires auth." },
+    { "name": "appBskyNotificationPutPreferencesV2_send", "request": "AppBskyNotificationPutPreferencesV2Req", "response": "AppBskyNotificationGetPreferencesResponse", "doc": "Set notification-related preferences for an account. Requires auth." },
+    { "name": "appBskyNotificationRegisterPush_send", "request": "AppBskyNotificationRegisterPushReq", "response": "unknown", "doc": "Register to receive push notifications, via a specified service, for the requesting account. Requires auth." },
+    { "name": "appBskyNotificationUnregisterPush_send", "request": "AppBskyNotificationUnregisterPushReq", "response": "unknown", "doc": "The inverse of registerPush - inform a specified service that push notifications should no longer be sent to the given token for the requesting account. Requires auth." },
+    { "name": "appBskyNotificationUpdateSeen_send", "request": "AppBskyNotificationUpdateSeenReq", "response": "unknown", "doc": "Notify server that the requesting account has seen notifications. Requires auth." },
+    { "name": "appBskyVideoGetJobStatus_send", "request": "AppBskyVideoGetJobStatusReq", "response": "AppBskyVideoGetJobStatusResponse", "doc": "Get status details for a video processing job." },
+    { "name": "appBskyVideoGetUploadLimits_send", "request": "AppBskyVideoGetUploadLimitsReq", "response": "AppBskyVideoGetUploadLimitsResponse", "doc": "Get video upload limits for the authenticated user." },
+    { "name": "appBskyVideoUploadVideo_send", "request": "AppBskyVideoUploadVideoReq", "response": "AppBskyVideoGetJobStatusResponse", "doc": "Upload a video to be processed then stored on the PDS." },
+    { "name": "comAtprotoAdminDeleteAccount_send", "request": "ComAtprotoAdminDeleteAccountReq", "response": "unknown", "doc": "Delete a user account as an administrator." },
+    { "name": "comAtprotoAdminDisableAccountInvites_send", "request": "ComAtprotoAdminDisableAccountInvitesReq", "response": "unknown", "doc": "Disable an account from receiving new invite codes, but does not invalidate existing codes." },
+    { "name": "comAtprotoAdminDisableInviteCodes_send", "request": "ComAtprotoAdminDisableInviteCodesReq", "response": "unknown", "doc": "Disable some set of codes and/or all codes associated with a set of users." },
+    { "name": "comAtprotoAdminEnableAccountInvites_send", "request": "ComAtprotoAdminEnableAccountInvitesReq", "response": "unknown", "doc": "Re-enable an account's ability to receive invite codes." },
+    { "name": "comAtprotoAdminGetAccountInfo_send", "request": "ComAtprotoAdminGetAccountInfoReq", "response": "ComAtprotoAdminDefsAccountView", "doc": "Get details about an account." },
+    { "name": "comAtprotoAdminGetAccountInfos_send", "request": "ComAtprotoAdminGetAccountInfosReq", "response": "ComAtprotoAdminGetAccountInfosResponse", "doc": "Get details about some accounts." },
+    { "name": "comAtprotoAdminGetInviteCodes_send", "request": "ComAtprotoAdminGetInviteCodesReq", "response": "ComAtprotoAdminGetInviteCodesResponse", "doc": "Get an admin view of invite codes." },
+    { "name": "comAtprotoAdminGetSubjectStatus_send", "request": "ComAtprotoAdminGetSubjectStatusReq", "response": "ComAtprotoAdminGetSubjectStatusResponse", "doc": "Get the service-specific admin status of a subject (account, record, or blob)." },
+    { "name": "comAtprotoAdminSearchAccounts_send", "request": "ComAtprotoAdminSearchAccountsReq", "response": "ComAtprotoAdminSearchAccountsResponse", "doc": "Get list of accounts that matches your search query." },
+    { "name": "comAtprotoAdminSendEmail_send", "request": "ComAtprotoAdminSendEmailReq", "response": "ComAtprotoAdminSendEmailResponse", "doc": "Send email to a user's account email address." },
+    { "name": "comAtprotoAdminUpdateAccountEmail_send", "request": "ComAtprotoAdminUpdateAccountEmailReq", "response": "unknown", "doc": "Administrative action to update an account's email." },
+    { "name": "comAtprotoAdminUpdateAccountHandle_send", "request": "ComAtprotoAdminUpdateAccountHandleReq", "response": "unknown", "doc": "Administrative action to update an account's handle." },
+    { "name": "comAtprotoAdminUpdateAccountPassword_send", "request": "ComAtprotoAdminUpdateAccountPasswordReq", "response": "unknown", "doc": "Update the password for a user account as an administrator." },
+    { "name": "comAtprotoAdminUpdateAccountSigningKey_send", "request": "ComAtprotoAdminUpdateAccountSigningKeyReq", "response": "unknown", "doc": "Administrative action to update an account's signing key in their Did document." },
+    { "name": "comAtprotoAdminUpdateSubjectStatus_send", "request": "ComAtprotoAdminUpdateSubjectStatusReq", "response": "ComAtprotoAdminUpdateSubjectStatusResponse", "doc": "Update the service-specific admin status of a subject (account, record, or blob)." },
+    { "name": "comAtprotoIdentityGetRecommendedDidCredentials_send", "request": "ComAtprotoIdentityGetRecommendedDidCredentialsReq", "response": "ComAtprotoIdentityGetRecommendedDidCredentialsResponse", "doc": "Describe the credentials that should be included in the DID doc of an account that is migrating to this service." },
+    { "name": "comAtprotoIdentityRefreshIdentity_send", "request": "ComAtprotoIdentityRefreshIdentityReq", "response": "ComAtprotoIdentityDefsIdentityInfo", "doc": "Request that the server re-resolve an identity (DID and handle). The server may ignore this request, or require authentication, depending on the role, implementation, and policy of the server." },
+    { "name": "comAtprotoIdentityRequestPlcOperationSignature_send", "request": "ComAtprotoIdentityRequestPlcOperationSignatureReq", "response": "unknown", "doc": "Request an email with a code to in order to request a signed PLC operation. Requires Auth." },
+    { "name": "comAtprotoIdentityResolveHandle_send", "request": "ComAtprotoIdentityResolveHandleReq", "response": "AppBskyActorDefsLabelerPrefItem", "doc": "Resolves an atproto handle (hostname) to a DID. Does not necessarily bi-directionally verify against the the DID document." },
+    { "name": "comAtprotoIdentitySignPlcOperation_send", "request": "ComAtprotoIdentitySignPlcOperationReq", "response": "ComAtprotoIdentitySignPlcOperationResponse", "doc": "Signs a PLC operation to update some value(s) in the requesting DID's document." },
+    { "name": "comAtprotoIdentitySubmitPlcOperation_send", "request": "ComAtprotoIdentitySubmitPlcOperationReq", "response": "unknown", "doc": "Validates a PLC operation to ensure that it doesn't violate a service's constraints or get the identity into a bad state, then submits it to the PLC registry" },
+    { "name": "comAtprotoIdentityUpdateHandle_send", "request": "ComAtprotoIdentityUpdateHandleReq", "response": "unknown", "doc": "Updates the current account's handle. Verifies handle validity, and updates did:plc document if necessary. Implemented by PDS, and requires auth." },
+    { "name": "comAtprotoLabelQueryLabels_send", "request": "ComAtprotoLabelQueryLabelsReq", "response": "ComAtprotoLabelQueryLabelsResponse", "doc": "Find labels relevant to the provided AT-URI patterns. Public endpoint for moderation services, though may return different or additional results with auth." },
+    { "name": "comAtprotoModerationCreateReport_send", "request": "ComAtprotoModerationCreateReportReq", "response": "ComAtprotoModerationCreateReportResponse", "doc": "Submit a moderation report regarding an atproto account or record. Implemented by moderation services (with PDS proxying), and requires auth." },
+    { "name": "comAtprotoRepoApplyWrites_send", "request": "ComAtprotoRepoApplyWritesReq", "response": "ComAtprotoRepoApplyWritesResponse", "doc": "Apply a batch transaction of repository creates, updates, and deletes. Requires auth, implemented by PDS." },
+    { "name": "comAtprotoRepoCreateRecord_send", "request": "ComAtprotoRepoCreateRecordReq", "response": "ComAtprotoRepoCreateRecordResponse", "doc": "Create a single new repository record. Requires auth, implemented by PDS." },
+    { "name": "comAtprotoRepoDeleteRecord_send", "request": "ComAtprotoRepoDeleteRecordReq", "response": "ComAtprotoRepoDeleteRecordResponse", "doc": "Delete a repository record, or ensure it doesn't exist. Requires auth, implemented by PDS." },
+    { "name": "comAtprotoRepoDescribeRepo_send", "request": "ComAtprotoRepoDescribeRepoReq", "response": "ComAtprotoRepoDescribeRepoResponse", "doc": "Get information about an account and repository, including the list of collections. Does not require auth." },
+    { "name": "comAtprotoRepoGetRecord_send", "request": "ComAtprotoRepoGetRecordReq", "response": "ComAtprotoRepoGetRecordResponse", "doc": "Get a single record from a repository. Does not require auth." },
+    { "name": "comAtprotoRepoImportRepo_send", "request": "ComAtprotoRepoImportRepoReq", "response": "unknown", "doc": "Import a repo in the form of a CAR file. Requires Content-Length HTTP header to be set." },
+    { "name": "comAtprotoRepoListMissingBlobs_send", "request": "ComAtprotoRepoListMissingBlobsReq", "response": "ComAtprotoRepoListMissingBlobsResponse", "doc": "Returns a list of missing blobs for the requesting account. Intended to be used in the account migration flow." },
+    { "name": "comAtprotoRepoListRecords_send", "request": "ComAtprotoRepoListRecordsReq", "response": "ComAtprotoRepoListRecordsResponse", "doc": "List a range of records in a repository, matching a specific collection. Does not require auth." },
+    { "name": "comAtprotoRepoPutRecord_send", "request": "ComAtprotoRepoPutRecordReq", "response": "ComAtprotoRepoCreateRecordResponse", "doc": "Write a repository record, creating or updating it as needed. Requires auth, implemented by PDS." },
+    { "name": "comAtprotoRepoUploadBlob_send", "request": "ComAtprotoRepoUploadBlobReq", "response": "ComAtprotoRepoUploadBlobResponse", "doc": "Upload a new blob, to be referenced from a repository record. The blob will be deleted if it is not referenced within a time window (eg, minutes). Blob restrictions (mimetype, size, etc) are enforced when the reference is created. Requires auth, implemented by PDS." },
+    { "name": "comAtprotoServerActivateAccount_send", "request": "ComAtprotoServerActivateAccountReq", "response": "unknown", "doc": "Activates a currently deactivated account. Used to finalize account migration after the account's repo is imported and identity is setup." },
+    { "name": "comAtprotoServerCheckAccountStatus_send", "request": "ComAtprotoServerCheckAccountStatusReq", "response": "ComAtprotoServerCheckAccountStatusResponse", "doc": "Returns the status of an account, especially as pertaining to import or recovery. Can be called many times over the course of an account migration. Requires auth and can only be called pertaining to oneself." },
+    { "name": "comAtprotoServerConfirmEmail_send", "request": "ComAtprotoServerConfirmEmailReq", "response": "unknown", "doc": "Confirm an email using a token from com.atproto.server.requestEmailConfirmation." },
+    { "name": "comAtprotoServerCreateAccount_send", "request": "ComAtprotoServerCreateAccountReq", "response": "ComAtprotoServerCreateAccountResponse", "doc": "Create an account. Implemented by PDS." },
+    { "name": "comAtprotoServerCreateAppPassword_send", "request": "ComAtprotoServerCreateAppPasswordReq", "response": "ComAtprotoServerCreateAppPasswordAppPassword", "doc": "Create an App Password." },
+    { "name": "comAtprotoServerCreateInviteCode_send", "request": "ComAtprotoServerCreateInviteCodeReq", "response": "ComAtprotoServerCreateInviteCodeResponse", "doc": "Create an invite code." },
+    { "name": "comAtprotoServerCreateInviteCodes_send", "request": "ComAtprotoServerCreateInviteCodesReq", "response": "ComAtprotoServerCreateInviteCodesResponse", "doc": "Create invite codes." },
+    { "name": "comAtprotoServerCreateSession_send", "request": "ComAtprotoServerCreateSessionReq", "response": "ComAtprotoServerCreateSessionResponse", "doc": "Create an authentication session." },
+    { "name": "comAtprotoServerDeactivateAccount_send", "request": "ComAtprotoServerDeactivateAccountReq", "response": "unknown", "doc": "Deactivates a currently active account. Stops serving of repo, and future writes to repo until reactivated. Used to finalize account migration with the old host after the account has been activated on the new host." },
+    { "name": "comAtprotoServerDeleteAccount_send", "request": "ComAtprotoServerDeleteAccountReq", "response": "unknown", "doc": "Delete an actor's account with a token and password. Can only be called after requesting a deletion token. Requires auth." },
+    { "name": "comAtprotoServerDeleteSession_send", "request": "ComAtprotoServerDeleteSessionReq", "response": "unknown", "doc": "Delete the current session. Requires auth using the 'refreshJwt' (not the 'accessJwt')." },
+    { "name": "comAtprotoServerDescribeServer_send", "request": "ComAtprotoServerDescribeServerReq", "response": "ComAtprotoServerDescribeServerResponse", "doc": "Describes the server's account creation requirements and capabilities. Implemented by PDS." },
+    { "name": "comAtprotoServerGetAccountInviteCodes_send", "request": "ComAtprotoServerGetAccountInviteCodesReq", "response": "ComAtprotoServerGetAccountInviteCodesResponse", "doc": "Get all invite codes for the current account. Requires auth." },
+    { "name": "comAtprotoServerGetServiceAuth_send", "request": "ComAtprotoServerGetServiceAuthReq", "response": "AppBskyContactVerifyPhoneResponse", "doc": "Get a signed token on behalf of the requesting DID for the requested service." },
+    { "name": "comAtprotoServerGetSession_send", "request": "ComAtprotoServerGetSessionReq", "response": "ComAtprotoServerGetSessionResponse", "doc": "Get information about the current auth session. Requires auth." },
+    { "name": "comAtprotoServerListAppPasswords_send", "request": "ComAtprotoServerListAppPasswordsReq", "response": "ComAtprotoServerListAppPasswordsResponse", "doc": "List all App Passwords." },
+    { "name": "comAtprotoServerRefreshSession_send", "request": "ComAtprotoServerRefreshSessionReq", "response": "ComAtprotoServerCreateSessionResponse", "doc": "Refresh an authentication session. Requires auth using the 'refreshJwt' (not the 'accessJwt')." },
+    { "name": "comAtprotoServerRequestAccountDelete_send", "request": "ComAtprotoServerRequestAccountDeleteReq", "response": "unknown", "doc": "Initiate a user account deletion via email." },
+    { "name": "comAtprotoServerRequestEmailConfirmation_send", "request": "ComAtprotoServerRequestEmailConfirmationReq", "response": "unknown", "doc": "Request an email with a code to confirm ownership of email." },
+    { "name": "comAtprotoServerRequestEmailUpdate_send", "request": "ComAtprotoServerRequestEmailUpdateReq", "response": "ComAtprotoServerRequestEmailUpdateResponse", "doc": "Request a token in order to update email." },
+    { "name": "comAtprotoServerRequestPasswordReset_send", "request": "ComAtprotoServerRequestPasswordResetReq", "response": "unknown", "doc": "Initiate a user account password reset via email." },
+    { "name": "comAtprotoServerReserveSigningKey_send", "request": "ComAtprotoServerReserveSigningKeyReq", "response": "ComAtprotoServerReserveSigningKeyResponse", "doc": "Reserve a repo signing key, for use with account creation. Necessary so that a DID PLC update operation can be constructed during an account migraiton. Public and does not require auth; implemented by PDS. NOTE: this endpoint may change when full account migration is implemented." },
+    { "name": "comAtprotoServerResetPassword_send", "request": "ComAtprotoServerResetPasswordReq", "response": "unknown", "doc": "Reset a user account password using a token." },
+    { "name": "comAtprotoServerRevokeAppPassword_send", "request": "ComAtprotoServerRevokeAppPasswordReq", "response": "unknown", "doc": "Revoke an App Password by name." },
+    { "name": "comAtprotoServerUpdateEmail_send", "request": "ComAtprotoServerUpdateEmailReq", "response": "unknown", "doc": "Update an account's email." },
+    { "name": "comAtprotoSyncGetBlob_send", "request": "ComAtprotoSyncGetBlobReq", "response": "unknown", "doc": "Get a blob associated with a given account. Returns the full blob as originally uploaded. Does not require auth; implemented by PDS." },
+    { "name": "comAtprotoSyncGetBlocks_send", "request": "ComAtprotoSyncGetBlocksReq", "response": "unknown", "doc": "Get data blocks from a given repo, by CID. For example, intermediate MST nodes, or records. Does not require auth; implemented by PDS." },
+    { "name": "comAtprotoSyncGetHostStatus_send", "request": "ComAtprotoSyncGetHostStatusReq", "response": "ComAtprotoSyncListHostsHost", "doc": "Returns information about a specified upstream host, as consumed by the server. Implemented by relays." },
+    { "name": "comAtprotoSyncGetLatestCommit_send", "request": "ComAtprotoSyncGetLatestCommitReq", "response": "ComAtprotoRepoDefsCommitMeta", "doc": "Get the current commit CID & revision of the specified repo. Does not require auth." },
+    { "name": "comAtprotoSyncGetRecord_send", "request": "ComAtprotoSyncGetRecordReq", "response": "unknown", "doc": "Get data blocks needed to prove the existence or non-existence of record in the current version of repo. Does not require auth." },
+    { "name": "comAtprotoSyncGetRepo_send", "request": "ComAtprotoSyncGetRepoReq", "response": "unknown", "doc": "Download a repository export as CAR file. Optionally only a 'diff' since a previous revision. Does not require auth; implemented by PDS." },
+    { "name": "comAtprotoSyncGetRepoStatus_send", "request": "ComAtprotoSyncGetRepoStatusReq", "response": "ComAtprotoSyncGetRepoStatusResponse", "doc": "Get the hosting status for a repository, on this server. Expected to be implemented by PDS and Relay." },
+    { "name": "comAtprotoSyncListBlobs_send", "request": "ComAtprotoSyncListBlobsReq", "response": "ComAtprotoSyncListBlobsResponse", "doc": "List blob CIDs for an account, since some repo revision. Does not require auth; implemented by PDS." },
+    { "name": "comAtprotoSyncListHosts_send", "request": "ComAtprotoSyncListHostsReq", "response": "ComAtprotoSyncListHostsResponse", "doc": "Enumerates upstream hosts (eg, PDS or relay instances) that this service consumes from. Implemented by relays." },
+    { "name": "comAtprotoSyncListRepos_send", "request": "ComAtprotoSyncListReposReq", "response": "ComAtprotoSyncListReposResponse", "doc": "Enumerates all the DID, rev, and commit CID for all repos hosted by this service. Does not require auth; implemented by PDS and Relay." },
+    { "name": "comAtprotoSyncListReposByCollection_send", "request": "ComAtprotoSyncListReposByCollectionReq", "response": "ComAtprotoSyncListReposByCollectionResponse", "doc": "Enumerates all the DIDs which have records with the given collection NSID." },
+    { "name": "comAtprotoSyncNotifyOfUpdate_send", "request": "ComAtprotoSyncNotifyOfUpdateReq", "response": "unknown", "doc": "Notify a crawling service of a recent update, and that crawling should resume. Intended use is after a gap between repo stream events caused the crawling service to disconnect. Does not require auth; implemented by Relay. DEPRECATED: just use com.atproto.sync.requestCrawl" },
+    { "name": "comAtprotoSyncRequestCrawl_send", "request": "ComAtprotoSyncRequestCrawlReq", "response": "unknown", "doc": "Request a service to persistently crawl hosted repos. Expected use is new PDS instances declaring their existence to Relays. Does not require auth." }
+  ]
+}

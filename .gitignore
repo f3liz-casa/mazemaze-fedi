@@ -1,0 +1,12 @@
+# dependencies
+node_modules/
+
+# build scratch (all regenerable)
+**/_build/
+**/dist/
+**/_run/
+**/gen-out/
+
+# os / editor
+.DS_Store
+*.log

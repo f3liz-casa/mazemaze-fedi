@@ -1,0 +1,18 @@
+{
+  // Mirrors kaguya-app/tsconfig.json compilerOptions (strict + Bundler), with
+  // ONE delta: `allowJs` so TS reads the generated module's JSDoc directly.
+  // kaguya today has allowJs off and types the endpoints layer through a hand-
+  // written ambient `declare module` stub (Promise<unknown[]>); this probe shows
+  // what flows once that stub is dropped in favour of the generated JSDoc types.
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "checkJs": false,
+    "noEmit": true
+  },
+  "include": ["probe.ts"]
+}

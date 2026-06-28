@@ -1,0 +1,393 @@
+{
+  "inputs": [
+    {
+      "name": "AddReactionToPostInput",
+      "fields": [
+        {
+          "name": "actingAccountId",
+          "optional": true,
+          "nullable": true,
+          "type": {
+            "scalar": "ID"
+          }
+        },
+        {
+          "name": "clientMutationId",
+          "optional": true,
+          "nullable": true,
+          "type": {
+            "scalar": "ID"
+          }
+        },
+        {
+          "name": "customEmojiId",
+          "optional": true,
+          "nullable": true,
+          "type": {
+            "scalar": "ID"
+          }
+        },
+        {
+          "name": "emoji",
+          "optional": true,
+          "nullable": true,
+          "type": {
+            "scalar": "String"
+          }
+        },
+        {
+          "name": "postId",
+          "optional": false,
+          "nullable": false,
+          "type": {
+            "scalar": "ID"
+          }
+        }
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "name": "ActorByHandle",
+      "operationType": "query",
+      "document": "query ActorByHandle($handle: String!) {\n  actorByHandle(handle: $handle) {\n    id\n    handle\n    name\n    avatarUrl\n    bio\n    local\n  }\n}",
+      "variables": [
+        {
+          "name": "handle",
+          "optional": false,
+          "type": {
+            "scalar": "String"
+          }
+        }
+      ],
+      "selection": {
+        "object": [
+          {
+            "name": "actorByHandle",
+            "optional": false,
+            "nullable": true,
+            "type": {
+              "object": [
+                {
+                  "name": "id",
+                  "optional": false,
+                  "nullable": false,
+                  "type": {
+                    "scalar": "ID"
+                  }
+                },
+                {
+                  "name": "handle",
+                  "optional": false,
+                  "nullable": false,
+                  "type": {
+                    "scalar": "String"
+                  }
+                },
+                {
+                  "name": "name",
+                  "optional": false,
+                  "nullable": true,
+                  "type": {
+                    "scalar": "HTML"
+                  }
+                },
+                {
+                  "name": "avatarUrl",
+                  "optional": false,
+                  "nullable": false,
+                  "type": {
+                    "scalar": "URL"
+                  }
+                },
+                {
+                  "name": "bio",
+                  "optional": false,
+                  "nullable": true,
+                  "type": {
+                    "scalar": "HTML"
+                  }
+                },
+                {
+                  "name": "local",
+                  "optional": false,
+                  "nullable": false,
+                  "type": {
+                    "scalar": "Boolean"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "AddReaction",
+      "operationType": "mutation",
+      "document": "mutation AddReaction($input: AddReactionToPostInput!) {\n  addReactionToPost(input: $input) {\n    __typename\n    ... on AddReactionToPostPayload {\n      clientMutationId\n    }\n    ... on InvalidInputError {\n      inputPath\n    }\n    ... on NotAuthenticatedError {\n      notAuthenticated\n    }\n  }\n}",
+      "variables": [
+        {
+          "name": "input",
+          "optional": false,
+          "type": {
+            "input": "AddReactionToPostInput"
+          }
+        }
+      ],
+      "selection": {
+        "object": [
+          {
+            "name": "addReactionToPost",
+            "optional": false,
+            "nullable": false,
+            "type": {
+              "union": {
+                "common": [],
+                "branches": [
+                  {
+                    "typename": "AddReactionToPostPayload",
+                    "fields": [
+                      {
+                        "name": "clientMutationId",
+                        "optional": false,
+                        "nullable": true,
+                        "type": {
+                          "scalar": "ID"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "typename": "InvalidInputError",
+                    "fields": [
+                      {
+                        "name": "inputPath",
+                        "optional": false,
+                        "nullable": false,
+                        "type": {
+                          "scalar": "String"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "typename": "NotAuthenticatedError",
+                    "fields": [
+                      {
+                        "name": "notAuthenticated",
+                        "optional": false,
+                        "nullable": false,
+                        "type": {
+                          "scalar": "String"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "PublicTimeline",
+      "operationType": "query",
+      "document": "query PublicTimeline($after: String, $first: Int) {\n  publicTimeline(after: $after, first: $first) {\n    edges {\n      cursor\n      node {\n        __typename\n        id\n        content\n        excerpt\n        language\n        published\n        actor {\n          handle\n          name\n          avatarUrl\n        }\n        ... on Article {\n          slug\n        }\n        ... on Note {\n          visibility\n          viewerHasBookmarked\n        }\n      }\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}",
+      "variables": [
+        {
+          "name": "after",
+          "optional": true,
+          "type": {
+            "scalar": "String"
+          }
+        },
+        {
+          "name": "first",
+          "optional": true,
+          "type": {
+            "scalar": "Int"
+          }
+        }
+      ],
+      "selection": {
+        "object": [
+          {
+            "name": "publicTimeline",
+            "optional": false,
+            "nullable": false,
+            "type": {
+              "object": [
+                {
+                  "name": "edges",
+                  "optional": false,
+                  "nullable": false,
+                  "type": {
+                    "list": {
+                      "object": [
+                        {
+                          "name": "cursor",
+                          "optional": false,
+                          "nullable": false,
+                          "type": {
+                            "scalar": "String"
+                          }
+                        },
+                        {
+                          "name": "node",
+                          "optional": false,
+                          "nullable": false,
+                          "type": {
+                            "union": {
+                              "common": [
+                                {
+                                  "name": "id",
+                                  "optional": false,
+                                  "nullable": false,
+                                  "type": {
+                                    "scalar": "ID"
+                                  }
+                                },
+                                {
+                                  "name": "content",
+                                  "optional": false,
+                                  "nullable": false,
+                                  "type": {
+                                    "scalar": "HTML"
+                                  }
+                                },
+                                {
+                                  "name": "excerpt",
+                                  "optional": false,
+                                  "nullable": false,
+                                  "type": {
+                                    "scalar": "String"
+                                  }
+                                },
+                                {
+                                  "name": "language",
+                                  "optional": false,
+                                  "nullable": true,
+                                  "type": {
+                                    "scalar": "String"
+                                  }
+                                },
+                                {
+                                  "name": "published",
+                                  "optional": false,
+                                  "nullable": false,
+                                  "type": {
+                                    "scalar": "DateTime"
+                                  }
+                                },
+                                {
+                                  "name": "actor",
+                                  "optional": false,
+                                  "nullable": false,
+                                  "type": {
+                                    "object": [
+                                      {
+                                        "name": "handle",
+                                        "optional": false,
+                                        "nullable": false,
+                                        "type": {
+                                          "scalar": "String"
+                                        }
+                                      },
+                                      {
+                                        "name": "name",
+                                        "optional": false,
+                                        "nullable": true,
+                                        "type": {
+                                          "scalar": "HTML"
+                                        }
+                                      },
+                                      {
+                                        "name": "avatarUrl",
+                                        "optional": false,
+                                        "nullable": false,
+                                        "type": {
+                                          "scalar": "URL"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              ],
+                              "branches": [
+                                {
+                                  "typename": "Article",
+                                  "fields": [
+                                    {
+                                      "name": "slug",
+                                      "optional": false,
+                                      "nullable": true,
+                                      "type": {
+                                        "scalar": "String"
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "typename": "Note",
+                                  "fields": [
+                                    {
+                                      "name": "visibility",
+                                      "optional": false,
+                                      "nullable": false,
+                                      "type": {
+                                        "scalar": "PostVisibility"
+                                      }
+                                    },
+                                    {
+                                      "name": "viewerHasBookmarked",
+                                      "optional": false,
+                                      "nullable": false,
+                                      "type": {
+                                        "scalar": "Boolean"
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "name": "pageInfo",
+                  "optional": false,
+                  "nullable": false,
+                  "type": {
+                    "object": [
+                      {
+                        "name": "endCursor",
+                        "optional": false,
+                        "nullable": true,
+                        "type": {
+                          "scalar": "String"
+                        }
+                      },
+                      {
+                        "name": "hasNextPage",
+                        "optional": false,
+                        "nullable": false,
+                        "type": {
+                          "scalar": "Boolean"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

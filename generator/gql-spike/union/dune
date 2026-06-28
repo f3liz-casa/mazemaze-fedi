@@ -1,0 +1,5 @@
+(melange.emit
+ (target dist)
+ (libraries melange-json)
+ (preprocess (pps melange.ppx melange-json.ppx))
+ (module_systems es6))
