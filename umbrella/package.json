@@ -1,6 +1,9 @@
 {
   "name": "@f3liz/mazemaze",
   "version": "0.1.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "Umbrella for the @f3liz/mazemaze-* family — re-exports the Misskey client (@f3liz/mazemaze-api-misskey) under one stable entry.",
   "type": "module",
   "exports": {

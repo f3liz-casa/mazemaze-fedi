@@ -11,6 +11,17 @@
   "author": "",
   "license": "MIT",
   "type": "commonjs",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dune-project",
+    "gen/**",
+    "annotate.mjs",
+    "graphql-probe/probe.mjs",
+    "README.md",
+    "LICENSE"
+  ],
   "dependencies": {
     "acorn": "^8.17.0",
     "graphql": "^16.11.0"
