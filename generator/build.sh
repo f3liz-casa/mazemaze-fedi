@@ -41,6 +41,6 @@ cp componentSchemas.annotated.mjs res/src/melange-dist/componentSchemas.annotate
 cp endpoints.annotated.mjs res/src/melange-dist/Endpoints.js
 printf '{"type":"module"}\n' > res/src/melange-dist/package.json  # the .js are ESM
 ln -sfn "$NMROOT" res/src/melange-dist/node_modules
-./node_modules/.bin/rescript build res >/dev/null
+npx rescript build res >/dev/null
 
 echo "OK -> componentSchemas.annotated.mjs, endpoints.annotated.mjs, res/src/*.res.mjs"

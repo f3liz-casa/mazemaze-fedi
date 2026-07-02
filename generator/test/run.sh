@@ -63,7 +63,7 @@ else bad "melange example failed:"; cat /tmp/mjg-ex-ml.log; fi
 rm -f ml/exampleConsumer.ml
 # ReScript: the natural {text: \"hi\"} form against the generated .res.
 cp examples/rescript/Example.res res/src/Example.res
-if ./node_modules/.bin/rescript build res >/tmp/mjg-ex-res.log 2>&1
+if npx rescript build res >/tmp/mjg-ex-res.log 2>&1
 then ok "rescript example: Notes.PostNotesCreate.send(_, {text: \"hi\"})"
 else bad "rescript example failed:"; cat /tmp/mjg-ex-res.log; fi
 rm -f res/src/Example.res res/src/Example.res.mjs res/lib/bs/src/Example.* 2>/dev/null
