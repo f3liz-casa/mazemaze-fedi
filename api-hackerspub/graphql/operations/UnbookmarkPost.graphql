@@ -1,0 +1,18 @@
+mutation UnbookmarkPost($input: UnbookmarkPostInput!) {
+  unbookmarkPost(input: $input) {
+    __typename
+    ... on UnbookmarkPostPayload {
+      unbookmarkedPostId
+      post {
+        id
+        viewerHasBookmarked
+      }
+    }
+    ... on InvalidInputError {
+      inputPath
+    }
+    ... on NotAuthenticatedError {
+      notAuthenticated
+    }
+  }
+}

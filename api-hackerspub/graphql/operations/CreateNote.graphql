@@ -1,0 +1,24 @@
+mutation CreateNote($input: CreateNoteInput!) {
+  createNote(input: $input) {
+    __typename
+    ... on CreateNotePayload {
+      note {
+        id
+        uuid
+        url
+        content
+        published
+        visibility
+      }
+    }
+    ... on InvalidInputError {
+      inputPath
+    }
+    ... on NotAuthenticatedError {
+      notAuthenticated
+    }
+    ... on ActorSuspendedError {
+      suspendedUntil
+    }
+  }
+}

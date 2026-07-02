@@ -1,0 +1,5 @@
+# Mark the viewer's notifications as read up to the given UUID (or now if omitted).
+# Returns the timestamp. Requires auth.
+mutation MarkNotificationsAsRead($upTo: UUID) {
+  markNotificationsAsRead(upTo: $upTo)
+}

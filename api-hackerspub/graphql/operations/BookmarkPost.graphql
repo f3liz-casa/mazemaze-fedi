@@ -1,0 +1,17 @@
+mutation BookmarkPost($input: BookmarkPostInput!) {
+  bookmarkPost(input: $input) {
+    __typename
+    ... on BookmarkPostPayload {
+      post {
+        id
+        viewerHasBookmarked
+      }
+    }
+    ... on InvalidInputError {
+      inputPath
+    }
+    ... on NotAuthenticatedError {
+      notAuthenticated
+    }
+  }
+}

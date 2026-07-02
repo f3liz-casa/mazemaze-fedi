@@ -1,0 +1,20 @@
+# Look up a local account by its username (without @host suffix).
+query AccountByUsername($username: String!) {
+  accountByUsername(username: $username) {
+    id
+    handle
+    name
+    actor {
+      id
+      handle
+      handleHost
+      name
+      avatarUrl
+      headerUrl
+      bio
+      local
+      created
+      automaticallyApprovesFollowers
+    }
+  }
+}

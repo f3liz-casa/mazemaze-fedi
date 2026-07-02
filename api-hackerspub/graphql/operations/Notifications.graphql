@@ -1,0 +1,128 @@
+# The authenticated viewer's notifications, newest first. Requires auth.
+query Notifications($after: String, $first: Int) {
+  viewer {
+    id
+    notifications(after: $after, first: $first) {
+      edges {
+        cursor
+        node {
+          __typename
+          id
+          uuid
+          created
+          actors(first: 5) {
+            edges {
+              node {
+                id
+                handle
+                name
+                avatarUrl
+              }
+            }
+          }
+          ... on MentionNotification {
+            post {
+              __typename
+              id
+              uuid
+              url
+              content
+              excerpt
+              published
+              actor {
+                handle
+                name
+                avatarUrl
+              }
+            }
+          }
+          ... on ReplyNotification {
+            post {
+              __typename
+              id
+              uuid
+              url
+              content
+              excerpt
+              published
+              actor {
+                handle
+                name
+                avatarUrl
+              }
+            }
+          }
+          ... on ReactNotification {
+            emoji
+            post {
+              __typename
+              id
+              uuid
+              url
+              content
+              excerpt
+              published
+              actor {
+                handle
+                name
+                avatarUrl
+              }
+            }
+          }
+          ... on ShareNotification {
+            post {
+              __typename
+              id
+              uuid
+              url
+              content
+              excerpt
+              published
+              actor {
+                handle
+                name
+                avatarUrl
+              }
+            }
+          }
+          ... on QuoteNotification {
+            post {
+              __typename
+              id
+              uuid
+              url
+              content
+              excerpt
+              published
+              actor {
+                handle
+                name
+                avatarUrl
+              }
+            }
+          }
+          ... on PollEndedNotification {
+            post {
+              __typename
+              id
+              uuid
+              url
+              content
+              excerpt
+              published
+              actor {
+                handle
+                name
+                avatarUrl
+              }
+            }
+          }
+        }
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+    }
+  }
+}

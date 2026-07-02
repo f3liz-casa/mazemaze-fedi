@@ -1,0 +1,108 @@
+# Direct replies to a post, via the Node interface. Same card selection as
+# PostById; used to render the thread under a note.
+query PostReplies($id: ID!, $after: String, $first: Int) {
+  node(id: $id) {
+    __typename
+    id
+    ... on Post {
+      replies(after: $after, first: $first) {
+        edges {
+          cursor
+          node {
+            __typename
+            id
+            uuid
+            url
+            content
+            excerpt
+            language
+            published
+            updated
+            sensitive
+            viewerHasBookmarked
+            viewerHasShared
+            actor {
+              id
+              handle
+              name
+              avatarUrl
+            }
+            media {
+              id
+              url
+              type
+              alt
+              width
+              height
+              sensitive
+              thumbnailUrl
+            }
+            engagementStats {
+              replies
+              shares
+              reactions
+              bookmarks
+              quotes
+            }
+            reactionGroups {
+              __typename
+              reactors {
+                totalCount
+                viewerHasReacted
+              }
+              ... on EmojiReactionGroup {
+                emoji
+              }
+              ... on CustomEmojiReactionGroup {
+                customEmoji {
+                  id
+                  name
+                  imageUrl
+                }
+              }
+            }
+            replyTarget {
+              __typename
+              id
+              uuid
+              url
+              actor {
+                handle
+                name
+              }
+            }
+            ... on Article {
+              slug
+              publishedYear
+            }
+            ... on Note {
+              visibility
+              sourceId
+            }
+            ... on Question {
+              poll {
+                id
+                closed
+                ends
+                multiple
+                viewerHasVoted
+                options {
+                  index
+                  title
+                  viewerHasVoted
+                  votes {
+                    totalCount
+                  }
+                }
+              }
+            }
+          }
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+      }
+    }
+  }
+}

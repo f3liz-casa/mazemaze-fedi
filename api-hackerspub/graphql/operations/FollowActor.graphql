@@ -1,0 +1,25 @@
+mutation FollowActor($input: FollowActorInput!) {
+  followActor(input: $input) {
+    __typename
+    ... on FollowActorPayload {
+      followee {
+        id
+        handle
+        automaticallyApprovesFollowers
+      }
+      follower {
+        id
+        handle
+      }
+    }
+    ... on InvalidInputError {
+      inputPath
+    }
+    ... on NotAuthenticatedError {
+      notAuthenticated
+    }
+    ... on ActorSuspendedError {
+      suspendedUntil
+    }
+  }
+}

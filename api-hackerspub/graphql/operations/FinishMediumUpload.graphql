@@ -1,0 +1,22 @@
+# Step 2 of direct image upload: confirm the PUT completed. Requires authentication.
+mutation FinishMediumUpload($input: FinishMediumUploadInput!) {
+  finishMediumUpload(input: $input) {
+    __typename
+    ... on FinishMediumUploadPayload {
+      medium {
+        id
+        uuid
+        url
+        type
+        width
+        height
+      }
+    }
+    ... on InvalidInputError {
+      inputPath
+    }
+    ... on NotAuthenticatedError {
+      notAuthenticated
+    }
+  }
+}

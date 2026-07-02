@@ -1,0 +1,21 @@
+mutation UnfollowActor($input: UnfollowActorInput!) {
+  unfollowActor(input: $input) {
+    __typename
+    ... on UnfollowActorPayload {
+      followee {
+        id
+        handle
+      }
+      follower {
+        id
+        handle
+      }
+    }
+    ... on InvalidInputError {
+      inputPath
+    }
+    ... on NotAuthenticatedError {
+      notAuthenticated
+    }
+  }
+}

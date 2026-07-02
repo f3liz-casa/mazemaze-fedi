@@ -1,0 +1,14 @@
+mutation DeletePost($input: DeletePostInput!) {
+  deletePost(input: $input) {
+    __typename
+    ... on DeletePostPayload {
+      deletedPostId
+    }
+    ... on InvalidInputError {
+      inputPath
+    }
+    ... on NotAuthenticatedError {
+      notAuthenticated
+    }
+  }
+}

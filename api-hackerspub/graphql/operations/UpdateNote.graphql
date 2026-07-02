@@ -1,0 +1,22 @@
+mutation UpdateNote($input: UpdateNoteInput!) {
+  updateNote(input: $input) {
+    __typename
+    ... on UpdateNotePayload {
+      note {
+        id
+        uuid
+        url
+        content
+        published
+        updated
+        visibility
+      }
+    }
+    ... on InvalidInputError {
+      inputPath
+    }
+    ... on NotAuthenticatedError {
+      notAuthenticated
+    }
+  }
+}

@@ -1,0 +1,21 @@
+mutation UnsharePost($input: UnsharePostInput!) {
+  unsharePost(input: $input) {
+    __typename
+    ... on UnsharePostPayload {
+      originalPost {
+        id
+        uuid
+        viewerHasShared
+        engagementStats {
+          shares
+        }
+      }
+    }
+    ... on InvalidInputError {
+      inputPath
+    }
+    ... on NotAuthenticatedError {
+      notAuthenticated
+    }
+  }
+}

@@ -1,0 +1,13 @@
+# Initiate passwordless sign-in by username. Sends a magic link to the account's email.
+# Complete the flow with CompleteLoginChallenge using the token from the magic link.
+mutation LoginByUsername($username: String!, $locale: Locale!, $verifyUrl: URITemplate!) {
+  loginByUsername(username: $username, locale: $locale, verifyUrl: $verifyUrl) {
+    __typename
+    ... on LoginChallenge {
+      token
+    }
+    ... on AccountNotFoundError {
+      query
+    }
+  }
+}

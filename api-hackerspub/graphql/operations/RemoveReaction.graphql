@@ -1,0 +1,14 @@
+mutation RemoveReaction($input: RemoveReactionFromPostInput!) {
+  removeReactionFromPost(input: $input) {
+    __typename
+    ... on RemoveReactionFromPostPayload {
+      clientMutationId
+    }
+    ... on InvalidInputError {
+      inputPath
+    }
+    ... on NotAuthenticatedError {
+      notAuthenticated
+    }
+  }
+}

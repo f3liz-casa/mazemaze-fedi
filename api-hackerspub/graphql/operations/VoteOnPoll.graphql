@@ -1,0 +1,30 @@
+mutation VoteOnPoll($input: VoteOnPollInput!) {
+  voteOnPoll(input: $input) {
+    __typename
+    ... on VoteOnPollPayload {
+      poll {
+        id
+        closed
+        multiple
+        viewerHasVoted
+        options {
+          index
+          title
+          viewerHasVoted
+          votes {
+            totalCount
+          }
+        }
+      }
+    }
+    ... on InvalidInputError {
+      inputPath
+    }
+    ... on NotAuthenticatedError {
+      notAuthenticated
+    }
+    ... on ActorSuspendedError {
+      suspendedUntil
+    }
+  }
+}

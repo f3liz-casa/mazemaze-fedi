@@ -9,6 +9,7 @@
     "api-misskey",
     "api-mastodon",
     "api-bluesky",
+    "api-hackerspub",
     "umbrella"
   ],
   "scripts": {

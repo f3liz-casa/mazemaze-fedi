@@ -1,0 +1,17 @@
+mutation AddReaction($input: AddReactionToPostInput!) {
+  addReactionToPost(input: $input) {
+    __typename
+    ... on AddReactionToPostPayload {
+      clientMutationId
+    }
+    ... on InvalidInputError {
+      inputPath
+    }
+    ... on NotAuthenticatedError {
+      notAuthenticated
+    }
+    ... on ActorSuspendedError {
+      suspendedUntil
+    }
+  }
+}

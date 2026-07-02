@@ -1,0 +1,18 @@
+# The current authenticated account, or null. Entry point for viewer-specific data.
+query Viewer {
+  viewer {
+    id
+    handle
+    name
+    actor {
+      id
+      handle
+      handleHost
+      name
+      avatarUrl
+      headerUrl
+      bio
+      local
+    }
+  }
+}

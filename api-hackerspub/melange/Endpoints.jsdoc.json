@@ -1,0 +1,148 @@
+{
+  "module": "Endpoints",
+  "fetchType": "(method: string, url: string, body: unknown) => Promise<unknown>",
+  "imports": [ "AccountByUsernameResponse", "ActorByHandleResponse", "ActorPostsByIdResponse", "ActorPostsResponse", "AddReactionResponse", "AddReactionToPostInput", "BookmarkPostInput", "BookmarkPostResponse", "CompleteLoginChallengeResponse", "CreateMediumInput", "CreateMediumResponse", "CreateNoteInput", "CreateNoteResponse", "DeletePostInput", "DeletePostResponse", "FinishMediumUploadInput", "FinishMediumUploadResponse", "FollowActorInput", "FollowActorResponse", "LoginByEmailResponse", "LoginByUsernameResponse", "MarkNotificationsAsReadResponse", "NotificationsResponse", "PersonalTimelineResponse", "PostByIdResponse", "PostByUrlResponse", "PostRepliesResponse", "PublicTimelineResponse", "RemoveReactionFromPostInput", "RemoveReactionResponse", "SharePostInput", "SharePostResponse", "StartMediumUploadInput", "StartMediumUploadResponse", "UnbookmarkPostInput", "UnbookmarkPostResponse", "UnfollowActorInput", "UnfollowActorResponse", "UnsharePostInput", "UnsharePostResponse", "UpdateNoteInput", "UpdateNoteResponse", "ViewerResponse", "VoteOnPollInput", "VoteOnPollResponse" ],
+  "types": [
+    { "name": "AccountByUsernameReq", "kind": "record", "fields": [
+        { "name": "username", "type": "string", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "ActorByHandleReq", "kind": "record", "fields": [
+        { "name": "handle", "type": "string", "optional": false, "doc": null, "format": null },
+        { "name": "allowLocalHandle", "type": "boolean", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "ActorPostsReq", "kind": "record", "fields": [
+        { "name": "handle", "type": "string", "optional": false, "doc": null, "format": null },
+        { "name": "after", "type": "string", "optional": true, "doc": null, "format": null },
+        { "name": "first", "type": "number", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "ActorPostsByIdReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": null, "format": null },
+        { "name": "after", "type": "string", "optional": true, "doc": null, "format": null },
+        { "name": "first", "type": "number", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "AddReactionReq", "kind": "record", "fields": [
+        { "name": "input", "type": "AddReactionToPostInput", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "BookmarkPostReq", "kind": "record", "fields": [
+        { "name": "input", "type": "BookmarkPostInput", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "CompleteLoginChallengeReq", "kind": "record", "fields": [
+        { "name": "token", "type": "string", "optional": false, "doc": null, "format": null },
+        { "name": "code", "type": "string", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "CreateMediumReq", "kind": "record", "fields": [
+        { "name": "input", "type": "CreateMediumInput", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "CreateNoteReq", "kind": "record", "fields": [
+        { "name": "input", "type": "CreateNoteInput", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "DeletePostReq", "kind": "record", "fields": [
+        { "name": "input", "type": "DeletePostInput", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "FinishMediumUploadReq", "kind": "record", "fields": [
+        { "name": "input", "type": "FinishMediumUploadInput", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "FollowActorReq", "kind": "record", "fields": [
+        { "name": "input", "type": "FollowActorInput", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "LoginByEmailReq", "kind": "record", "fields": [
+        { "name": "email", "type": "string", "optional": false, "doc": null, "format": null },
+        { "name": "locale", "type": "string", "optional": false, "doc": null, "format": null },
+        { "name": "verifyUrl", "type": "string", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "LoginByUsernameReq", "kind": "record", "fields": [
+        { "name": "username", "type": "string", "optional": false, "doc": null, "format": null },
+        { "name": "locale", "type": "string", "optional": false, "doc": null, "format": null },
+        { "name": "verifyUrl", "type": "string", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "MarkNotificationsAsReadReq", "kind": "record", "fields": [
+        { "name": "upTo", "type": "string", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "NotificationsReq", "kind": "record", "fields": [
+        { "name": "after", "type": "string", "optional": true, "doc": null, "format": null },
+        { "name": "first", "type": "number", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "PersonalTimelineReq", "kind": "record", "fields": [
+        { "name": "after", "type": "string", "optional": true, "doc": null, "format": null },
+        { "name": "first", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "languages", "type": "string[]", "optional": true, "doc": null, "format": null },
+        { "name": "withoutShares", "type": "boolean", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "PostByIdReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "PostByUrlReq", "kind": "record", "fields": [
+        { "name": "url", "type": "string", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "PostRepliesReq", "kind": "record", "fields": [
+        { "name": "id", "type": "string", "optional": false, "doc": null, "format": null },
+        { "name": "after", "type": "string", "optional": true, "doc": null, "format": null },
+        { "name": "first", "type": "number", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "PublicTimelineReq", "kind": "record", "fields": [
+        { "name": "after", "type": "string", "optional": true, "doc": null, "format": null },
+        { "name": "first", "type": "number", "optional": true, "doc": null, "format": null },
+        { "name": "languages", "type": "string[]", "optional": true, "doc": null, "format": null },
+        { "name": "withoutShares", "type": "boolean", "optional": true, "doc": null, "format": null }
+      ] },
+    { "name": "RemoveReactionReq", "kind": "record", "fields": [
+        { "name": "input", "type": "RemoveReactionFromPostInput", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "SharePostReq", "kind": "record", "fields": [
+        { "name": "input", "type": "SharePostInput", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "StartMediumUploadReq", "kind": "record", "fields": [
+        { "name": "input", "type": "StartMediumUploadInput", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "UnbookmarkPostReq", "kind": "record", "fields": [
+        { "name": "input", "type": "UnbookmarkPostInput", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "UnfollowActorReq", "kind": "record", "fields": [
+        { "name": "input", "type": "UnfollowActorInput", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "UnsharePostReq", "kind": "record", "fields": [
+        { "name": "input", "type": "UnsharePostInput", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "UpdateNoteReq", "kind": "record", "fields": [
+        { "name": "input", "type": "UpdateNoteInput", "optional": false, "doc": null, "format": null }
+      ] },
+    { "name": "ViewerReq", "kind": "record", "fields": [
+        
+      ] },
+    { "name": "VoteOnPollReq", "kind": "record", "fields": [
+        { "name": "input", "type": "VoteOnPollInput", "optional": false, "doc": null, "format": null }
+      ] }
+  ],
+  "sends": [
+    { "name": "accountByUsername_send", "request": "AccountByUsernameReq", "response": "AccountByUsernameResponse", "doc": null },
+    { "name": "actorByHandle_send", "request": "ActorByHandleReq", "response": "ActorByHandleResponse", "doc": null },
+    { "name": "actorPosts_send", "request": "ActorPostsReq", "response": "ActorPostsResponse", "doc": null },
+    { "name": "actorPostsById_send", "request": "ActorPostsByIdReq", "response": "ActorPostsByIdResponse", "doc": null },
+    { "name": "addReaction_send", "request": "AddReactionReq", "response": "AddReactionResponse", "doc": null },
+    { "name": "bookmarkPost_send", "request": "BookmarkPostReq", "response": "BookmarkPostResponse", "doc": null },
+    { "name": "completeLoginChallenge_send", "request": "CompleteLoginChallengeReq", "response": "CompleteLoginChallengeResponse", "doc": null },
+    { "name": "createMedium_send", "request": "CreateMediumReq", "response": "CreateMediumResponse", "doc": null },
+    { "name": "createNote_send", "request": "CreateNoteReq", "response": "CreateNoteResponse", "doc": null },
+    { "name": "deletePost_send", "request": "DeletePostReq", "response": "DeletePostResponse", "doc": null },
+    { "name": "finishMediumUpload_send", "request": "FinishMediumUploadReq", "response": "FinishMediumUploadResponse", "doc": null },
+    { "name": "followActor_send", "request": "FollowActorReq", "response": "FollowActorResponse", "doc": null },
+    { "name": "loginByEmail_send", "request": "LoginByEmailReq", "response": "LoginByEmailResponse", "doc": null },
+    { "name": "loginByUsername_send", "request": "LoginByUsernameReq", "response": "LoginByUsernameResponse", "doc": null },
+    { "name": "markNotificationsAsRead_send", "request": "MarkNotificationsAsReadReq", "response": "MarkNotificationsAsReadResponse", "doc": null },
+    { "name": "notifications_send", "request": "NotificationsReq", "response": "NotificationsResponse", "doc": null },
+    { "name": "personalTimeline_send", "request": "PersonalTimelineReq", "response": "PersonalTimelineResponse", "doc": null },
+    { "name": "postById_send", "request": "PostByIdReq", "response": "PostByIdResponse", "doc": null },
+    { "name": "postByUrl_send", "request": "PostByUrlReq", "response": "PostByUrlResponse", "doc": null },
+    { "name": "postReplies_send", "request": "PostRepliesReq", "response": "PostRepliesResponse", "doc": null },
+    { "name": "publicTimeline_send", "request": "PublicTimelineReq", "response": "PublicTimelineResponse", "doc": null },
+    { "name": "removeReaction_send", "request": "RemoveReactionReq", "response": "RemoveReactionResponse", "doc": null },
+    { "name": "sharePost_send", "request": "SharePostReq", "response": "SharePostResponse", "doc": null },
+    { "name": "startMediumUpload_send", "request": "StartMediumUploadReq", "response": "StartMediumUploadResponse", "doc": null },
+    { "name": "unbookmarkPost_send", "request": "UnbookmarkPostReq", "response": "UnbookmarkPostResponse", "doc": null },
+    { "name": "unfollowActor_send", "request": "UnfollowActorReq", "response": "UnfollowActorResponse", "doc": null },
+    { "name": "unsharePost_send", "request": "UnsharePostReq", "response": "UnsharePostResponse", "doc": null },
+    { "name": "updateNote_send", "request": "UpdateNoteReq", "response": "UpdateNoteResponse", "doc": null },
+    { "name": "viewer_send", "request": "ViewerReq", "response": "ViewerResponse", "doc": null },
+    { "name": "voteOnPoll_send", "request": "VoteOnPollReq", "response": "VoteOnPollResponse", "doc": null }
+  ]
+}

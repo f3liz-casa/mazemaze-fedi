@@ -1,0 +1,22 @@
+# Exchange the (token, code) pair from a magic-link email for a session.
+# Session.id is the bearer token for Authorization headers.
+mutation CompleteLoginChallenge($token: UUID!, $code: String!) {
+  completeLoginChallenge(token: $token, code: $code) {
+    __typename
+    ... on Session {
+      id
+      created
+      account {
+        id
+        handle
+        name
+        actor {
+          avatarUrl
+        }
+      }
+    }
+    ... on AccountBannedError {
+      since
+    }
+  }
+}

@@ -1,0 +1,29 @@
+mutation SharePost($input: SharePostInput!) {
+  sharePost(input: $input) {
+    __typename
+    ... on SharePostPayload {
+      share {
+        id
+        uuid
+        published
+      }
+      originalPost {
+        id
+        uuid
+        viewerHasShared
+        engagementStats {
+          shares
+        }
+      }
+    }
+    ... on InvalidInputError {
+      inputPath
+    }
+    ... on NotAuthenticatedError {
+      notAuthenticated
+    }
+    ... on ActorSuspendedError {
+      suspendedUntil
+    }
+  }
+}

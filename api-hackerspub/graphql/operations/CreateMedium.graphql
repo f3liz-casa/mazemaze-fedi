@@ -1,0 +1,22 @@
+# Import a media object from a remote URL. Requires authentication.
+mutation CreateMedium($input: CreateMediumInput!) {
+  createMedium(input: $input) {
+    __typename
+    ... on CreateMediumPayload {
+      medium {
+        id
+        uuid
+        url
+        type
+        width
+        height
+      }
+    }
+    ... on InvalidInputError {
+      inputPath
+    }
+    ... on NotAuthenticatedError {
+      notAuthenticated
+    }
+  }
+}

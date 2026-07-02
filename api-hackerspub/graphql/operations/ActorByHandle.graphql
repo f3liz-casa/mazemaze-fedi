@@ -1,0 +1,17 @@
+# Look up an actor by fediverse handle (e.g. @alice@hackers.pub).
+query ActorByHandle($handle: String!, $allowLocalHandle: Boolean) {
+  actorByHandle(handle: $handle, allowLocalHandle: $allowLocalHandle) {
+    id
+    handle
+    handleHost
+    name
+    avatarUrl
+    headerUrl
+    bio
+    local
+    automaticallyApprovesFollowers
+    created
+    viewerFollows: follows(followeeId: null)
+    followsViewer
+  }
+}

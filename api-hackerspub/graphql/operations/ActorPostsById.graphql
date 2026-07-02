@@ -1,0 +1,140 @@
+# Profile feed for an actor by their Relay global id, via the Node interface.
+# Same posts connection and card selection as ActorPosts.
+query ActorPostsById($id: ID!, $after: String, $first: Int) {
+  node(id: $id) {
+    __typename
+    ... on Actor {
+      id
+      handle
+      name
+      avatarUrl
+      posts(after: $after, first: $first) {
+        edges {
+          cursor
+          node {
+            __typename
+            id
+            uuid
+            url
+            content
+            excerpt
+            language
+            published
+            updated
+            sensitive
+            viewerHasBookmarked
+            viewerHasShared
+            actor {
+              id
+              handle
+              name
+              avatarUrl
+            }
+            media {
+              id
+              url
+              type
+              alt
+              width
+              height
+              sensitive
+              thumbnailUrl
+            }
+            engagementStats {
+              replies
+              shares
+              reactions
+              bookmarks
+              quotes
+            }
+            reactionGroups {
+              __typename
+              reactors {
+                totalCount
+                viewerHasReacted
+              }
+              ... on EmojiReactionGroup {
+                emoji
+              }
+              ... on CustomEmojiReactionGroup {
+                customEmoji {
+                  id
+                  name
+                  imageUrl
+                }
+              }
+            }
+            replyTarget {
+              __typename
+              id
+              uuid
+              url
+              actor {
+                handle
+                name
+              }
+            }
+            sharedPost {
+              __typename
+              id
+              uuid
+              url
+              content
+              excerpt
+              published
+              language
+              actor {
+                handle
+                name
+                avatarUrl
+              }
+              media {
+                id
+                url
+                type
+                alt
+                thumbnailUrl
+              }
+              ... on Article {
+                slug
+                publishedYear
+              }
+              ... on Note {
+                visibility
+              }
+            }
+            ... on Article {
+              slug
+              publishedYear
+            }
+            ... on Note {
+              visibility
+              sourceId
+            }
+            ... on Question {
+              poll {
+                id
+                closed
+                ends
+                multiple
+                viewerHasVoted
+                options {
+                  index
+                  title
+                  viewerHasVoted
+                  votes {
+                    totalCount
+                  }
+                }
+              }
+            }
+          }
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+      }
+    }
+  }
+}

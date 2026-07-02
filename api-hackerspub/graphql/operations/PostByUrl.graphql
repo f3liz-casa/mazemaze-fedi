@@ -1,0 +1,93 @@
+# Resolve a post by its URL, fetching from the originating instance if needed.
+# Requires authentication.
+query PostByUrl($url: String!) {
+  postByUrl(url: $url) {
+    __typename
+    id
+    uuid
+    url
+    content
+    excerpt
+    language
+    published
+    updated
+    sensitive
+    viewerHasBookmarked
+    viewerHasShared
+    actor {
+      id
+      handle
+      name
+      avatarUrl
+    }
+    media {
+      id
+      url
+      type
+      alt
+      width
+      height
+      sensitive
+      thumbnailUrl
+    }
+    engagementStats {
+      replies
+      shares
+      reactions
+      bookmarks
+      quotes
+    }
+    reactionGroups {
+      __typename
+      reactors {
+        totalCount
+        viewerHasReacted
+      }
+      ... on EmojiReactionGroup {
+        emoji
+      }
+      ... on CustomEmojiReactionGroup {
+        customEmoji {
+          id
+          name
+          imageUrl
+        }
+      }
+    }
+    replyTarget {
+      __typename
+      id
+      uuid
+      url
+      actor {
+        handle
+        name
+      }
+    }
+    ... on Article {
+      slug
+      publishedYear
+    }
+    ... on Note {
+      visibility
+      sourceId
+    }
+    ... on Question {
+      poll {
+        id
+        closed
+        ends
+        multiple
+        viewerHasVoted
+        options {
+          index
+          title
+          viewerHasVoted
+          votes {
+            totalCount
+          }
+        }
+      }
+    }
+  }
+}

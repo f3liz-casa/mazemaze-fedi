@@ -1,0 +1,23 @@
+# Step 1 of direct image upload: get a pre-signed upload URL.
+# PUT the image to uploadUrl, then call FinishMediumUpload. Requires authentication.
+mutation StartMediumUpload($input: StartMediumUploadInput!) {
+  startMediumUpload(input: $input) {
+    __typename
+    ... on StartMediumUploadPayload {
+      uploadId
+      uploadUrl
+      method
+      expires
+      headers {
+        name
+        value
+      }
+    }
+    ... on InvalidInputError {
+      inputPath
+    }
+    ... on NotAuthenticatedError {
+      notAuthenticated
+    }
+  }
+}
